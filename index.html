@@ -641,7 +641,9 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; background: #0404
 .footer-inner {
   display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
   color: var(--text-muted); font-size: 14px;
-}
+}.footer-links { display: flex; gap: 24px; }
+.footer-links a { color: var(--text-secondary); font-size: 14px; font-weight: 500; }
+.footer-links a:hover { color: var(--text); }
 
 /* ---------- Scroll reveal ---------- */
 .reveal {
@@ -1012,7 +1014,12 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; background: #0404
 <footer>
   <div class="container footer-inner">
     <a href="#" class="logo" style="font-size:18px">Huddle<span class="dot">.</span></a>
-    <span data-i18n="footer">© 2026 Huddle. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="support.html" data-i18n="footer_support">Support</a>
+      <a href="privacypolicy.html" data-i18n="footer_privacy">Privacy Policy</a>
+      <a href="termsofuse.html" data-i18n="footer_terms">Terms of Use</a>
+    </div>
+    <span data-i18n="footer">© 2026 Adem Tengiz. All rights reserved.</span>
   </div>
 </footer>
 
@@ -1061,7 +1068,8 @@ const i18n = {
     c_ph:"you@business.com", c_cta:"Join the early access list",
     c_ok:"You're on the list! We'll be in touch soon. ✓",
     c_err:"Please enter a valid email address.",
-    footer:"© 2026 Huddle. All rights reserved."
+    footer:"© 2026 Huddle. All rights reserved.",
+    footer_support:"Support", footer_privacy:"Privacy", footer_terms:"Terms",
   },
   tr: {
     nav_features:"Özellikler", nav_how:"Nasıl çalışır", nav_contact:"İletişim",
@@ -1106,7 +1114,8 @@ const i18n = {
     c_ph:"siz@isletmeniz.com", c_cta:"Erken Erişim Listesine Katıl",
     c_ok:"Listedesiniz! En kısa sürede sizinle iletişime geçeceğiz. ✓",
     c_err:"Lütfen geçerli bir e-posta adresi girin.",
-    footer:"© 2026 Huddle. Tüm hakları saklıdır."
+    footer:"© 2026 Huddle. Tüm hakları saklıdır.",
+    footer_support:"Destek", footer_privacy:"Gizlilik", footer_terms:"Şartlar",
   }
 };
 

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Huddle — Privacy Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060608;
+  --bg-surface: #0B0B0F;
+  --accent: #00F0FF;
+  --accent-dim: rgba(0, 240, 255, 0.1);
+  --accent-border: rgba(0, 240, 255, 0.25);
+  --text: #FFFFFF;
+  --text-secondary: #9494A1;
+  --text-muted: #62626C;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--bg); }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6; -webkit-font-smoothing: antialiased;
+  min-height: 100vh; display: flex; flex-direction: column;
+}
+::selection { background: rgba(0, 240, 255, 0.2); color: var(--text); }
+a { color: var(--accent); text-decoration: none; transition: all 0.2s var(--ease); }
+a:hover { text-decoration: underline; }
+button { font-family: inherit; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ---------- Nav ---------- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(6, 6, 8, 0.75);
+  backdrop-filter: blur(20px) saturate(1.6);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+.nav-inner { height: 72px; display: flex; align-items: center; justify-content: space-between; }
+.logo {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold; font-size: 24px; letter-spacing: -0.03em; color: var(--text);
+  display: flex; align-items: center;
+}
+.logo .dot { color: var(--accent); }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a { font-size: 14px; color: var(--text-secondary); font-weight: 500; text-decoration: none; }
+.nav-links a:hover { color: var(--text); text-decoration: none; }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.lang-toggle {
+  display: flex; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border);
+  border-radius: 999px; padding: 2px;
+}
+.lang-toggle button {
+  border: 0; background: transparent; color: var(--text-secondary);
+  font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 999px;
+  cursor: pointer; transition: all 0.2s var(--ease);
+}
+.lang-toggle button.active { background: var(--text); color: var(--bg); }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 600; font-size: 14px; border-radius: 999px; cursor: pointer;
+  transition: all 0.2s var(--ease); border: 0; white-space: nowrap;
+  text-decoration: none;
+}
+.btn:hover { text-decoration: none; }
+.btn-primary { background: var(--text); color: var(--bg); padding: 12px 28px; }
+.btn-primary:hover {
+  background: var(--accent); transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 240, 255, 0.25);
+}
+.btn-nav { padding: 8px 20px; font-size: 13px; }
+
+/* ---------- Policy content ---------- */
+.policy-header {
+  padding: 150px 0 60px; text-align: center; position: relative;
+}
+.policy-header::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 600px 350px at 50% 20%, rgba(0, 240, 255, 0.06), transparent 70%);
+  pointer-events: none;
+}
+.policy-header h1 {
+  font-size: clamp(32px, 5vw, 48px); font-weight: 800;
+  letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 12px;
+}
+.policy-header .updated {
+  font-size: 14px; color: var(--text-muted); font-weight: 500;
+}
+
+.policy-body {
+  max-width: 720px; margin: 0 auto; padding: 0 24px 120px;
+}
+.policy-body h2 {
+  font-size: 22px; font-weight: 700; letter-spacing: -0.02em;
+  margin: 48px 0 16px; color: var(--text);
+}
+.policy-body h2:first-of-type { margin-top: 0; }
+.policy-body p {
+  color: var(--text-secondary); font-size: 15px; line-height: 1.75; margin-bottom: 16px;
+}
+.policy-body strong { color: var(--text); font-weight: 600; }
+
+/* ---------- Footer ---------- */
+footer { border-top: 1px solid var(--border); padding: 40px 0; background: #040406; margin-top: auto; }
+.footer-inner {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+  color: var(--text-muted); font-size: 14px;
+}
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { color: var(--text-secondary); font-size: 14px; font-weight: 500; text-decoration: none; }
+.footer-links a:hover { color: var(--text); text-decoration: none; }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .policy-header { padding: 130px 0 40px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">Huddle<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="index.html#features" data-i18n="nav_features">Features</a>
+      <a href="index.html#how" data-i18n="nav_how">How it works</a>
+      <a href="support.html" data-i18n="nav_support">Support</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button id="lang-en" class="active" onclick="setLang('en')">EN</button>
+        <button id="lang-tr" onclick="setLang('tr')">TR</button>
+      </div>
+      <a href="index.html#contact" class="btn btn-primary btn-nav" data-i18n="nav_cta">Get early access</a>
+    </div>
+  </div>
+</nav>
+
+<header class="policy-header">
+  <div class="container">
+    <h1 data-i18n="title">Privacy Policy</h1>
+    <p class="updated" data-i18n="updated">Last updated: July 10, 2026</p>
+  </div>
+</header>
+
+<article class="policy-body" id="policy-content">
+  <!-- EN content (default) -->
+  <div id="content-en">
+    <h2>1. Who we are</h2>
+    <p>Huddle is a shift and staff management platform built for cafés, bars, and hospitality businesses. This policy explains how we collect, use, and protect your personal data when you use the Huddle mobile app, web dashboard, and related services.</p>
+
+    <h2>2. Data we collect</h2>
+    <p><strong>Account information:</strong> Name, email address, phone number, and role when you create an account or are invited to a team.</p>
+    <p><strong>Location data:</strong> GPS coordinates at the time of clock-in and clock-out, used solely to verify that you are at your assigned business location. Location is only accessed during the check-in action and is not tracked continuously.</p>
+    <p><strong>Shift and scheduling data:</strong> Shift times, swap requests, attendance records, and schedule preferences.</p>
+    <p><strong>Messages:</strong> Content sent through the in-app team chat feature.</p>
+    <p><strong>Device information:</strong> Device type, operating system, app version, and push notification tokens.</p>
+    <p><strong>Usage data:</strong> How you interact with the app, including features used, timestamps, and crash reports.</p>
+
+    <h2>3. How we use your data</h2>
+    <p>We use your data to operate and improve Huddle — specifically to manage shift schedules, verify GPS check-ins, deliver push notifications, enable team communication, generate attendance and performance reports for managers, and provide AI-powered scheduling suggestions.</p>
+    <p>We do not use your data for advertising. We do not sell your personal information to third parties.</p>
+
+    <h2>4. Who we share data with</h2>
+    <p><strong>Your employer / manager:</strong> Managers within your business can see your shift schedule, check-in times, location verification status, and attendance reports.</p>
+    <p><strong>Service providers:</strong> We work with trusted third-party providers for cloud hosting, push notifications, and analytics. These providers process data on our behalf under strict contractual obligations.</p>
+    <p><strong>Legal requirements:</strong> We may disclose data if required by law, regulation, or valid legal process.</p>
+
+    <h2>5. Data retention</h2>
+    <p>We retain your personal data for as long as your account is active or as needed to provide the service. If you delete your account, your personal data will be permanently removed within 30 days. Anonymized, aggregated data may be retained for analytics purposes.</p>
+
+    <h2>6. Data security</h2>
+    <p>We use industry-standard security measures to protect your data, including encryption in transit (TLS) and at rest, secure authentication, and regular security audits. However, no method of electronic transmission or storage is 100% secure.</p>
+
+    <h2>7. Your rights</h2>
+    <p>Depending on your location, you may have the right to access, correct, delete, or export your personal data. You can exercise these rights from within the app under Settings → Account, or by emailing us at <a href="mailto:support@huddle.mucoai.com">support@huddle.mucoai.com</a>.</p>
+    <p>You can withdraw location permissions at any time through your device settings. This may prevent the GPS check-in feature from functioning.</p>
+
+    <h2>8. Children's privacy</h2>
+    <p>Huddle is not intended for use by individuals under the age of 16. We do not knowingly collect personal data from children. If you believe a child has provided us with personal data, please contact us and we will delete it.</p>
+
+    <h2>9. Changes to this policy</h2>
+    <p>We may update this Privacy Policy from time to time. We will notify you of significant changes through the app or by email. Continued use of Huddle after changes take effect constitutes acceptance of the updated policy.</p>
+
+    <h2>10. Contact</h2>
+    <p>If you have any questions about this Privacy Policy or your data, reach out to us at <a href="mailto:support@huddle.mucoai.com">support@huddle.mucoai.com</a>.</p>
+  </div>
+
+  <!-- TR content (hidden by default) -->
+  <div id="content-tr" style="display:none">
+    <h2>1. Biz kimiz</h2>
+    <p>Huddle; kafeler, barlar ve hizmet sektörü işletmeleri için geliştirilmiş bir vardiya ve personel yönetim platformudur. Bu politika, Huddle mobil uygulamasını, web panelini ve ilgili hizmetleri kullandığınızda kişisel verilerinizi nasıl topladığımızı, kullandığımızı ve koruduğumuzu açıklar.</p>
+
+    <h2>2. Topladığımız veriler</h2>
+    <p><strong>Hesap bilgileri:</strong> Hesap oluşturduğunuzda veya bir ekibe davet edildiğinizde adınız, e-posta adresiniz, telefon numaranız ve rolünüz.</p>
+    <p><strong>Konum verileri:</strong> Giriş ve çıkış sırasında GPS koordinatları; yalnızca atanmış işletme konumunda olduğunuzu doğrulamak için kullanılır. Konum yalnızca giriş işlemi sırasında erişilir ve sürekli olarak takip edilmez.</p>
+    <p><strong>Vardiya ve planlama verileri:</strong> Vardiya saatleri, takas istekleri, katılım kayıtları ve program tercihleri.</p>
+    <p><strong>Mesajlar:</strong> Uygulama içi ekip sohbeti özelliği aracılığıyla gönderilen içerikler.</p>
+    <p><strong>Cihaz bilgileri:</strong> Cihaz türü, işletim sistemi, uygulama sürümü ve push bildirim token'ları.</p>
+    <p><strong>Kullanım verileri:</strong> Uygulamayla nasıl etkileşim kurduğunuz; kullanılan özellikler, zaman damgaları ve çökme raporları.</p>
+
+    <h2>3. Verilerinizi nasıl kullanıyoruz</h2>
+    <p>Verilerinizi Huddle'ı çalıştırmak ve geliştirmek için kullanıyoruz — özellikle vardiya programlarını yönetmek, GPS girişlerini doğrulamak, push bildirimleri göndermek, ekip iletişimini sağlamak, yöneticiler için katılım ve performans raporları oluşturmak ve yapay zekâ destekli planlama önerileri sunmak için.</p>
+    <p>Verilerinizi reklam amacıyla kullanmıyoruz. Kişisel bilgilerinizi üçüncü taraflara satmıyoruz.</p>
+
+    <h2>4. Verileri kimlerle paylaşıyoruz</h2>
+    <p><strong>İşvereniniz / yöneticiniz:</strong> İşletmenizdeki yöneticiler vardiya programınızı, giriş saatlerinizi, konum doğrulama durumunuzu ve katılım raporlarınızı görebilir.</p>
+    <p><strong>Hizmet sağlayıcılar:</strong> Bulut barındırma, push bildirimleri ve analitik için güvenilir üçüncü taraf sağlayıcılarla çalışıyoruz. Bu sağlayıcılar verileri sıkı sözleşme yükümlülükleri altında bizim adımıza işler.</p>
+    <p><strong>Yasal gereklilikler:</strong> Yasa, düzenleme veya geçerli yasal süreç gerektirdiğinde verileri açıklayabiliriz.</p>
+
+    <h2>5. Veri saklama</h2>
+    <p>Kişisel verilerinizi hesabınız aktif olduğu sürece veya hizmeti sağlamak için gerekli olduğu sürece saklarız. Hesabınızı silerseniz kişisel verileriniz 30 gün içinde kalıcı olarak kaldırılır. Anonimleştirilmiş, toplu veriler analitik amaçlı saklanabilir.</p>
+
+    <h2>6. Veri güvenliği</h2>
+    <p>Verilerinizi korumak için iletim sırasında (TLS) ve beklemede şifreleme, güvenli kimlik doğrulama ve düzenli güvenlik denetimleri dahil olmak üzere endüstri standardı güvenlik önlemleri kullanıyoruz. Ancak hiçbir elektronik iletim veya depolama yöntemi %100 güvenli değildir.</p>
+
+    <h2>7. Haklarınız</h2>
+    <p>Bulunduğunuz konuma bağlı olarak kişisel verilerinize erişme, düzeltme, silme veya dışa aktarma hakkına sahip olabilirsiniz. Bu hakları uygulama içinde Ayarlar → Hesap bölümünden veya <a href="mailto:support@huddle.mucoai.com">support@huddle.mucoai.com</a> adresine e-posta göndererek kullanabilirsiniz.</p>
+    <p>Konum izinlerini istediğiniz zaman cihaz ayarlarınızdan geri çekebilirsiniz. Bu, GPS giriş özelliğinin çalışmasını engelleyebilir.</p>
+
+    <h2>8. Çocukların gizliliği</h2>
+    <p>Huddle, 16 yaşın altındaki bireylerin kullanımına yönelik değildir. Çocuklardan bilerek kişisel veri toplamıyoruz. Bir çocuğun bize kişisel veri sağladığını düşünüyorsanız lütfen bizimle iletişime geçin, ilgili verileri sileceğiz.</p>
+
+    <h2>9. Bu politikadaki değişiklikler</h2>
+    <p>Bu Gizlilik Politikasını zaman zaman güncelleyebiliriz. Önemli değişiklikleri uygulama aracılığıyla veya e-posta ile bildireceğiz. Değişiklikler yürürlüğe girdikten sonra Huddle'ı kullanmaya devam etmeniz, güncellenen politikayı kabul ettiğiniz anlamına gelir.</p>
+
+    <h2>10. İletişim</h2>
+    <p>Bu Gizlilik Politikası veya verileriniz hakkında sorularınız varsa <a href="mailto:support@huddle.mucoai.com">support@huddle.mucoai.com</a> adresinden bize ulaşabilirsiniz.</p>
+  </div>
+</article>
+
+<footer>
+  <div class="container footer-inner">
+    <a href="index.html" class="logo" style="font-size:18px">Huddle<span class="dot">.</span></a>
+    <div class="footer-links">
+      <a href="support.html" data-i18n="footer_support">Support</a>
+      <a href="privacy.html" data-i18n="footer_privacy">Privacy</a>
+      <a href="terms.html" data-i18n="footer_terms">Terms</a>
+    </div>
+    <span data-i18n="footer">© 2026 Huddle. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+const i18n = {
+  en: {
+    nav_features:"Features", nav_how:"How it works", nav_support:"Support", nav_cta:"Get early access",
+    title:"Privacy Policy", updated:"Last updated: July 10, 2026",
+    footer_support:"Support", footer_privacy:"Privacy", footer_terms:"Terms",
+    footer:"© 2026 Huddle. All rights reserved."
+  },
+  tr: {
+    nav_features:"Özellikler", nav_how:"Nasıl çalışır", nav_support:"Destek", nav_cta:"Erken erişim",
+    title:"Gizlilik Politikası", updated:"Son güncelleme: 10 Temmuz 2026",
+    footer_support:"Destek", footer_privacy:"Gizlilik", footer_terms:"Şartlar",
+    footer:"© 2026 Huddle. Tüm hakları saklıdır."
+  }
+};
+let currentLang = 'en';
+function setLang(lang){
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.getElementById('lang-en').classList.toggle('active', lang==='en');
+  document.getElementById('lang-tr').classList.toggle('active', lang==='tr');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(i18n[lang][k] !== undefined) el.textContent = i18n[lang][k];
+  });
+  document.getElementById('content-en').style.display = lang==='en' ? '' : 'none';
+  document.getElementById('content-tr').style.display = lang==='tr' ? '' : 'none';
+}
+</script>
+</body>
+</html>

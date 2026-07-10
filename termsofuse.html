@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Huddle — Terms of Use</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060608;
+  --bg-surface: #0B0B0F;
+  --accent: #00F0FF;
+  --accent-dim: rgba(0, 240, 255, 0.1);
+  --accent-border: rgba(0, 240, 255, 0.25);
+  --text: #FFFFFF;
+  --text-secondary: #9494A1;
+  --text-muted: #62626C;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--bg); }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6; -webkit-font-smoothing: antialiased;
+  min-height: 100vh; display: flex; flex-direction: column;
+}
+::selection { background: rgba(0, 240, 255, 0.2); color: var(--text); }
+a { color: var(--accent); text-decoration: none; transition: all 0.2s var(--ease); }
+a:hover { text-decoration: underline; }
+button { font-family: inherit; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ---------- Nav ---------- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(6, 6, 8, 0.75);
+  backdrop-filter: blur(20px) saturate(1.6);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+.nav-inner { height: 72px; display: flex; align-items: center; justify-content: space-between; }
+.logo {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold; font-size: 24px; letter-spacing: -0.03em; color: var(--text);
+  display: flex; align-items: center;
+}
+.logo .dot { color: var(--accent); }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a { font-size: 14px; color: var(--text-secondary); font-weight: 500; text-decoration: none; }
+.nav-links a:hover { color: var(--text); text-decoration: none; }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.lang-toggle {
+  display: flex; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border);
+  border-radius: 999px; padding: 2px;
+}
+.lang-toggle button {
+  border: 0; background: transparent; color: var(--text-secondary);
+  font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 999px;
+  cursor: pointer; transition: all 0.2s var(--ease);
+}
+.lang-toggle button.active { background: var(--text); color: var(--bg); }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 600; font-size: 14px; border-radius: 999px; cursor: pointer;
+  transition: all 0.2s var(--ease); border: 0; white-space: nowrap; text-decoration: none;
+}
+.btn:hover { text-decoration: none; }
+.btn-primary { background: var(--text); color: var(--bg); padding: 12px 28px; }
+.btn-primary:hover {
+  background: var(--accent); transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 240, 255, 0.25);
+}
+.btn-nav { padding: 8px 20px; font-size: 13px; }
+
+/* ---------- Policy content ---------- */
+.policy-header {
+  padding: 150px 0 60px; text-align: center; position: relative;
+}
+.policy-header::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 600px 350px at 50% 20%, rgba(0, 240, 255, 0.06), transparent 70%);
+  pointer-events: none;
+}
+.policy-header h1 {
+  font-size: clamp(32px, 5vw, 48px); font-weight: 800;
+  letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 12px;
+}
+.policy-header .updated {
+  font-size: 14px; color: var(--text-muted); font-weight: 500;
+}
+
+.policy-body {
+  max-width: 720px; margin: 0 auto; padding: 0 24px 120px;
+}
+.policy-body h2 {
+  font-size: 22px; font-weight: 700; letter-spacing: -0.02em;
+  margin: 48px 0 16px; color: var(--text);
+}
+.policy-body h2:first-of-type { margin-top: 0; }
+.policy-body p {
+  color: var(--text-secondary); font-size: 15px; line-height: 1.75; margin-bottom: 16px;
+}
+.policy-body strong { color: var(--text); font-weight: 600; }
+
+/* ---------- Footer ---------- */
+footer { border-top: 1px solid var(--border); padding: 40px 0; background: #040406; margin-top: auto; }
+.footer-inner {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+  color: var(--text-muted); font-size: 14px;
+}
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { color: var(--text-secondary); font-size: 14px; font-weight: 500; text-decoration: none; }
+.footer-links a:hover { color: var(--text); text-decoration: none; }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .policy-header { padding: 130px 0 40px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">Huddle<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="index.html#features" data-i18n="nav_features">Features</a>
+      <a href="index.html#how" data-i18n="nav_how">How it works</a>
+      <a href="support.html" data-i18n="nav_support">Support</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button id="lang-en" class="active" onclick="setLang('en')">EN</button>
+        <button id="lang-tr" onclick="setLang('tr')">TR</button>
+      </div>
+      <a href="index.html#contact" class="btn btn-primary btn-nav" data-i18n="nav_cta">Get early access</a>
+    </div>
+  </div>
+</nav>
+
+<header class="policy-header">
+  <div class="container">
+    <h1 data-i18n="title">Terms of Use</h1>
+    <p class="updated" data-i18n="updated">Last updated: July 10, 2026</p>
+  </div>
+</header>
+
+<article class="policy-body">
+
+  <div id="content-en">
+    <h2>1. Acceptance of terms</h2>
+    <p>By downloading, installing, or using the Huddle mobile application or web dashboard ("Service"), you agree to be bound by these Terms of Use. If you do not agree, do not use the Service.</p>
+
+    <h2>2. Eligibility</h2>
+    <p>You must be at least 16 years old to use Huddle. By using the Service, you represent that you meet this age requirement. If you are accessing Huddle on behalf of a business, you confirm that you have the authority to bind that business to these terms.</p>
+
+    <h2>3. Accounts</h2>
+    <p>You are responsible for maintaining the confidentiality of your account credentials and for all activity that occurs under your account. You agree to provide accurate and current information during registration and to update it as needed. Notify us immediately at <a href="mailto:support@huddle.mucoai.com">support@huddle.mucoai.com</a> if you suspect unauthorized access to your account.</p>
+
+    <h2>4. How the Service works</h2>
+    <p>Huddle provides tools for shift scheduling, GPS-based clock-in/clock-out, shift swapping, team messaging, push notifications, attendance reporting, and AI-powered scheduling suggestions. The Service is designed for use by business owners, managers, and their employees within the hospitality industry.</p>
+
+    <h2>5. Manager and employer responsibilities</h2>
+    <p>If you use Huddle as a business owner or manager, you are responsible for ensuring that your use of the Service complies with applicable labor laws, employment regulations, and data protection requirements in your jurisdiction. Huddle is a scheduling tool — it does not replace legal obligations regarding working hours, rest periods, overtime, or employee rights.</p>
+
+    <h2>6. Employee responsibilities</h2>
+    <p>If you use Huddle as an employee, you agree to use the GPS check-in feature honestly and only from your actual physical location. Attempting to spoof, manipulate, or falsify your location constitutes a violation of these terms and may result in account suspension.</p>
+
+    <h2>7. GPS and location data</h2>
+    <p>Huddle collects GPS coordinates at the moment of clock-in and clock-out to verify that the employee is at the assigned business location. Location data is not tracked continuously. By using the check-in feature, you consent to this limited collection of location data. You can revoke location permissions at any time through your device settings, though this will prevent the check-in feature from functioning.</p>
+
+    <h2>8. Acceptable use</h2>
+    <p>You agree not to use the Service to violate any applicable law or regulation, transmit harmful, abusive, or offensive content through team chat, attempt to gain unauthorized access to other accounts or systems, reverse-engineer, decompile, or disassemble any part of the Service, use the Service for any purpose other than workforce management, or interfere with the operation or security of the Service.</p>
+
+    <h2>9. Huddle AI</h2>
+    <p>Huddle may offer AI-powered scheduling suggestions based on your business data. These suggestions are recommendations only and do not constitute professional, legal, or employment advice. You are solely responsible for all scheduling decisions made using the Service.</p>
+
+    <h2>10. Intellectual property</h2>
+    <p>All content, design, code, trademarks, and other intellectual property associated with Huddle are owned by Huddle and its licensors. You may not copy, modify, distribute, or create derivative works from any part of the Service without our prior written consent.</p>
+
+    <h2>11. Third-party services</h2>
+    <p>Huddle may integrate with or contain links to third-party services. We are not responsible for the content, privacy practices, or terms of any third-party services.</p>
+
+    <h2>12. Service availability</h2>
+    <p>We aim to keep Huddle available at all times, but we do not guarantee uninterrupted or error-free operation. We may suspend or modify the Service for maintenance, updates, or other reasons without prior notice.</p>
+
+    <h2>13. Termination</h2>
+    <p>You may stop using Huddle and delete your account at any time from within the app. We may suspend or terminate your access if you violate these terms, misuse the Service, or if required by law. Upon termination, your right to use the Service ceases immediately.</p>
+
+    <h2>14. Disclaimer of warranties</h2>
+    <p>The Service is provided "as is" and "as available" without warranties of any kind, whether express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement. Huddle does not warrant that the Service will meet your specific requirements or that GPS verification will be accurate in all conditions.</p>
+
+    <h2>15. Limitation of liability</h2>
+    <p>To the fullest extent permitted by law, Huddle and its officers, employees, and affiliates shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or business opportunities, arising from your use of or inability to use the Service.</p>
+
+    <h2>16. Governing law</h2>
+    <p>These terms are governed by and construed in accordance with the laws of the Republic of Turkey. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the courts of Istanbul, Turkey.</p>
+
+    <h2>17. Changes to these terms</h2>
+    <p>We may update these Terms of Use from time to time. We will notify you of material changes through the app or by email. Your continued use of the Service after changes take effect constitutes acceptance of the updated terms.</p>
+
+    <h2>18. Contact</h2>
+    <p>If you have any questions about these Terms of Use, contact us at <a href="mailto:support@huddle.mucoai.com">support@huddle.mucoai.com</a>.</p>
+  </div>
+
+  <div id="content-tr" style="display:none">
+    <h2>1. Şartların kabulü</h2>
+    <p>Huddle mobil uygulamasını veya web panelini ("Hizmet") indirerek, yükleyerek veya kullanarak bu Kullanım Şartları'na bağlı kalmayı kabul edersiniz. Kabul etmiyorsanız Hizmet'i kullanmayın.</p>
+
+    <h2>2. Uygunluk</h2>
+    <p>Huddle'ı kullanabilmek için en az 16 yaşında olmanız gerekmektedir. Hizmet'i kullanarak bu yaş şartını karşıladığınızı beyan edersiniz. Huddle'a bir işletme adına erişiyorsanız, bu işletmeyi bu şartlara bağlama yetkisine sahip olduğunuzu onaylarsınız.</p>
+
+    <h2>3. Hesaplar</h2>
+    <p>Hesap bilgilerinizin gizliliğini korumak ve hesabınız altında gerçekleşen tüm etkinliklerden siz sorumlusunuz. Kayıt sırasında doğru ve güncel bilgi vermeyi ve gerektiğinde güncellemeyi kabul edersiniz. Hesabınıza yetkisiz erişim olduğundan şüpheleniyorsanız derhal <a href="mailto:support@huddle.mucoai.com">support@huddle.mucoai.com</a> adresinden bizi bilgilendirin.</p>
+
+    <h2>4. Hizmet nasıl çalışır</h2>
+    <p>Huddle; vardiya planlama, GPS tabanlı giriş/çıkış, vardiya takası, ekip mesajlaşma, push bildirimleri, katılım raporlama ve yapay zekâ destekli planlama önerileri için araçlar sunar. Hizmet, hizmet sektöründeki işletme sahipleri, yöneticiler ve çalışanları tarafından kullanılmak üzere tasarlanmıştır.</p>
+
+    <h2>5. Yönetici ve işveren sorumlulukları</h2>
+    <p>Huddle'ı işletme sahibi veya yönetici olarak kullanıyorsanız, Hizmet'i kullanımınızın yargı alanınızdaki geçerli iş kanunları, istihdam düzenlemeleri ve veri koruma gereksinimlerine uygun olmasını sağlamaktan siz sorumlusunuz. Huddle bir planlama aracıdır — çalışma saatleri, dinlenme süreleri, fazla mesai veya çalışan hakları ile ilgili yasal yükümlülüklerin yerini almaz.</p>
+
+    <h2>6. Çalışan sorumlulukları</h2>
+    <p>Huddle'ı çalışan olarak kullanıyorsanız, GPS giriş özelliğini dürüst bir şekilde ve yalnızca gerçek fiziksel konumunuzdan kullanmayı kabul edersiniz. Konumunuzu taklit etmeye, manipüle etmeye veya sahte göstermeye çalışmak bu şartların ihlalini oluşturur ve hesabınızın askıya alınmasına neden olabilir.</p>
+
+    <h2>7. GPS ve konum verileri</h2>
+    <p>Huddle, çalışanın atanmış işletme konumunda olduğunu doğrulamak için giriş ve çıkış anında GPS koordinatlarını toplar. Konum verileri sürekli olarak takip edilmez. Giriş özelliğini kullanarak bu sınırlı konum verisi toplanmasına onay verirsiniz. Konum izinlerini cihaz ayarlarınızdan istediğiniz zaman iptal edebilirsiniz; ancak bu, giriş özelliğinin çalışmasını engelleyecektir.</p>
+
+    <h2>8. Kabul edilebilir kullanım</h2>
+    <p>Hizmet'i herhangi bir geçerli yasa veya düzenlemeyi ihlal etmek, ekip sohbeti aracılığıyla zararlı, kötüye kullanan veya saldırgan içerik iletmek, diğer hesaplara veya sistemlere yetkisiz erişim elde etmeye çalışmak, Hizmet'in herhangi bir bölümünü tersine mühendislik yapmak, kaynak koda dönüştürmek veya parçalarına ayırmak, Hizmet'i iş gücü yönetimi dışında herhangi bir amaçla kullanmak veya Hizmet'in çalışmasına ya da güvenliğine müdahale etmek için kullanmamayı kabul edersiniz.</p>
+
+    <h2>9. Huddle AI</h2>
+    <p>Huddle, işletme verilerinize dayalı yapay zekâ destekli planlama önerileri sunabilir. Bu öneriler yalnızca tavsiye niteliğindedir ve profesyonel, hukuki veya istihdam danışmanlığı teşkil etmez. Hizmet'i kullanarak verdiğiniz tüm planlama kararlarından yalnızca siz sorumlusunuz.</p>
+
+    <h2>10. Fikri mülkiyet</h2>
+    <p>Huddle ile ilişkili tüm içerik, tasarım, kod, ticari markalar ve diğer fikri mülkiyet Huddle'a ve lisans verenlerine aittir. Önceden yazılı iznimiz olmadan Hizmet'in herhangi bir bölümünü kopyalayamaz, değiştiremez, dağıtamaz veya türev çalışmalar oluşturamazsınız.</p>
+
+    <h2>11. Üçüncü taraf hizmetleri</h2>
+    <p>Huddle, üçüncü taraf hizmetlerle entegre olabilir veya bunlara bağlantılar içerebilir. Üçüncü taraf hizmetlerin içeriği, gizlilik uygulamaları veya şartlarından sorumlu değiliz.</p>
+
+    <h2>12. Hizmet erişilebilirliği</h2>
+    <p>Huddle'ı her zaman erişilebilir tutmayı hedefliyoruz, ancak kesintisiz veya hatasız çalışmayı garanti etmiyoruz. Bakım, güncelleme veya diğer nedenlerle Hizmet'i önceden bildirimde bulunmadan askıya alabilir veya değiştirebiliriz.</p>
+
+    <h2>13. Fesih</h2>
+    <p>Huddle'ı kullanmayı istediğiniz zaman bırakabilir ve hesabınızı uygulama içinden silebilirsiniz. Bu şartları ihlal ederseniz, Hizmet'i kötüye kullanırsanız veya yasa gerektirirse erişiminizi askıya alabilir veya sonlandırabiliriz. Fesih üzerine Hizmet'i kullanma hakkınız derhal sona erer.</p>
+
+    <h2>14. Garanti reddi</h2>
+    <p>Hizmet, satılabilirlik, belirli bir amaca uygunluk ve ihlal etmeme garantileri dahil ancak bunlarla sınırlı olmamak üzere, açık veya zımni herhangi bir garanti olmaksızın "olduğu gibi" ve "mevcut olduğu şekliyle" sağlanmaktadır. Huddle, Hizmet'in özel gereksinimlerinizi karşılayacağını veya GPS doğrulamanın tüm koşullarda doğru olacağını garanti etmez.</p>
+
+    <h2>15. Sorumluluk sınırlaması</h2>
+    <p>Yasaların izin verdiği en geniş ölçüde, Huddle ve yöneticileri, çalışanları ve iştirakleri, Hizmet'i kullanmanızdan veya kullanamamanızdan kaynaklanan kâr kaybı, veri kaybı veya iş fırsatı kaybı dahil ancak bunlarla sınırlı olmamak üzere herhangi bir dolaylı, arızi, özel, sonuç olarak ortaya çıkan veya cezai tazminattan sorumlu olmayacaktır.</p>
+
+    <h2>16. Uygulanacak hukuk</h2>
+    <p>Bu şartlar Türkiye Cumhuriyeti yasalarına göre yönetilir ve yorumlanır. Bu şartlardan kaynaklanan herhangi bir uyuşmazlık İstanbul, Türkiye mahkemelerinin münhasır yargı yetkisine tabi olacaktır.</p>
+
+    <h2>17. Bu şartlardaki değişiklikler</h2>
+    <p>Bu Kullanım Şartları'nı zaman zaman güncelleyebiliriz. Önemli değişiklikleri uygulama aracılığıyla veya e-posta ile bildireceğiz. Değişiklikler yürürlüğe girdikten sonra Hizmet'i kullanmaya devam etmeniz, güncellenen şartları kabul ettiğiniz anlamına gelir.</p>
+
+    <h2>18. İletişim</h2>
+    <p>Bu Kullanım Şartları hakkında sorularınız varsa <a href="mailto:support@huddle.mucoai.com">support@huddle.mucoai.com</a> adresinden bize ulaşabilirsiniz.</p>
+  </div>
+
+</article>
+
+<footer>
+  <div class="container footer-inner">
+    <a href="index.html" class="logo" style="font-size:18px">Huddle<span class="dot">.</span></a>
+    <div class="footer-links">
+      <a href="support.html" data-i18n="footer_support">Support</a>
+      <a href="privacy.html" data-i18n="footer_privacy">Privacy</a>
+      <a href="terms.html" data-i18n="footer_terms">Terms</a>
+    </div>
+    <span data-i18n="footer">© 2026 Huddle. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+const i18n = {
+  en: {
+    nav_features:"Features", nav_how:"How it works", nav_support:"Support", nav_cta:"Get early access",
+    title:"Terms of Use", updated:"Last updated: July 10, 2026",
+    footer_support:"Support", footer_privacy:"Privacy", footer_terms:"Terms",
+    footer:"© 2026 Huddle. All rights reserved."
+  },
+  tr: {
+    nav_features:"Özellikler", nav_how:"Nasıl çalışır", nav_support:"Destek", nav_cta:"Erken erişim",
+    title:"Kullanım Şartları", updated:"Son güncelleme: 10 Temmuz 2026",
+    footer_support:"Destek", footer_privacy:"Gizlilik", footer_terms:"Şartlar",
+    footer:"© 2026 Huddle. Tüm hakları saklıdır."
+  }
+};
+let currentLang = 'en';
+function setLang(lang){
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.getElementById('lang-en').classList.toggle('active', lang==='en');
+  document.getElementById('lang-tr').classList.toggle('active', lang==='tr');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(i18n[lang][k] !== undefined) el.textContent = i18n[lang][k];
+  });
+  document.getElementById('content-en').style.display = lang==='en' ? '' : 'none';
+  document.getElementById('content-tr').style.display = lang==='tr' ? '' : 'none';
+}
+</script>
+</body>
+</html>

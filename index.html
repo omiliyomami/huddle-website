@@ -205,6 +205,7 @@ section { padding: 140px 0; position: relative; }
   font-size: clamp(32px, 4.5vw, 48px); font-weight: 800; letter-spacing: -0.03em;
   line-height: 1.15; margin-bottom: 20px;
 }
+.section-head h2 em { font-style: normal; color: var(--accent); }
 .section-head p { color: var(--text-secondary); font-size: 18px; font-weight: 400; }
 
 /* ---------- Bento grid ---------- */
@@ -325,7 +326,7 @@ section { padding: 140px 0; position: relative; }
 .ui-swap-badge {
   background: var(--accent); color: #000; font-size: 11px; font-weight: 700;
   padding: 3px 10px; border-radius: 4px; white-space: nowrap;
-  transform: scale(0); 
+  transform: scale(0);
 }
 .play .ui-swap-badge { animation: badgePop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s forwards; }
 @keyframes badgePop { to { transform: scale(1); } }
@@ -433,6 +434,126 @@ section { padding: 140px 0; position: relative; }
   border: 1px solid var(--border-hover); background: transparent; color: var(--text-secondary);
 }
 .ui-ai-btn.primary { background: var(--accent); border-color: var(--accent); color: #000; }
+
+/* ---------- AI deep dive ---------- */
+.ai-deep {
+  background:
+    radial-gradient(ellipse 900px 500px at 50% 0%, rgba(0, 240, 255, 0.05), transparent 70%);
+  border-top: 1px solid var(--border);
+}
+.ai-layout {
+  display: grid; grid-template-columns: 1fr 1.12fr; gap: 32px; align-items: start;
+}
+
+/* left column — how it learns */
+.ai-learn { display: flex; flex-direction: column; gap: 12px; }
+.ai-learn-item {
+  display: flex; gap: 16px; padding: 22px 24px; position: relative;
+  background: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: var(--radius-md); overflow: hidden;
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.ai-learn-item::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(200px circle at var(--mx, 50%) var(--my, 50%), rgba(0,240,255,0.06), transparent 65%);
+  opacity: 0; transition: opacity 0.35s var(--ease);
+}
+.ai-learn-item:hover::after { opacity: 1; }
+.ai-learn-item:hover { border-color: var(--border-hover); background: var(--card-hover); transform: translateX(4px); }
+.ai-learn-item .ic {
+  width: 38px; height: 38px; flex: none; border-radius: 11px;
+  background: var(--accent-dim); border: 1px solid var(--accent-border);
+  color: var(--accent); font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+}
+.ai-learn-item h4 { font-size: 16.5px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 6px; }
+.ai-learn-item p { font-size: 14.5px; color: var(--text-secondary); }
+
+/* right column — generated week panel */
+.ai-panel {
+  background: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 26px; position: relative; overflow: hidden;
+}
+.ai-panel::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle at 50% 0%, rgba(0,240,255,0.05), transparent 65%);
+}
+.ai-panel-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  margin-bottom: 22px; position: relative; z-index: 1; flex-wrap: wrap;
+}
+.ai-panel-title {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-muted);
+}
+.ai-live {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 11px; font-weight: 700; color: var(--accent);
+  background: var(--accent-dim); border: 1px solid var(--accent-border);
+  padding: 5px 12px; border-radius: 999px; white-space: nowrap;
+}
+.ai-live i { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: dotPulse 1.6s infinite; }
+@keyframes dotPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+.ai-week {
+  display: grid; grid-template-columns: repeat(7, 1fr); gap: 7px;
+  position: relative; z-index: 1;
+}
+.ai-day-label {
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-muted); text-align: center; margin-bottom: 8px;
+}
+.ai-col { display: flex; flex-direction: column; gap: 6px; min-height: 148px; }
+.ai-slot {
+  border-radius: 8px; padding: 8px 4px 7px; text-align: center;
+  letter-spacing: -0.01em; white-space: nowrap; line-height: 1.25;
+  opacity: 0; transform: translateY(8px) scale(0.96);
+}
+.ai-slot b { display: block; font-size: 11px; font-weight: 700; }
+.ai-slot span { display: block; font-size: 9.5px; font-weight: 600; opacity: 0.7; margin-top: 1px; }
+.ai-slot.am { background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text-secondary); }
+.ai-slot.am b { color: var(--text); }
+.ai-slot.pm { background: var(--accent-dim); border: 1px solid var(--accent-border); color: var(--accent); }
+.play .ai-slot { animation: slotIn 0.45s var(--ease) forwards; animation-delay: var(--d, 0s); }
+@keyframes slotIn { to { opacity: 1; transform: translateY(0) scale(1); } }
+
+.ai-scan {
+  position: absolute; top: 0; bottom: 0; left: 0; width: 2px; z-index: 2; opacity: 0;
+  background: linear-gradient(180deg, transparent, var(--accent), transparent);
+  box-shadow: 0 0 18px var(--accent); pointer-events: none;
+}
+.play .ai-scan { animation: scanX 1.7s var(--ease) 0.15s forwards; }
+@keyframes scanX { 0% { left: 0; opacity: 0.9; } 100% { left: 100%; opacity: 0; } }
+
+.ai-panel-foot {
+  margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  flex-wrap: wrap; position: relative; z-index: 1;
+}
+.ai-meta { font-size: 13.5px; color: var(--text-secondary); }
+.ai-meta b { color: var(--text); font-weight: 700; }
+.ai-panel-actions { display: flex; gap: 8px; }
+.ai-act {
+  font-size: 12.5px; font-weight: 700; padding: 9px 18px; border-radius: 999px;
+  border: 1px solid var(--border-hover); background: transparent; color: var(--text-secondary);
+  cursor: default; transition: all 0.2s var(--ease);
+}
+.ai-act.primary { background: var(--accent); border-color: var(--accent); color: #000; }
+
+/* guardrail row */
+.ai-guards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 24px; }
+.ai-guard {
+  background: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 26px 28px;
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+.ai-guard:hover { border-color: var(--border-hover); background: var(--card-hover); }
+.ai-guard h4 {
+  font-size: 15.5px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.01em;
+  display: flex; align-items: center; gap: 9px;
+}
+.ai-guard h4 .g { color: var(--accent); font-size: 13px; }
+.ai-guard p { font-size: 14.5px; color: var(--text-secondary); }
 
 /* ---------- How it works ---------- */
 .how { background: radial-gradient(ellipse 1000px 600px at 50% 50%, rgba(0, 240, 255, 0.02), transparent); }
@@ -593,16 +714,20 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; background: #0404
   .play *, .play *::before, .play *::after { animation: none !important; }
   .ui-map-circle, .ui-map-pin, .ui-map-toast, .ui-sched-bar, .ui-swap-badge,
   .ui-chat-bubble, .ui-notif, .ui-report-bar, .ui-ai-card, .ui-avatar,
-  .ui-week-cell.on, .ui-biz-line {
+  .ui-week-cell.on, .ui-biz-line, .ai-slot {
     opacity: 1 !important; transform: none !important;
   }
   .ui-typing { display: none; }
+  .ai-scan { display: none; }
+  .ai-live i { animation: none; opacity: 1; }
   html { scroll-behavior: auto; }
 }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1024px) {
   .bento-card.span-7, .bento-card.span-5, .bento-card.span-4 { grid-column: span 6; }
+  .ai-layout { grid-template-columns: 1fr; }
+  .ai-guards { grid-template-columns: 1fr; gap: 16px; }
 }
 @media (max-width: 768px) {
   .nav-links { display: none; }
@@ -615,6 +740,15 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; background: #0404
   .email-form input { background: var(--bg-surface); border: 1px solid var(--border); padding: 16px 24px; border-radius: 999px; }
   .email-form .btn { width: 100%; padding: 16px; }
   section { padding: 90px 0; }
+  .ai-panel { padding: 18px; }
+  .ai-week { gap: 4px; }
+  .ai-slot { padding: 6px 2px; border-radius: 6px; }
+  .ai-slot b { font-size: 9px; }
+  .ai-slot span { font-size: 8px; }
+  .ai-day-label { font-size: 9px; letter-spacing: 0.02em; }
+  .ai-col { min-height: 120px; }
+  .ai-panel-actions { width: 100%; }
+  .ai-act { flex: 1; }
 }
 </style>
 </head>
@@ -625,6 +759,7 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; background: #0404
     <a href="#" class="logo">Huddle</a>
     <div class="nav-links">
       <a href="#features" data-i18n="nav_features">Features</a>
+      <a href="#ai" data-i18n="nav_ai">Huddle AI</a>
       <a href="#how" data-i18n="nav_how">How it works</a>
       <a href="#contact" data-i18n="nav_contact">Contact</a>
     </div>
@@ -652,11 +787,11 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; background: #0404
     <div class="hero-visual reveal">
       <div class="chip chip-1">
         <div class="ic">✓</div>
-        <div class="chip-text"><span data-i18n="chip1_t">GPS check-in</span><small data-i18n="chip1_s">Ayşe clocked in · 08:58</small></div>
+        <div class="chip-text"><span data-i18n="chip1_t">GPS check-in</span><small data-i18n="chip1_s">Emma clocked in · 08:58</small></div>
       </div>
       <div class="chip chip-2">
         <div class="ic">⇄</div>
-        <div class="chip-text"><span data-i18n="chip2_t">Shift swap approved</span><small data-i18n="chip2_s">Fri evening · Mert → Deniz</small></div>
+        <div class="chip-text"><span data-i18n="chip2_t">Shift swap approved</span><small data-i18n="chip2_s">Fri evening · Jack → Chloe</small></div>
       </div>
       <div class="device-container">
         <div class="phone-mock">
@@ -696,7 +831,7 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; background: #0404
           <div class="ui-map-mock">
             <div class="ui-map-circle"></div>
             <div class="ui-map-pin"></div>
-            <div class="ui-map-toast" data-i18n="map_toast">✓ Ayşe checked in</div>
+            <div class="ui-map-toast" data-i18n="map_toast">✓ Emma checked in</div>
           </div>
         </div>
       </div>
@@ -727,9 +862,9 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; background: #0404
         <div class="bento-visual">
           <div class="ui-swap-card">
             <div class="ui-swap-people">
-              <span class="ui-swap-ava">M</span> Mert
+              <span class="ui-swap-ava" data-i18n="p2i">J</span> <span data-i18n="p2">Jack</span>
               <span class="ui-swap-arrow">➔</span>
-              <span class="ui-swap-ava">D</span> Deniz
+              <span class="ui-swap-ava" data-i18n="p3i">C</span> <span data-i18n="p3">Chloe</span>
             </div>
             <span class="ui-swap-badge" data-i18n="swap_badge">APPROVED</span>
           </div>
@@ -814,6 +949,136 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; background: #0404
   </div>
 </section>
 
+<!-- ============ HUDDLE AI (deep dive) ============ -->
+<section id="ai" class="ai-deep">
+  <div class="container">
+    <div class="section-head reveal">
+      <!-- <div class="tag" data-i18n="dai_tag">✦ Huddle AI</div> -->
+      <h2 data-i18n-html="dai_title"><em>Huddle AI</em> writes next week's schedule. You just approve it.</h2>
+      <p data-i18n="dai_sub">Huddle AI learns how your venue actually runs — the busy nights, the reliable openers, who always swaps out of Sundays — and drafts the full week for you. No dragging shifts around a grid.</p>
+    </div>
+
+    <div class="ai-layout">
+      <!-- how it learns -->
+      <div class="ai-learn reveal">
+        <div class="ai-learn-item">
+          <div class="ic">◉</div>
+          <div>
+            <h4 data-i18n="dai_l1_t">It reads every shift you've already run</h4>
+            <p data-i18n="dai_l1_d">Check-ins, late arrivals, overtime, swaps and no-shows all feed the model. There's nothing extra to log — the data comes from how your team already uses Huddle.</p>
+          </div>
+        </div>
+        <div class="ai-learn-item">
+          <div class="ic">∿</div>
+          <div>
+            <h4 data-i18n="dai_l2_t">It finds your rhythm</h4>
+            <p data-i18n="dai_l2_d">After a few weeks it knows Friday from 20:00 needs three people on the floor, Tuesday morning needs one, and that the first week of the month always runs hot.</p>
+          </div>
+        </div>
+        <div class="ai-learn-item">
+          <div class="ic">☺</div>
+          <div>
+            <h4 data-i18n="dai_l3_t">It knows your people</h4>
+            <p data-i18n="dai_l3_d">Availability, requested days off, contracted hours, who's still training and who's strongest on a closing shift — all of it is respected before a name lands on a shift.</p>
+          </div>
+        </div>
+        <div class="ai-learn-item">
+          <div class="ic">✦</div>
+          <div>
+            <h4 data-i18n="dai_l4_t">It builds the week without being asked</h4>
+            <p data-i18n="dai_l4_d">Every Sunday a full rota is already waiting: coverage balanced, hours spread fairly, no double-bookings. Approve it, tweak a shift, or publish it as it is.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- generated week panel -->
+      <div class="ai-panel reveal">
+        <div class="ai-panel-head">
+          <div class="ai-panel-title" data-i18n="dai_panel">Next week · drafted automatically</div>
+          <div class="ai-live"><i></i><span data-i18n="dai_live">Built by Huddle AI</span></div>
+        </div>
+
+        <div class="ai-week">
+          <div class="ai-scan"></div>
+          <div>
+            <div class="ai-day-label" data-i18n="d_mon">Mon</div>
+            <div class="ai-col">
+              <div class="ai-slot am" style="--d:.30s"><b data-i18n="p1">Emma</b><span>08–16</span></div>
+              <div class="ai-slot pm" style="--d:.38s"><b data-i18n="p2">Jack</b><span>16–24</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="ai-day-label" data-i18n="d_tue">Tue</div>
+            <div class="ai-col">
+              <div class="ai-slot am" style="--d:.46s"><b data-i18n="p3">Chloe</b><span>08–16</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="ai-day-label" data-i18n="d_wed">Wed</div>
+            <div class="ai-col">
+              <div class="ai-slot am" style="--d:.54s"><b data-i18n="p1">Emma</b><span>08–16</span></div>
+              <div class="ai-slot pm" style="--d:.62s"><b data-i18n="p4">Liam</b><span>16–24</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="ai-day-label" data-i18n="d_thu">Thu</div>
+            <div class="ai-col">
+              <div class="ai-slot am" style="--d:.70s"><b data-i18n="p5">Sophie</b><span>08–16</span></div>
+              <div class="ai-slot pm" style="--d:.78s"><b data-i18n="p2">Jack</b><span>16–24</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="ai-day-label" data-i18n="d_fri">Fri</div>
+            <div class="ai-col">
+              <div class="ai-slot am" style="--d:.86s"><b data-i18n="p3">Chloe</b><span>08–16</span></div>
+              <div class="ai-slot pm" style="--d:.94s"><b data-i18n="p4">Liam</b><span>16–24</span></div>
+              <div class="ai-slot pm" style="--d:1.02s"><b data-i18n="p6">Grace</b><span>20–02</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="ai-day-label" data-i18n="d_sat">Sat</div>
+            <div class="ai-col">
+              <div class="ai-slot am" style="--d:1.10s"><b data-i18n="p5">Sophie</b><span>10–18</span></div>
+              <div class="ai-slot pm" style="--d:1.18s"><b data-i18n="p2">Jack</b><span>18–02</span></div>
+              <div class="ai-slot pm" style="--d:1.26s"><b data-i18n="p1">Emma</b><span>20–02</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="ai-day-label" data-i18n="d_sun">Sun</div>
+            <div class="ai-col">
+              <div class="ai-slot am" style="--d:1.34s"><b data-i18n="p7">Noah</b><span>10–18</span></div>
+              <div class="ai-slot pm" style="--d:1.42s"><b data-i18n="p3">Chloe</b><span>18–24</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ai-panel-foot">
+          <div class="ai-meta" data-i18n-html="dai_meta"><b>34 shifts</b> placed · <b>0</b> conflicts · <b>0</b> minutes of manual entry</div>
+          <div class="ai-panel-actions">
+            <button class="ai-act primary" data-i18n="dai_publish">Publish week</button>
+            <button class="ai-act" data-i18n="dai_adjust">Adjust</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-guards">
+      <div class="ai-guard reveal">
+        <h4><span class="g">✓</span><span data-i18n="dai_g1_t">You always have the last word</span></h4>
+        <p data-i18n="dai_g1_d">Nothing reaches your team until a manager publishes it. Every suggested shift can be edited, reassigned or thrown out.</p>
+      </div>
+      <div class="ai-guard reveal">
+        <h4><span class="g">✓</span><span data-i18n="dai_g2_t">It learns your venue, not an average one</span></h4>
+        <p data-i18n="dai_g2_d">The model works from your own history, so a neighbourhood café and a late-night bar never end up with the same week.</p>
+      </div>
+      <div class="ai-guard reveal">
+        <h4><span class="g">✓</span><span data-i18n="dai_g3_t">It gets sharper every week</span></h4>
+        <p data-i18n="dai_g3_d">Each published rota — and every edit you make to it — teaches Huddle AI what a good week looks like in your business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ HOW IT WORKS ============ -->
 <section id="how" class="how">
   <div class="container">
@@ -843,9 +1108,9 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; background: #0404
         <p data-i18n="s2_d">Send invite links to your managers, baristas, and floor staff.</p>
         <div class="step-visual">
           <div class="ui-invite-mock">
-            <div class="ui-avatar a1">A</div>
-            <div class="ui-avatar">M</div>
-            <div class="ui-avatar">D</div>
+            <div class="ui-avatar a1" data-i18n="p1i">E</div>
+            <div class="ui-avatar" data-i18n="p2i">J</div>
+            <div class="ui-avatar" data-i18n="p3i">C</div>
             <div class="ui-avatar plus">+</div>
           </div>
         </div>
@@ -915,20 +1180,20 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; background: #0404
 <script>
 const i18n = {
   en: {
-    nav_features:"Features", nav_how:"How it works", nav_contact:"Contact",
+    nav_features:"Features", nav_ai:"Huddle AI", nav_how:"How it works", nav_contact:"Contact",
     nav_cta:"Get early access",
     eyebrow:"Built for cafés & bars",
     hero_title:'Run your business <em>from your pocket.</em>',
     hero_sub:"Huddle is a shift and staff management platform built for cafés and bars.",
     hero_cta:"Join the early access list", hero_cta2:"See features",
-    chip1_t:"GPS check-in", chip1_s:"Ayşe clocked in · 08:58",
-    chip2_t:"Shift swap approved", chip2_s:"Fri evening · Mert → Deniz",
+    chip1_t:"GPS check-in", chip1_s:"Emma clocked in · 08:58",
+    chip2_t:"Shift swap approved", chip2_s:"Fri evening · Jack → Chloe",
     mq1:"Cafés", mq2:"Bars", mq3:"Coffee roasters", mq4:"Pubs", mq5:"Bistros", mq6:"Bakeries",
     feat_tag:"Features",
     feat_title:"Everything your team needs. Nothing it doesn't.",
     feat_sub:"Seven tools, one app — designed for how hospitality teams actually work.",
     f1_t:"GPS Check-in", f1_d:"Employees can only clock in when they're at your business location.",
-    map_toast:"✓ Ayşe checked in",
+    map_toast:"✓ Emma checked in",
     f2_t:"Shift Planning", f2_d:"Build your weekly shift schedule in minutes.",
     f3_t:"Shift Swap", f3_d:"Employees can swap shifts with manager approval.",
     swap_badge:"APPROVED",
@@ -942,6 +1207,33 @@ const i18n = {
     f7_t:"Huddle AI", f7_d:"An AI that learns your business on its own and suggests the right shifts for you.",
     ai_text:"Saturday looks busy — add one more barista, 19:00–23:00?",
     ai_yes:"Add shift", ai_no:"Dismiss",
+
+    /* AI deep dive */
+    dai_tag:"✦ Huddle AI",
+    dai_title:'<em>Huddle AI</em> writes next week\'s schedule. You just approve it.',
+    dai_sub:"Huddle AI learns how your venue actually runs — the busy nights, the reliable openers, who always swaps out of Sundays — and drafts the full week for you. No dragging shifts around a grid.",
+    dai_l1_t:"It reads every shift you've already run",
+    dai_l1_d:"Check-ins, late arrivals, overtime, swaps and no-shows all feed the model. There's nothing extra to log — the data comes from how your team already uses Huddle.",
+    dai_l2_t:"It finds your rhythm",
+    dai_l2_d:"After a few weeks it knows Friday from 20:00 needs three people on the floor, Tuesday morning needs one, and that the first week of the month always runs hot.",
+    dai_l3_t:"It knows your people",
+    dai_l3_d:"Availability, requested days off, contracted hours, who's still training and who's strongest on a closing shift — all of it is respected before a name lands on a shift.",
+    dai_l4_t:"It builds the week without being asked",
+    dai_l4_d:"Every Sunday a full rota is already waiting: coverage balanced, hours spread fairly, no double-bookings. Approve it, tweak a shift, or publish it as it is.",
+    dai_panel:"Next week · drafted automatically",
+    dai_live:"Built by Huddle AI",
+    dai_meta:"<b>34 shifts</b> placed · <b>0</b> conflicts · <b>0</b> minutes of manual entry",
+    dai_publish:"Publish week", dai_adjust:"Adjust",
+    dai_g1_t:"You always have the last word",
+    dai_g1_d:"Nothing reaches your team until a manager publishes it. Every suggested shift can be edited, reassigned or thrown out.",
+    dai_g2_t:"It learns your venue, not an average one",
+    dai_g2_d:"The model works from your own history, so a neighbourhood café and a late-night bar never end up with the same week.",
+    dai_g3_t:"It gets sharper every week",
+    dai_g3_d:"Each published rota — and every edit you make to it — teaches Huddle AI what a good week looks like in your business.",
+    d_mon:"Mon", d_tue:"Tue", d_wed:"Wed", d_thu:"Thu", d_fri:"Fri", d_sat:"Sat", d_sun:"Sun",
+    p1:"Emma", p2:"Jack", p3:"Chloe", p4:"Liam", p5:"Sophie", p6:"Grace", p7:"Noah",
+    p1i:"E", p2i:"J", p3i:"C",
+
     how_tag:"How it works", how_title:"Up and running in 3 steps",
     s1:"Create your business.", s1_d:"Set up your location, working areas, and roles from one dashboard.",
     s2:"Invite your team.", s2_d:"Send invite links to your managers, baristas, and floor staff.",
@@ -955,7 +1247,7 @@ const i18n = {
     footer_support:"Support", footer_privacy:"Privacy", footer_terms:"Terms",
   },
   tr: {
-    nav_features:"Özellikler", nav_how:"Nasıl çalışır", nav_contact:"İletişim",
+    nav_features:"Özellikler", nav_ai:"Huddle AI", nav_how:"Nasıl çalışır", nav_contact:"İletişim",
     nav_cta:"Erken erişim",
     eyebrow:"Kafe ve barlar için",
     hero_title:'İşletmenizi <em>cebinizden yönetin.</em>',
@@ -982,6 +1274,33 @@ const i18n = {
     f7_t:"Huddle AI", f7_d:"Kendi kendine işletmenizi öğrenen AI size vardiya önerilerinde bulunsun.",
     ai_text:"Cumartesi yoğun görünüyor — 19:00–23:00 arası bir barista daha ekleyelim mi?",
     ai_yes:"Vardiya ekle", ai_no:"Yoksay",
+
+    /* AI deep dive */
+    dai_tag:"✦ Huddle AI",
+    dai_title:'<em>Huddle AI</em> gelecek haftanın planını yazar. Siz sadece onaylarsınız.',
+    dai_sub:"Huddle AI, işletmenizin gerçekte nasıl işlediğini öğrenir — yoğun geceleri, güvendiğiniz açılışçıyı, pazar vardiyasını hep değiştirenleri — ve tüm haftayı sizin için hazırlar. Vardiyaları tek tek sürüklemenize gerek kalmaz.",
+    dai_l1_t:"Geçmiş vardiyalarınızın hepsini okur",
+    dai_l1_d:"Girişler, geç kalmalar, fazla mesailer, vardiya değişimleri ve gelmeyenler modeli besler. Ayrıca bir şey girmenize gerek yok; veri zaten ekibinizin Huddle kullanımından gelir.",
+    dai_l2_t:"İşletmenizin ritmini bulur",
+    dai_l2_d:"Birkaç hafta içinde cuma 20:00'den sonra salonda üç kişi gerektiğini, salı sabahı bir kişinin yettiğini ve ayın ilk haftasının hep yoğun geçtiğini bilir.",
+    dai_l3_t:"Ekibinizi tanır",
+    dai_l3_d:"Müsaitlik, izin talepleri, sözleşme saatleri, kimin hâlâ eğitimde olduğu ve kimin kapanış vardiyasında daha güçlü olduğu — bir isim vardiyaya yazılmadan önce hepsi dikkate alınır.",
+    dai_l4_t:"Haftayı siz istemeden hazırlar",
+    dai_l4_d:"Her pazar tam bir haftalık plan hazır bekler: dengeli kadro, adil dağıtılmış saatler, çakışma yok. Onaylayın, bir vardiyayı düzenleyin ya da olduğu gibi yayınlayın.",
+    dai_panel:"Gelecek hafta · otomatik hazırlandı",
+    dai_live:"Huddle AI hazırladı",
+    dai_meta:"<b>34 vardiya</b> yerleşti · <b>0</b> çakışma · <b>0</b> dakika manuel giriş",
+    dai_publish:"Haftayı yayınla", dai_adjust:"Düzenle",
+    dai_g1_t:"Son söz her zaman sizde",
+    dai_g1_d:"Bir yönetici yayınlamadan hiçbir şey ekibinize ulaşmaz. Önerilen her vardiya düzenlenebilir, başkasına verilebilir veya silinebilir.",
+    dai_g2_t:"Ortalama bir işletmeyi değil, sizinkini öğrenir",
+    dai_g2_d:"Model kendi geçmiş verinizle çalışır; mahalle kafesi ile gece barı asla aynı haftayı almaz.",
+    dai_g3_t:"Her hafta daha da iyileşir",
+    dai_g3_d:"Yayınladığınız her plan ve üzerinde yaptığınız her düzenleme, Huddle AI'ya sizin işletmenizde iyi bir haftanın nasıl göründüğünü öğretir.",
+    d_mon:"Pzt", d_tue:"Sal", d_wed:"Çar", d_thu:"Per", d_fri:"Cum", d_sat:"Cmt", d_sun:"Paz",
+    p1:"Ayşe", p2:"Mert", p3:"Deniz", p4:"Can", p5:"Elif", p6:"Zeynep", p7:"Kaan",
+    p1i:"A", p2i:"M", p3i:"D",
+
     how_tag:"Nasıl çalışır?", how_title:"3 adımda hazır",
     s1:"İşletmenizi oluşturun.", s1_d:"Konumunuzu, çalışma alanlarınızı ve rolleri tek panelden tanımlayın.",
     s2:"Çalışanlarınızı davet edin.", s2_d:"Yöneticilerinize, baristalarınıza ve salon ekibinize davet bağlantısı gönderin.",
@@ -1045,7 +1364,7 @@ const io = new IntersectionObserver(entries=>{
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 /* Staggered reveal within grids */
-document.querySelectorAll('.bento-grid, .steps-layout').forEach(grid=>{
+document.querySelectorAll('.bento-grid, .steps-layout, .ai-guards').forEach(grid=>{
   [...grid.children].forEach((el, i)=>{
     if(el.classList.contains('reveal')) el.style.setProperty('--rd', (i % 3) * 0.09 + 's');
   });
@@ -1054,7 +1373,7 @@ document.querySelectorAll('.bento-grid, .steps-layout').forEach(grid=>{
 /* Cursor spotlight */
 const fine = window.matchMedia('(pointer: fine)').matches;
 if(fine){
-  document.querySelectorAll('.bento-card, .step-card').forEach(card=>{
+  document.querySelectorAll('.bento-card, .step-card, .ai-learn-item').forEach(card=>{
     card.addEventListener('mousemove', e=>{
       const r = card.getBoundingClientRect();
       card.style.setProperty('--mx', (e.clientX - r.left) + 'px');

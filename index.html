@@ -722,6 +722,30 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; background: #0404
 }
 .reveal.in { opacity: 1; transform: translateY(0); }
 
+/* App store badges */
+.store-live {
+  font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 16px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.store-live i {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 10px var(--accent); animation: dotPulse 1.6s infinite;
+}
+.store-badges { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.store-badges a { transition: transform 0.2s var(--ease); display: inline-flex; }
+.store-badges a:hover { transform: translateY(-3px); }
+.store-badges img { height: 64px; width: auto; display: block; }
+.contact-card .store-live, .contact-card .store-badges { justify-content: center; }
+.store-soon {
+  margin-top: 14px; font-size: 13px; font-weight: 500;
+  color: var(--text-muted); letter-spacing: 0.02em;
+}
+.android-logo { height: 18px; width: auto; display: block; color: var(--text-muted); }
+.android-wrapper {
+  display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 14px;
+}
+.android-wrapper .store-soon { margin-top: 0; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
   .chip-1, .chip-2 { animation: none; }
@@ -791,7 +815,7 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; background: #0404
         <button id="lang-en" class="active" onclick="setLang('en')">EN</button>
         <button id="lang-tr" onclick="setLang('tr')">TR</button>
       </div>
-      <a href="#contact" class="btn btn-primary btn-nav" data-i18n="nav_cta">Get early access</a>
+      <a href="https://apps.apple.com/app/huddle/id6785232071" class="btn btn-primary btn-nav" data-i18n="nav_cta">Get Huddle</a>
     </div>
   </div>
 </nav>
@@ -802,10 +826,20 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; background: #0404
     <div class="eyebrow" data-i18n="eyebrow">Built for hourly teams</div>
     <h1 data-i18n-html="hero_title">Run your business <em>from your pocket.</em></h1>
     <p class="sub" data-i18n="hero_sub">Huddle is a shift and staff management platform built for hourly teams.</p>
-    <div class="hero-ctas">
-      <a href="#contact" class="btn btn-primary" data-i18n="hero_cta">Join the early access list</a>
-      <a href="#features" class="btn btn-ghost" data-i18n="hero_cta2">See features</a>
-    </div>
+<div class="store-live"><i></i><span data-i18n="live">We are Live</span></div>
+<div class="store-badges">
+  <a href="https://apps.apple.com/app/huddle/id6785232071"><img id="store-hero" src="appstore-en.svg" alt="Download on the App Store"></a>
+</div>
+<div class="android-wrapper">
+  <svg class="android-logo" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.46 11.46 0 00-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48A10.81 10.81 0 001 18h22a10.81 10.81 0 00-5.4-8.52zM7 15.25a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zm10 0a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5z"/>
+  </svg>
+  <div class="store-soon" data-i18n="soon">Soon on Android</div>
+</div>
+
+<div class="hero-ctas" style="margin-top:28px;">
+  <a href="#features" class="btn btn-ghost" data-i18n="hero_cta2">See features</a>
+</div>
 
     <div class="hero-visual reveal">
       <div class="chip chip-1">
@@ -1186,10 +1220,10 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; background: #0404
       <h2 data-i18n="c_title">Be first in line.</h2>
       <p data-i18n="c_sub">Join the early access list and be among the first businesses to run on Huddle.</p>
 
-      <div class="email-form">
-        <input type="email" id="email-input" placeholder="you@business.com" aria-label="Email" data-i18n-ph="c_ph">
-        <button class="btn btn-primary" onclick="submitEmail()" data-i18n="c_cta">Join the early access list</button>
-      </div>
+<div class="store-live"><i></i><span data-i18n="live">We are Live</span></div>
+<div class="store-badges">
+  <a href="https://apps.apple.com/app/huddle/id6785232071"><img id="store-contact" src="appstore-en.svg" alt="Download on the App Store"></a>
+</div>
       <div class="form-msg" id="form-msg"></div>
 
       <div class="contact-info">
@@ -1290,6 +1324,7 @@ const i18n = {
     c_err:"Please enter a valid email address.",
     footer:"© 2026 Huddle. All rights reserved.",
     footer_support:"Support", footer_privacy:"Privacy", footer_terms:"Terms",
+    live:"We are Live"
   },
   tr: {
     nav_features:"Özellikler", nav_ai:"Huddle AI", nav_how:"Nasıl çalışır", nav_contact:"İletişim",
@@ -1359,6 +1394,7 @@ const i18n = {
     c_err:"Lütfen geçerli bir e-posta adresi girin.",
     footer:"© 2026 Huddle. Tüm hakları saklıdır.",
     footer_support:"Destek", footer_privacy:"Gizlilik", footer_terms:"Şartlar",
+    live:"Yayındayız",
   }
 };
 
@@ -1369,7 +1405,11 @@ function setLang(lang){
   document.documentElement.lang = lang;
   document.getElementById('lang-en').classList.toggle('active', lang==='en');
   document.getElementById('lang-tr').classList.toggle('active', lang==='tr');
-
+  const storeSrc = lang === 'tr' ? 'appstore-tr.svg' : 'appstore-en.svg';
+const sh = document.getElementById('store-hero');
+const sc = document.getElementById('store-contact');
+if (sh) sh.src = storeSrc;
+if (sc) sc.src = storeSrc;
   const shots = heroShots[lang] || heroShots.en;
   const mgr = document.getElementById('hero-shot-manager');
   const emp = document.getElementById('hero-shot-employee');

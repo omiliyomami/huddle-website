@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Huddle — Opening…</title>
+<link rel="icon" type="image/png" href="huddle.png">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#060608; --accent:#00F0FF; --text:#fff; --text-secondary:#9494A1;
+    --border:rgba(255,255,255,0.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:'DM Sans',-apple-system,sans-serif;
+    min-height:100vh; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center;
+    padding:24px; overflow:hidden; position:relative;
+  }
+  body::before{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(ellipse 600px 400px at 50% 30%, rgba(0,240,255,0.10), transparent 70%);
+  }
+  .logo{
+    font-family:Arial,Helvetica,sans-serif; font-weight:bold; font-size:34px;
+    letter-spacing:-0.03em; margin-bottom:28px; position:relative;
+  }
+  .spinner{
+    width:44px; height:44px; border-radius:50%;
+    border:3px solid var(--border); border-top-color:var(--accent);
+    animation:spin 0.8s linear infinite; margin:0 auto 26px; position:relative;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  h1{font-size:22px; font-weight:700; margin-bottom:10px; position:relative;}
+  p{color:var(--text-secondary); font-size:15px; max-width:320px; position:relative;}
+  .fallback{
+    margin-top:32px; position:relative; opacity:0;
+    animation:fadeIn 0.4s ease 3s forwards;
+  }
+  @keyframes fadeIn{to{opacity:1;}}
+  .btn{
+    display:inline-block; background:var(--text); color:var(--bg);
+    font-weight:600; font-size:15px; padding:14px 30px; border-radius:999px;
+    text-decoration:none; transition:all 0.2s;
+  }
+  .btn:hover{background:var(--accent);}
+</style>
+</head>
+<body>
+  <div class="logo">Huddle</div>
+  <div class="spinner"></div>
+  <h1 id="msg">Opening Huddle…</h1>
+  <p id="sub">Redirecting you now. Hang tight.</p>
+  <div class="fallback">
+    <a href="#" id="manual" class="btn">Tap here if nothing happens</a>
+  </div>
+
+<script>
+  // ==== EDIT THESE TWO LINKS ====
+  var SITE_URL = "https://huddleshift.com";
+  var APPSTORE_URL = "https://apps.apple.com/app/huddle/id6785232071";
+  // ==============================
+
+  var ua = navigator.userAgent || navigator.vendor || "";
+  var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+  var target = isIOS ? APPSTORE_URL : SITE_URL;
+
+  document.getElementById("manual").href = target;
+  if (isIOS) {
+    document.getElementById("msg").textContent = "Opening the App Store…";
+    document.getElementById("sub").textContent = "Get Huddle for iPhone.";
+  }
+
+  // Redirect after a brief beat so the page paints
+  setTimeout(function(){ window.location.replace(target); }, 600);
+</script>
+</body>
+</html>

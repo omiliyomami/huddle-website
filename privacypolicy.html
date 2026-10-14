@@ -1,354 +1,222 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Huddle — Privacy Policy</title>
-<link rel="icon" type="image/png" href="huddle.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy | HuddleShift</title>
+<meta name="description" content="HuddleShift Privacy Policy.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #060608;
-  --bg-surface: #0B0B0F;
-  --accent: #00F0FF;
-  --accent-dim: rgba(0, 240, 255, 0.1);
-  --accent-border: rgba(0, 240, 255, 0.25);
-  --text: #FFFFFF;
-  --text-secondary: #9494A1;
-  --text-muted: #62626C;
-  --border: rgba(255, 255, 255, 0.06);
-  --border-hover: rgba(255, 255, 255, 0.12);
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; background: var(--bg); }
-body {
-  background: var(--bg); color: var(--text);
-  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  line-height: 1.6; -webkit-font-smoothing: antialiased;
-  min-height: 100vh; display: flex; flex-direction: column;
-}
-::selection { background: rgba(0, 240, 255, 0.2); color: var(--text); }
-a { color: var(--accent); text-decoration: none; transition: all 0.2s var(--ease); }
-a:hover { text-decoration: underline; }
-button { font-family: inherit; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-/* ---------- Nav ---------- */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(6, 6, 8, 0.75);
-  backdrop-filter: blur(20px) saturate(1.6);
-  -webkit-backdrop-filter: blur(20px) saturate(1.6);
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-}
-.nav-inner { height: 72px; display: flex; align-items: center; justify-content: space-between; }
-.logo {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold; font-size: 24px; letter-spacing: -0.03em; color: var(--text);
-  display: flex; align-items: center;
-}
-.logo .dot { color: var(--accent); }
-.nav-links { display: flex; align-items: center; gap: 32px; }
-.nav-links a { font-size: 14px; color: var(--text-secondary); font-weight: 500; text-decoration: none; }
-.nav-links a:hover { color: var(--text); text-decoration: none; }
-.nav-right { display: flex; align-items: center; gap: 16px; }
-.lang-toggle {
-  display: flex; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border);
-  border-radius: 999px; padding: 2px;
-}
-.lang-toggle button {
-  border: 0; background: transparent; color: var(--text-secondary);
-  font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 999px;
-  cursor: pointer; transition: all 0.2s var(--ease);
-}
-.lang-toggle button.active { background: var(--text); color: var(--bg); }
-.btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  font-weight: 600; font-size: 14px; border-radius: 999px; cursor: pointer;
-  transition: all 0.2s var(--ease); border: 0; white-space: nowrap;
-  text-decoration: none;
-}
-.btn:hover { text-decoration: none; }
-.btn-primary { background: var(--text); color: var(--bg); padding: 12px 28px; }
-.btn-primary:hover {
-  background: var(--accent); transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(0, 240, 255, 0.25);
-}
-.btn-nav { padding: 8px 20px; font-size: 13px; }
-
-/* ---------- Policy content ---------- */
-.policy-header {
-  padding: 150px 0 60px; text-align: center; position: relative;
-}
-.policy-header::before {
-  content: ""; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 600px 350px at 50% 20%, rgba(0, 240, 255, 0.06), transparent 70%);
-  pointer-events: none;
-}
-.policy-header h1 {
-  font-size: clamp(32px, 5vw, 48px); font-weight: 800;
-  letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 12px;
-}
-.policy-header .updated {
-  font-size: 14px; color: var(--text-muted); font-weight: 500;
-}
-
-.policy-body {
-  max-width: 720px; margin: 0 auto; padding: 0 24px 120px;
-}
-.policy-body h2 {
-  font-size: 22px; font-weight: 700; letter-spacing: -0.02em;
-  margin: 48px 0 16px; color: var(--text);
-}
-.policy-body h2:first-of-type { margin-top: 0; }
-.policy-body p {
-  color: var(--text-secondary); font-size: 15px; line-height: 1.75; margin-bottom: 16px;
-}
-.policy-body ul { margin: 0 0 16px 20px; }
-.policy-body li {
-  color: var(--text-secondary); font-size: 15px; line-height: 1.75; margin-bottom: 8px;
-}
-.policy-body strong { color: var(--text); font-weight: 600; }
-.policy-body .notice {
-  border: 1px solid var(--accent-border); background: var(--accent-dim);
-  border-radius: 12px; padding: 16px 20px; margin-bottom: 16px;
-}
-.policy-body .notice p { margin-bottom: 0; }
-
-/* ---------- Footer ---------- */
-footer { border-top: 1px solid var(--border); padding: 40px 0; background: #040406; margin-top: auto; }
-.footer-inner {
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
-  color: var(--text-muted); font-size: 14px;
-}
-.footer-links { display: flex; gap: 24px; }
-.footer-links a { color: var(--text-secondary); font-size: 14px; font-weight: 500; text-decoration: none; }
-.footer-links a:hover { color: var(--text); text-decoration: none; }
-
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .policy-header { padding: 130px 0 40px; }
-}
+  :root {
+    --bg: #000000;
+    --surface: #0d0d0d;
+    --line: #262626;
+    --text: #f2f2f2;
+    --muted: #a3a3a3;
+    --cyan: #00FFFF;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  a { color: var(--cyan); text-underline-offset: 3px; }
+  header {
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; background: rgba(0,0,0,.92);
+    backdrop-filter: blur(8px); z-index: 10;
+  }
+  .bar {
+    max-width: 880px; margin: 0 auto; padding: 16px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+  .logo {
+    font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 22px;
+    text-decoration: none; letter-spacing: -0.01em;
+  }
+  .logo .h { color: var(--cyan); }
+  .logo .s { color: #ffffff; }
+  nav { display: flex; gap: 18px; flex-wrap: wrap; }
+  nav a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+  nav a:hover, nav a[aria-current="page"] { color: #fff; }
+  nav a[aria-current="page"] { box-shadow: inset 0 -2px 0 var(--cyan); }
+  main { max-width: 880px; margin: 0 auto; padding: 48px 16px 72px; }
+  h1, h2 { font-family: "Space Grotesk", sans-serif; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; }
+  h1 { font-size: clamp(30px, 6vw, 44px); margin: 0 0 12px; }
+  h2 { font-size: 21px; margin: 40px 0 10px; }
+  p, li { color: #d9d9d9; }
+  strong { color: #fff; }
+  em { color: var(--muted); }
+  main > p:first-of-type em { font-style: normal; font-size: 14px; }
+  ul { padding-left: 22px; }
+  li { margin: 6px 0; }
+  .table-wrap { overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); border-radius: 12px; }
+  table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 15px; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  th { font-family: "Space Grotesk", sans-serif; font-size: 16px; background: var(--surface); color: #fff; }
+  td:first-child { color: #fff; font-weight: 500; }
+  .pricing th:last-child { color: var(--cyan); }
+  .pricing td:nth-child(2), .pricing th:nth-child(2) { white-space: nowrap; }
+  .cta {
+    display: inline-block; margin-top: 8px; padding: 12px 22px; border-radius: 999px;
+    background: var(--cyan); color: #000; font-weight: 600; text-decoration: none;
+  }
+  footer { border-top: 1px solid var(--line); }
+  footer .bar { color: var(--muted); font-size: 13px; }
+  footer a { color: var(--muted); }
 </style>
 </head>
 <body>
-
-<nav>
-  <div class="container nav-inner">
-    <a href="index.html" class="logo">Huddle</a>
-    <div class="nav-links">
-      <a href="index.html#features" data-i18n="nav_features">Features</a>
-      <a href="index.html#how" data-i18n="nav_how">How it works</a>
-      <a href="support.html" data-i18n="nav_support">Support</a>
-    </div>
-    <div class="nav-right">
-      <div class="lang-toggle" role="group" aria-label="Language">
-        <button id="lang-en" class="active" onclick="setLang('en')">EN</button>
-        <button id="lang-tr" onclick="setLang('tr')">TR</button>
-      </div>
-      <a href="index.html#contact" class="btn btn-primary btn-nav" data-i18n="nav_cta">Get early access</a>
-    </div>
-  </div>
-</nav>
-
-<header class="policy-header">
-  <div class="container">
-    <h1 data-i18n="title">Privacy Policy</h1>
-    <p class="updated" data-i18n="updated">Effective Date: July 15, 2026</p>
+<header>
+  <div class="bar">
+    <a class="logo" href="/" aria-label="HuddleShift home"><span class="h">Huddle</span><span class="s">Shift</span></a>
+    <nav aria-label="Legal and pricing">
+      <a href="pricing.html">Pricing</a>
+      <a href="termsofuse.html">Terms</a>
+      <a href="refund.html">Refunds</a>
+      <a href="privacy.html" aria-current="page">Privacy</a>
+    </nav>
   </div>
 </header>
-
-<article class="policy-body" id="policy-content">
-  <!-- EN content (default) -->
-  <div id="content-en">
-    <h2>Our Policy</h2>
-    <p>Adem Tengiz, residing at Nispetiye Mahallesi Petrol Sitesi Sokak 24.Blok 1AI daire:6 Beşiktaş İstanbul (“Huddle”, “we”, “us” and/or “our”), is committed to protecting your privacy and earning your trust. This Privacy Policy discloses our privacy practices for personal data collected from Huddle users within the scope of membership activities when you use or access our products, services, features, or content (“Services”) through the Huddle application (“Application”).</p>
-    <div class="notice">
-      <p><strong>PLEASE REVIEW THIS PRIVACY POLICY CAREFULLY. BY ACCESSING THE HUDDLE APPLICATION OR SERVICES, YOU SIGNIFY YOUR ACCEPTANCE OF THIS PRIVACY POLICY. IF YOU DO NOT AGREE WITH THIS PRIVACY POLICY, PLEASE DO NOT ACCESS THE APPLICATION OR SERVICES.</strong></p>
-    </div>
-
-    <h2>Changes To Our Policy</h2>
-    <p>We may, in our sole discretion, change this Privacy Policy from time to time. If we make any changes, we will post the revised version within the Application. It is your responsibility to review this Privacy Policy periodically, and your continued use of the Services signifies your acceptance of the updated policy.</p>
-
-    <h2>Information We Collect</h2>
-    <p>When you interact with us through the Services, we may collect your personal data directly from you and through fully automated methods (when you register for the Huddle Application or upload data to the Application).</p>
-    <p>Huddle collects only the following categories of information:</p>
-    <p><strong>Identity Information:</strong> Name, surname, and—strictly on an optional basis if you choose to share it—Date of Birth.</p>
-    <p><strong>Contact Information:</strong> Email address, and—strictly on an optional basis if you choose to share it—Phone Number.</p>
-    <p><strong>Visual and Auditory Records:</strong> Strictly on an optional basis if you choose to share it, a Photo.</p>
-    <p><strong>Information Regarding Business, Education, and Professional Life:</strong> Information about the business you own or are authorized to represent.</p>
-    <div class="notice">
-      <p><strong>Important Note:</strong> Your date of birth, phone number, and photo are entirely optional and will only be collected if you explicitly choose to share them with us.</p>
-    </div>
-
-    <h2>How We Use Your Information</h2>
-    <p>Huddle collects and processes your personal data only as reasonably necessary and proportionate to provide the Services. Your personal data is used for the following specific purposes:</p>
-    <ul>
-      <li>Conducting and managing membership activities for the Huddle Application.</li>
-      <li>Enabling the creation of business accounts within the Huddle Application.</li>
-      <li>Ensuring the security of data controller operations.</li>
-      <li>Receiving suggestions and feedback to improve the Huddle Application.</li>
-    </ul>
-
-    <h2>Lawful Basis for Processing</h2>
-    <p>Your personal data is processed in accordance with the Law No. 6698 on the Personal Data Protection Law (“PDPL”) based on the following legal grounds:</p>
-    <p><strong>Contractual Necessity (PDPL Art. 5/2-c):</strong> Provided that it is directly related to the establishment or performance of a contract, processing the personal data of the parties to the contract is necessary (for conducting membership activities and opening business accounts).</p>
-    <p><strong>Legitimate Interests (PDPL Art. 5/2-f):</strong> Provided that it does not violate the fundamental rights and freedoms of the data subject, data processing is mandatory for the legitimate interests of the data controller (for ensuring operational security and receiving feedback).</p>
-
-    <h2>How We Share Your Information</h2>
-    <p>Your personal data may only be shared with third parties under the following conditions and for the specified purposes:</p>
-    <p><strong>Service Providers Abroad:</strong> To ensure business continuity, protect operational security, and securely store business and employee data, your information is transferred to our third-party SaaS (Software as a Service), PaaS (Platform as a Service), and database providers located abroad, who are authorized as data processors. This transfer is carried out strictly based on your explicit consent (PDPL Art. 9).</p>
-    <p><strong>Legal Obligations and Authorized Authorities:</strong> For the purposes of legal reporting, conducting audit activities, and managing disputes or legal processes, your data may be disclosed to public institutions, organizations, and judicial authorities legally authorized to request information. This transfer is mandatory for Huddle to fulfill its legal obligations (PDPL Art. 5/2-ç with reference to Art. 8/2-a).</p>
-
-    <h2>How We Protect Your Information</h2>
-    <p>We implement and maintain all necessary technical and administrative measures to ensure the appropriate level of security. This is done to prevent unlawful processing of personal data, block unauthorized access to data, and ensure safe storage of your information.</p>
-
-    <h2>Data Retention and Disposal</h2>
-    <p>We will retain your personal data for as long as necessary to provide the Services and fulfill the purposes outlined in this policy. Retention periods are determined by taking into account legal obligations, potential disputes, and business requirements. Once the retention period expires or the purpose of processing ceases to exist, your data will be securely deleted, destroyed, or anonymized in accordance with our data retention and disposal policies.</p>
-
-    <h2>How to Update Your Information and Your Rights</h2>
-    <p>Pursuant to Article 11 of the PDPL, you may apply to Huddle at any time to exercise the following rights:</p>
-    <ul>
-      <li>Learn whether your personal data is being processed;</li>
-      <li>Request information if your personal data has been processed;</li>
-      <li>Learn the purpose of the processing and whether the data is being used in accordance with that purpose;</li>
-      <li>Know the third parties to whom your personal data is transferred, whether at home or abroad;</li>
-      <li>Request rectification if your personal data is processed incompletely or inaccurately;</li>
-      <li>Request erasure or destruction of your personal data under the conditions laid down in Article 7 of the PDPL;</li>
-      <li>Request notification of the rectification, erasure, or destruction processes to third parties to whom your personal data has been transferred;</li>
-      <li>Object to any automated processing that results in an analysis solely focused on your behavior, if it produces a result against you;</li>
-      <li>Claim compensation for damages if you incur losses due to the unlawful processing of your personal data.</li>
-    </ul>
-
-    <h2>Application Methods</h2>
-    <p>To exercise your rights, you can submit your request by filling out our application form (available upon request) or by drafting a petition containing the mandatory elements required by the Communiqué on the Procedures and Principles of Application to the Data Controller (including name, surname, signature, Turkish ID/passport number, physical address, email address, phone number, and the subject of your request). You may send it to us via:</p>
-    <p><strong>Written Application:</strong> Via a notary public, by registered mail (return receipt requested), or via hand delivery with wet signature to Nispetiye Mahallesi Petrol Sitesi Sokak 24.Blok 1AI daire:6 Beşiktaş İstanbul;</p>
-    <p><strong>Electronic Application:</strong> By sending an email to <a href="mailto:support@huddleshift.com">support@huddleshift.com</a> using the email address currently registered in our system.</p>
-    <p>Your request will be reviewed and resolved by Huddle free of charge within the legal timeframe (at the latest within 30 days).</p>
-
-    <h2>Explicit Consent Declaration</h2>
-    <p>By checking the box provided on the registration screen of the Application, you declare that you have read and understood the Huddle Privacy Policy. You hereby give your free and explicit consent for your personal data (including your name, surname, business details, and—if optionally shared—your date of birth, phone number, and photo) to be transferred to third-party SaaS (Software as a Service), PaaS (Platform as a Service), and database providers located abroad. These providers are authorized by Huddle as data processors to ensure business continuity, maintain secure data storage, and conduct operational processes.</p>
-    <p>You have the right to withdraw this explicit consent at any time. You may do so by contacting us at <a href="mailto:support@huddleshift.com">support@huddleshift.com</a>.</p>
-  </div>
-
-  <!-- TR content (hidden by default) -->
-  <div id="content-tr" style="display:none">
-    <h2>Politikamız</h2>
-    <p>Nispetiye Mahallesi Petrol Sitesi Sokak 24.Blok 1AI daire:6 Beşiktaş İstanbul adresinde mukim Adem Tengiz (“Huddle”, “biz”, “bize” ve/veya “bizim”), gizliliğinizi korumaya ve güveninizi kazanmaya kararlıdır. Bu Gizlilik Politikası, Huddle uygulaması (“Uygulama”) aracılığıyla ürünlerimizi, hizmetlerimizi, özelliklerimizi veya içeriklerimizi (“Hizmetler”) kullandığınızda veya bunlara eriştiğinizde, üyelik faaliyetleri kapsamında Huddle kullanıcılarından toplanan kişisel verilere ilişkin gizlilik uygulamalarımızı açıklar.</p>
-    <div class="notice">
-      <p><strong>LÜTFEN BU GİZLİLİK POLİTİKASINI DİKKATLİCE İNCELEYİN. HUDDLE UYGULAMASINA VEYA HİZMETLERİNE ERİŞEREK BU GİZLİLİK POLİTİKASINI KABUL ETTİĞİNİZİ BEYAN EDERSİNİZ. BU GİZLİLİK POLİTİKASINI KABUL ETMİYORSANIZ LÜTFEN UYGULAMAYA VEYA HİZMETLERE ERİŞMEYİN.</strong></p>
-    </div>
-
-    <h2>Politikamızdaki Değişiklikler</h2>
-    <p>Bu Gizlilik Politikasını kendi takdirimize bağlı olarak zaman zaman değiştirebiliriz. Herhangi bir değişiklik yapmamız halinde, güncellenmiş sürümü Uygulama içinde yayınlayacağız. Bu Gizlilik Politikasını düzenli olarak gözden geçirmek sizin sorumluluğunuzdadır ve Hizmetleri kullanmaya devam etmeniz güncellenmiş politikayı kabul ettiğiniz anlamına gelir.</p>
-
-    <h2>Topladığımız Bilgiler</h2>
-    <p>Hizmetler aracılığıyla bizimle etkileşime geçtiğinizde, kişisel verilerinizi doğrudan sizden ve tamamen otomatik yöntemlerle (Huddle Uygulamasına kayıt olduğunuzda veya Uygulamaya veri yüklediğinizde) toplayabiliriz.</p>
-    <p>Huddle yalnızca aşağıdaki bilgi kategorilerini toplar:</p>
-    <p><strong>Kimlik Bilgileri:</strong> Ad, soyad ve—yalnızca paylaşmayı tercih etmeniz halinde isteğe bağlı olarak—Doğum Tarihi.</p>
-    <p><strong>İletişim Bilgileri:</strong> E-posta adresi ve—yalnızca paylaşmayı tercih etmeniz halinde isteğe bağlı olarak—Telefon Numarası.</p>
-    <p><strong>Görsel ve İşitsel Kayıtlar:</strong> Yalnızca paylaşmayı tercih etmeniz halinde isteğe bağlı olarak, bir Fotoğraf.</p>
-    <p><strong>Mesleki Deneyim, Eğitim ve İş Hayatına İlişkin Bilgiler:</strong> Sahibi olduğunuz veya temsile yetkili olduğunuz işletmeye ilişkin bilgiler.</p>
-    <div class="notice">
-      <p><strong>Önemli Not:</strong> Doğum tarihiniz, telefon numaranız ve fotoğrafınız tamamen isteğe bağlıdır ve yalnızca bizimle paylaşmayı açıkça tercih etmeniz halinde toplanır.</p>
-    </div>
-
-    <h2>Bilgilerinizi Nasıl Kullanıyoruz</h2>
-    <p>Huddle, kişisel verilerinizi yalnızca Hizmetleri sunmak için makul ölçüde gerekli ve ölçülü olduğu kadarıyla toplar ve işler. Kişisel verileriniz aşağıdaki belirli amaçlarla kullanılır:</p>
-    <ul>
-      <li>Huddle Uygulaması için üyelik faaliyetlerinin yürütülmesi ve yönetilmesi.</li>
-      <li>Huddle Uygulaması içinde işletme hesaplarının oluşturulmasının sağlanması.</li>
-      <li>Veri sorumlusu operasyonlarının güvenliğinin sağlanması.</li>
-      <li>Huddle Uygulamasını geliştirmek için öneri ve geri bildirim alınması.</li>
-    </ul>
-
-    <h2>İşlemenin Hukuki Sebebi</h2>
-    <p>Kişisel verileriniz, 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca aşağıdaki hukuki sebeplere dayanılarak işlenmektedir:</p>
-    <p><strong>Sözleşmenin Kurulması veya İfası (KVKK m. 5/2-c):</strong> Bir sözleşmenin kurulması veya ifasıyla doğrudan doğruya ilgili olması kaydıyla, sözleşmenin taraflarına ait kişisel verilerin işlenmesinin gerekli olması (üyelik faaliyetlerinin yürütülmesi ve işletme hesaplarının açılması için).</p>
-    <p><strong>Meşru Menfaat (KVKK m. 5/2-f):</strong> İlgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla, veri sorumlusunun meşru menfaatleri için veri işlenmesinin zorunlu olması (operasyonel güvenliğin sağlanması ve geri bildirim alınması için).</p>
-
-    <h2>Bilgilerinizi Kimlerle Paylaşıyoruz</h2>
-    <p>Kişisel verileriniz yalnızca aşağıdaki koşullarda ve belirtilen amaçlarla üçüncü taraflarla paylaşılabilir:</p>
-    <p><strong>Yurt Dışındaki Hizmet Sağlayıcılar:</strong> İş sürekliliğini sağlamak, operasyonel güvenliği korumak ve işletme ile çalışan verilerini güvenli şekilde saklamak amacıyla bilgileriniz, veri işleyen olarak yetkilendirilmiş, yurt dışında bulunan üçüncü taraf SaaS (Hizmet Olarak Yazılım), PaaS (Hizmet Olarak Platform) ve veritabanı sağlayıcılarımıza aktarılmaktadır. Bu aktarım yalnızca açık rızanıza dayanılarak gerçekleştirilir (KVKK m. 9).</p>
-    <p><strong>Yasal Yükümlülükler ve Yetkili Makamlar:</strong> Yasal raporlama, denetim faaliyetlerinin yürütülmesi ve uyuşmazlıkların veya hukuki süreçlerin yönetilmesi amaçlarıyla verileriniz, bilgi talep etmeye kanunen yetkili kamu kurum ve kuruluşları ile adli makamlara açıklanabilir. Bu aktarım, Huddle'ın hukuki yükümlülüklerini yerine getirebilmesi için zorunludur (KVKK m. 5/2-ç ve m. 8/2-a).</p>
-
-    <h2>Bilgilerinizi Nasıl Koruyoruz</h2>
-    <p>Uygun güvenlik düzeyini sağlamak için gerekli tüm teknik ve idari tedbirleri uygular ve sürdürürüz. Bu, kişisel verilerin hukuka aykırı işlenmesini önlemek, verilere hukuka aykırı erişimi engellemek ve bilgilerinizin güvenli şekilde muhafazasını sağlamak amacıyla yapılır.</p>
-
-    <h2>Veri Saklama ve İmha</h2>
-    <p>Kişisel verilerinizi, Hizmetleri sunmak ve bu politikada belirtilen amaçları yerine getirmek için gerekli olduğu süre boyunca saklarız. Saklama süreleri; yasal yükümlülükler, olası uyuşmazlıklar ve iş gereklilikleri dikkate alınarak belirlenir. Saklama süresi dolduğunda veya işleme amacı ortadan kalktığında verileriniz, saklama ve imha politikalarımıza uygun olarak güvenli bir şekilde silinir, yok edilir veya anonim hale getirilir.</p>
-
-    <h2>Bilgilerinizi Güncelleme ve Haklarınız</h2>
-    <p>KVKK'nın 11. maddesi uyarınca, aşağıdaki haklarınızı kullanmak için her zaman Huddle'a başvurabilirsiniz:</p>
-    <ul>
-      <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme;</li>
-      <li>Kişisel verileriniz işlenmişse buna ilişkin bilgi talep etme;</li>
-      <li>İşlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme;</li>
-      <li>Yurt içinde veya yurt dışında kişisel verilerinizin aktarıldığı üçüncü kişileri bilme;</li>
-      <li>Kişisel verilerinizin eksik veya yanlış işlenmiş olması hâlinde bunların düzeltilmesini isteme;</li>
-      <li>KVKK'nın 7. maddesinde öngörülen şartlar çerçevesinde kişisel verilerinizin silinmesini veya yok edilmesini isteme;</li>
-      <li>Düzeltme, silme veya yok edilme işlemlerinin, kişisel verilerinizin aktarıldığı üçüncü kişilere bildirilmesini isteme;</li>
-      <li>Münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme;</li>
-      <li>Kişisel verilerinizin kanuna aykırı olarak işlenmesi sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme.</li>
-    </ul>
-
-    <h2>Başvuru Yöntemleri</h2>
-    <p>Haklarınızı kullanmak için, başvuru formumuzu (talep üzerine temin edilebilir) doldurarak veya Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ'de öngörülen zorunlu unsurları (ad, soyad, imza, T.C. kimlik/pasaport numarası, açık adres, e-posta adresi, telefon numarası ve talep konusu dahil) içeren bir dilekçe hazırlayarak talebinizi iletebilirsiniz. Bize şu yollarla gönderebilirsiniz:</p>
-    <p><strong>Yazılı Başvuru:</strong> Noter aracılığıyla, iadeli taahhütlü posta ile veya ıslak imzalı olarak elden teslim yoluyla Nispetiye Mahallesi Petrol Sitesi Sokak 24.Blok 1AI daire:6 Beşiktaş İstanbul adresine;</p>
-    <p><strong>Elektronik Başvuru:</strong> Sistemimizde kayıtlı bulunan e-posta adresinizi kullanarak <a href="mailto:support@huddleshift.com">support@huddleshift.com</a> adresine e-posta göndererek.</p>
-    <p>Talebiniz Huddle tarafından ücretsiz olarak, yasal süre içinde (en geç 30 gün içinde) incelenip sonuçlandırılacaktır.</p>
-
-    <h2>Açık Rıza Beyanı</h2>
-    <p>Uygulamanın kayıt ekranında yer alan kutucuğu işaretleyerek, Huddle Gizlilik Politikasını okuduğunuzu ve anladığınızı beyan edersiniz. Kişisel verilerinizin (adınız, soyadınız, işletme bilgileriniz ve—isteğe bağlı olarak paylaşmanız hâlinde—doğum tarihiniz, telefon numaranız ve fotoğrafınız dahil) yurt dışında bulunan üçüncü taraf SaaS (Hizmet Olarak Yazılım), PaaS (Hizmet Olarak Platform) ve veritabanı sağlayıcılarına aktarılmasına özgür iradenizle açık rıza vermiş olursunuz. Bu sağlayıcılar; iş sürekliliğini sağlamak, güvenli veri saklamayı sürdürmek ve operasyonel süreçleri yürütmek amacıyla Huddle tarafından veri işleyen olarak yetkilendirilmiştir.</p>
-    <p>Bu açık rızanızı dilediğiniz zaman geri çekme hakkına sahipsiniz. Bunu <a href="mailto:support@huddleshift.com">support@huddleshift.com</a> adresinden bizimle iletişime geçerek yapabilirsiniz.</p>
-  </div>
-</article>
-
+<main>
+<h1>Privacy Policy</h1>
+<p><em>Effective date: October 21, 2026. Replaces the Privacy Policy dated July 15, 2026.</em></p>
+<h2>1. Our policy</h2>
+<p>Mert Balcı, Nispetiye Mahallesi Petrol Sitesi Sokak 24. Blok 1AI Daire 6, Beşiktaş, İstanbul, Türkiye, trading as HuddleShift (HuddleShift, we, us, our), is committed to protecting your privacy. This Privacy Policy explains how we process personal data when you use the HuddleShift mobile apps, web app and website (the Services).</p>
+<p>We are the data controller for personal data of account holders, managers and website visitors. When a business enters its employees' data into its HuddleShift workspace, that business is the data controller and we process the data on its behalf as data processor.</p>
+<p>By accessing the Services, you acknowledge that you have read this Privacy Policy. Contact: <a href="mailto:support@huddleshift.com">support@huddleshift.com</a>.</p>
+<h2>2. Changes to this policy</h2>
+<p>We may change this Privacy Policy from time to time. We will post the revised version in the Services and on this page, and notify managers of material changes by email or in the app. Your continued use of the Services after the effective date means you accept the updated policy.</p>
+<h2>3. Information we collect</h2>
+<p>We collect personal data directly from you, from the business that invites you, and automatically when you use the Services.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identity</td>
+<td>Name, surname; optionally, date of birth</td>
+</tr>
+<tr>
+<td>Contact</td>
+<td>Email address; optionally, phone number</td>
+</tr>
+<tr>
+<td>Visual records</td>
+<td>Optionally, a profile photo</td>
+</tr>
+<tr>
+<td>Business and professional life</td>
+<td>The business you own or represent, your role, position and department</td>
+</tr>
+<tr>
+<td>Workspace and shift data</td>
+<td>Shifts, availability, leave requests, shift swaps, clock-in/out times, team messages and announcements</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>GPS location at the moment of clock-in and clock-out, to verify attendance</td>
+</tr>
+<tr>
+<td>Uploaded files and AI inputs</td>
+<td>Schedule photos and prompts you send to the HuddleShift AI Scheduler and Hadger AI Assistant, and the outputs generated</td>
+</tr>
+<tr>
+<td>Transaction</td>
+<td>Plan, purchase and subscription records, billing country. Payment card details are collected by Paddle, Apple or Google, never stored by us</td>
+</tr>
+<tr>
+<td>Device and usage</td>
+<td>Device type, operating system, app version, IP address, crash logs, in-app events, advertising identifiers where permitted</td>
+</tr>
+<tr>
+<td>Communications</td>
+<td>Feedback, suggestions and support messages</td>
+</tr>
+</tbody>
+</table></div>
+<p>Your date of birth, phone number and photo are entirely optional and are collected only if you choose to share them.</p>
+<h2>4. How we use your information</h2>
+<p>We process personal data only as reasonably necessary and proportionate to:</p>
+<ul>
+<li>conduct and manage memberships and create business accounts and workspaces;</li>
+<li>provide scheduling, time tracking, GPS-verified attendance, leave and swap management and team communication;</li>
+<li>generate schedules and answers through our AI features;</li>
+<li>process subscriptions and fulfil legal, tax and accounting obligations;</li>
+<li>ensure the security of the Services and prevent fraud and abuse;</li>
+<li>receive suggestions and feedback and improve the Services;</li>
+<li>measure the effectiveness of our advertising, where you have consented.</li>
+</ul>
+<h2>5. Legal basis for processing</h2>
+<p>We process personal data under Law No. 6698 on the Protection of Personal Data (PDPL) and, where it applies, the EU and UK General Data Protection Regulation (GDPR):</p>
+<ul>
+<li><strong>Contractual necessity</strong> (PDPL Art. 5/2-c; GDPR Art. 6(1)(b)): to provide the Services, manage memberships and business accounts, and process subscriptions.</li>
+<li><strong>Legal obligation</strong> (PDPL Art. 5/2-ç; GDPR Art. 6(1)(c)): to keep transaction records and respond to authorities.</li>
+<li><strong>Legitimate interests</strong> (PDPL Art. 5/2-f; GDPR Art. 6(1)(f)): to secure the Services, prevent fraud, analyse usage and handle feedback, without overriding your fundamental rights and freedoms.</li>
+<li><strong>Explicit consent</strong> (PDPL Art. 5/1; GDPR Art. 6(1)(a)): for advertising and analytics cookies and identifiers, and for any other processing where the law requires consent. You may withdraw consent at any time.</li>
+</ul>
+<p>For employee data, the employer business is responsible for having a valid legal basis, including for GPS-verified clock-in.</p>
+<h2>6. How we share your information</h2>
+<p>We share personal data only as needed for the purposes above:</p>
+<ul>
+<li><strong>Paddle.com</strong> — our online reseller and Merchant of Record for purchases on our website. Paddle receives the data needed to process payments, calculate and remit taxes, prevent fraud and handle refunds, and processes it under <a href="https://www.paddle.com/legal/privacy">Paddle's Privacy Notice</a>.</li>
+<li><strong>Apple and Google</strong> — for app distribution and in-app purchases.</li>
+<li><strong>Service providers acting as data processors</strong> — cloud hosting, database and platform providers (SaaS and PaaS), subscription management (RevenueCat), AI model providers that power our AI features, email and push-notification delivery, analytics and crash reporting, and advertising measurement (such as Meta). They process data only on our instructions under contract.</li>
+<li><strong>Professional advisers</strong> — lawyers, accountants and auditors, under confidentiality.</li>
+<li><strong>Public institutions and judicial authorities</strong> — where we are legally obliged to disclose data, for legal reporting, audits and disputes (PDPL Art. 5/2-ç and 8/2-a).</li>
+</ul>
+<p>We do not sell your personal data.</p>
+<h2>7. International transfers</h2>
+<p>Most of our service providers store or process data outside Türkiye, including in the European Union and the United States. Under Article 9 of the PDPL, we transfer personal data abroad on the basis of an adequacy decision where one exists, or appropriate safeguards such as standard contracts approved by the Personal Data Protection Authority and notified to it as required by law. Incidental transfers may rely on another condition in Article 9, including your explicit consent. For users in the EEA and UK, we rely on adequacy decisions or the Standard Contractual Clauses.</p>
+<h2>8. How we protect your information</h2>
+<p>We implement and maintain the technical and administrative measures needed for an appropriate level of security, including encryption in transit, access controls and regular backups, to prevent unlawful processing, block unauthorised access and keep your data safely stored. We will notify affected users and authorities of a data breach where the law requires.</p>
+<h2>9. Data retention and disposal</h2>
+<p>We keep personal data only as long as needed for the purposes in this policy, taking into account legal obligations, potential disputes and business requirements. Account and workspace data is deleted within 90 days after an account is deleted, except backups that expire on their regular cycle. Transaction records are kept as long as tax and commercial law requires. When the retention period ends or the purpose ceases, data is securely deleted, destroyed or anonymised under our data retention and disposal policy.</p>
+<h2>10. Your rights</h2>
+<p>Under Article 11 of the PDPL, you may apply to us at any time to:</p>
+<ul>
+<li>learn whether your personal data is processed and request information about it;</li>
+<li>learn the purpose of processing and whether data is used accordingly;</li>
+<li>know the third parties in Türkiye or abroad to whom your data is transferred;</li>
+<li>request rectification of incomplete or inaccurate data;</li>
+<li>request erasure or destruction under Article 7 of the PDPL;</li>
+<li>request that rectification, erasure or destruction be notified to recipients;</li>
+<li>object to a result against you arising solely from automated analysis;</li>
+<li>claim compensation for damage caused by unlawful processing.</li>
+</ul>
+<p>If the GDPR applies to you, you also have the rights of access, rectification, erasure, restriction, data portability and objection, and the right to withdraw consent at any time. You may complain to the Turkish Personal Data Protection Authority, your local EU data protection authority or the UK Information Commissioner's Office.</p>
+<p>If you are an employee of a business using HuddleShift, contact your employer first; we will help them respond.</p>
+<h2>11. How to apply</h2>
+<p>You can submit your request with the information required by the Communiqué on the Procedures and Principles of Application to the Data Controller (name, surname, signature for written requests, Turkish ID or passport number, address, email, phone and the subject of your request):</p>
+<ul>
+<li><strong>In writing:</strong> via a notary public, registered mail with return receipt, or hand delivery with wet signature to Nispetiye Mahallesi Petrol Sitesi Sokak 24. Blok 1AI Daire 6, Beşiktaş, İstanbul, Türkiye;</li>
+<li><strong>Electronically:</strong> by email to <a href="mailto:support@huddleshift.com">support@huddleshift.com</a> from the email address registered in our system.</li>
+</ul>
+<p>We resolve requests free of charge within 30 days at the latest.</p>
+<h2>12. Cookies</h2>
+<p>Our website uses essential cookies to work, and analytics or advertising cookies only with your consent where required. You can change your choices through the cookie banner or your browser settings.</p>
+<h2>13. Children</h2>
+<p>The Services are intended for businesses and their staff. They are not directed at children under 16, and manager accounts require users to be 18 or older.</p>
+<h2>14. Explicit consent</h2>
+<p>Where we ask for your explicit consent, for example for advertising and analytics identifiers or an incidental transfer abroad, we do so with a separate, unticked checkbox or in-app prompt. Refusing consent does not prevent you from using the core Services. You may withdraw consent at any time by emailing <a href="mailto:support@huddleshift.com">support@huddleshift.com</a> or changing your settings.</p>
+</main>
 <footer>
-  <div class="container footer-inner">
-    <a href="index.html" class="logo" style="font-size:18px">Huddle</a>
-    <div class="footer-links">
-      <a href="support.html" data-i18n="footer_support">Support</a>
-      <a href="privacy.html" data-i18n="footer_privacy">Privacy</a>
-      <a href="terms.html" data-i18n="footer_terms">Terms</a>
-    </div>
-    <span data-i18n="footer">© 2026 Huddle. All rights reserved.</span>
+  <div class="bar">
+    <span>&copy; 2026 HuddleShift &middot; <a href="mailto:support@huddleshift.com">support@huddleshift.com</a></span>
+    <span>Payments processed by Paddle.com, our Merchant of Record.</span>
   </div>
 </footer>
-
-<script>
-const i18n = {
-  en: {
-    nav_features:"Features", nav_how:"How it works", nav_support:"Support", nav_cta:"Get early access",
-    title:"Privacy Policy", updated:"Effective Date: July 15, 2026",
-    footer_support:"Support", footer_privacy:"Privacy", footer_terms:"Terms",
-    footer:"© 2026 Huddle. All rights reserved."
-  },
-  tr: {
-    nav_features:"Özellikler", nav_how:"Nasıl çalışır", nav_support:"Destek", nav_cta:"Erken erişim",
-    title:"Gizlilik Politikası", updated:"Yürürlük Tarihi: 15 Temmuz 2026",
-    footer_support:"Destek", footer_privacy:"Gizlilik", footer_terms:"Şartlar",
-    footer:"© 2026 Huddle. Tüm hakları saklıdır."
-  }
-};
-let currentLang = 'en';
-function setLang(lang){
-  currentLang = lang;
-  document.documentElement.lang = lang;
-  document.getElementById('lang-en').classList.toggle('active', lang==='en');
-  document.getElementById('lang-tr').classList.toggle('active', lang==='tr');
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k = el.getAttribute('data-i18n');
-    if(i18n[lang][k] !== undefined) el.textContent = i18n[lang][k];
-  });
-  document.getElementById('content-en').style.display = lang==='en' ? '' : 'none';
-  document.getElementById('content-tr').style.display = lang==='tr' ? '' : 'none';
-}
-</script>
 </body>
 </html>

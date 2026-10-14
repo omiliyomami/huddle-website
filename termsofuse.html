@@ -1,331 +1,155 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Huddle — Terms of Use</title>
-<link rel="icon" type="image/png" href="huddle.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms of Service | HuddleShift</title>
+<meta name="description" content="HuddleShift Terms of Service.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #060608;
-  --bg-surface: #0B0B0F;
-  --accent: #00F0FF;
-  --accent-dim: rgba(0, 240, 255, 0.1);
-  --accent-border: rgba(0, 240, 255, 0.25);
-  --text: #FFFFFF;
-  --text-secondary: #9494A1;
-  --text-muted: #62626C;
-  --border: rgba(255, 255, 255, 0.06);
-  --border-hover: rgba(255, 255, 255, 0.12);
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; background: var(--bg); }
-body {
-  background: var(--bg); color: var(--text);
-  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  line-height: 1.6; -webkit-font-smoothing: antialiased;
-  min-height: 100vh; display: flex; flex-direction: column;
-}
-::selection { background: rgba(0, 240, 255, 0.2); color: var(--text); }
-a { color: var(--accent); text-decoration: none; transition: all 0.2s var(--ease); }
-a:hover { text-decoration: underline; }
-button { font-family: inherit; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-/* ---------- Nav ---------- */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(6, 6, 8, 0.75);
-  backdrop-filter: blur(20px) saturate(1.6);
-  -webkit-backdrop-filter: blur(20px) saturate(1.6);
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-}
-.nav-inner { height: 72px; display: flex; align-items: center; justify-content: space-between; }
-.logo {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold; font-size: 24px; letter-spacing: -0.03em; color: var(--text);
-  display: flex; align-items: center;
-}
-.logo .dot { color: var(--accent); }
-.nav-links { display: flex; align-items: center; gap: 32px; }
-.nav-links a { font-size: 14px; color: var(--text-secondary); font-weight: 500; text-decoration: none; }
-.nav-links a:hover { color: var(--text); text-decoration: none; }
-.nav-right { display: flex; align-items: center; gap: 16px; }
-.lang-toggle {
-  display: flex; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border);
-  border-radius: 999px; padding: 2px;
-}
-.lang-toggle button {
-  border: 0; background: transparent; color: var(--text-secondary);
-  font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 999px;
-  cursor: pointer; transition: all 0.2s var(--ease);
-}
-.lang-toggle button.active { background: var(--text); color: var(--bg); }
-.btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  font-weight: 600; font-size: 14px; border-radius: 999px; cursor: pointer;
-  transition: all 0.2s var(--ease); border: 0; white-space: nowrap; text-decoration: none;
-}
-.btn:hover { text-decoration: none; }
-.btn-primary { background: var(--text); color: var(--bg); padding: 12px 28px; }
-.btn-primary:hover {
-  background: var(--accent); transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(0, 240, 255, 0.25);
-}
-.btn-nav { padding: 8px 20px; font-size: 13px; }
-
-/* ---------- Policy content ---------- */
-.policy-header {
-  padding: 150px 0 60px; text-align: center; position: relative;
-}
-.policy-header::before {
-  content: ""; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 600px 350px at 50% 20%, rgba(0, 240, 255, 0.06), transparent 70%);
-  pointer-events: none;
-}
-.policy-header h1 {
-  font-size: clamp(32px, 5vw, 48px); font-weight: 800;
-  letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 12px;
-}
-.policy-header .updated {
-  font-size: 14px; color: var(--text-muted); font-weight: 500;
-}
-
-.policy-body {
-  max-width: 720px; margin: 0 auto; padding: 0 24px 120px;
-}
-.policy-body h2 {
-  font-size: 22px; font-weight: 700; letter-spacing: -0.02em;
-  margin: 48px 0 16px; color: var(--text);
-}
-.policy-body h2:first-of-type { margin-top: 0; }
-.policy-body p {
-  color: var(--text-secondary); font-size: 15px; line-height: 1.75; margin-bottom: 16px;
-}
-.policy-body ul { margin: 0 0 16px 20px; }
-.policy-body li {
-  color: var(--text-secondary); font-size: 15px; line-height: 1.75; margin-bottom: 8px;
-}
-.policy-body strong { color: var(--text); font-weight: 600; }
-.policy-body .notice {
-  border: 1px solid var(--accent-border); background: var(--accent-dim);
-  border-radius: 12px; padding: 16px 20px; margin-bottom: 16px;
-}
-.policy-body .notice p:last-child { margin-bottom: 0; }
-
-/* ---------- Footer ---------- */
-footer { border-top: 1px solid var(--border); padding: 40px 0; background: #040406; margin-top: auto; }
-.footer-inner {
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
-  color: var(--text-muted); font-size: 14px;
-}
-.footer-links { display: flex; gap: 24px; }
-.footer-links a { color: var(--text-secondary); font-size: 14px; font-weight: 500; text-decoration: none; }
-.footer-links a:hover { color: var(--text); text-decoration: none; }
-
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .policy-header { padding: 130px 0 40px; }
-}
+  :root {
+    --bg: #000000;
+    --surface: #0d0d0d;
+    --line: #262626;
+    --text: #f2f2f2;
+    --muted: #a3a3a3;
+    --cyan: #00FFFF;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  a { color: var(--cyan); text-underline-offset: 3px; }
+  header {
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; background: rgba(0,0,0,.92);
+    backdrop-filter: blur(8px); z-index: 10;
+  }
+  .bar {
+    max-width: 880px; margin: 0 auto; padding: 16px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+  .logo {
+    font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 22px;
+    text-decoration: none; letter-spacing: -0.01em;
+  }
+  .logo .h { color: var(--cyan); }
+  .logo .s { color: #ffffff; }
+  nav { display: flex; gap: 18px; flex-wrap: wrap; }
+  nav a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+  nav a:hover, nav a[aria-current="page"] { color: #fff; }
+  nav a[aria-current="page"] { box-shadow: inset 0 -2px 0 var(--cyan); }
+  main { max-width: 880px; margin: 0 auto; padding: 48px 16px 72px; }
+  h1, h2 { font-family: "Space Grotesk", sans-serif; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; }
+  h1 { font-size: clamp(30px, 6vw, 44px); margin: 0 0 12px; }
+  h2 { font-size: 21px; margin: 40px 0 10px; }
+  p, li { color: #d9d9d9; }
+  strong { color: #fff; }
+  em { color: var(--muted); }
+  main > p:first-of-type em { font-style: normal; font-size: 14px; }
+  ul { padding-left: 22px; }
+  li { margin: 6px 0; }
+  .table-wrap { overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); border-radius: 12px; }
+  table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 15px; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  th { font-family: "Space Grotesk", sans-serif; font-size: 16px; background: var(--surface); color: #fff; }
+  td:first-child { color: #fff; font-weight: 500; }
+  .pricing th:last-child { color: var(--cyan); }
+  .pricing td:nth-child(2), .pricing th:nth-child(2) { white-space: nowrap; }
+  .cta {
+    display: inline-block; margin-top: 8px; padding: 12px 22px; border-radius: 999px;
+    background: var(--cyan); color: #000; font-weight: 600; text-decoration: none;
+  }
+  footer { border-top: 1px solid var(--line); }
+  footer .bar { color: var(--muted); font-size: 13px; }
+  footer a { color: var(--muted); }
 </style>
 </head>
 <body>
-
-<nav>
-  <div class="container nav-inner">
-    <a href="index.html" class="logo">Huddle</a>
-    <div class="nav-links">
-      <a href="index.html#features" data-i18n="nav_features">Features</a>
-      <a href="index.html#how" data-i18n="nav_how">How it works</a>
-      <a href="support.html" data-i18n="nav_support">Support</a>
-    </div>
-    <div class="nav-right">
-      <div class="lang-toggle" role="group" aria-label="Language">
-        <button id="lang-en" class="active" onclick="setLang('en')">EN</button>
-        <button id="lang-tr" onclick="setLang('tr')">TR</button>
-      </div>
-      <a href="index.html#contact" class="btn btn-primary btn-nav" data-i18n="nav_cta">Get early access</a>
-    </div>
-  </div>
-</nav>
-
-<header class="policy-header">
-  <div class="container">
-    <h1 data-i18n="title">Terms of Use</h1>
-    <p class="updated" data-i18n="updated">Effective Date: July 15, 2026</p>
+<header>
+  <div class="bar">
+    <a class="logo" href="/" aria-label="HuddleShift home"><span class="h">Huddle</span><span class="s">Shift</span></a>
+    <nav aria-label="Legal and pricing">
+      <a href="pricing.html">Pricing</a>
+      <a href="termsofuse.html" aria-current="page">Terms</a>
+      <a href="refund.html">Refunds</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
   </div>
 </header>
-
-<article class="policy-body">
-
-  <div id="content-en">
-    <h2>1. Acceptance of Terms</h2>
-    <p>Welcome to the Huddle website and mobile application operated by Adem Tengiz, residing at Nispetiye Mahallesi Petrol Sitesi Sokak 24.Blok 1AI daire:6 Beşiktaş İstanbul (“Huddle”, “we”, “us” or “our”), and to the shift scheduling, GPS-verified clock-in/clock-out tracking, leave requests, shift swaps, and in-team communication services offered through these channels (“Services”).</p>
-    <p>These Terms of Use govern your access to and use of Huddle and our Services. By using our Services or visiting our website/application, you accept, declare, and undertake that you will be bound by and comply with these Terms of Use and the Privacy Policy, which forms an integral part of these terms.</p>
-    <p>If you do not accept these Terms of Use, please immediately stop using the application and website and terminate your access.</p>
-
-    <h2>2. Cookies and Tracking Technologies</h2>
-    <p>Cookies and similar tracking technologies are used on our website and mobile application in order to improve your user experience, ensure system security, and remember your preferences. By using our platform, you consent to the use of these technologies within the limits set out in our Privacy Policy. You may disable cookies at any time through your browser or device settings; however, you accept that in this case certain features of the Services may not function fully.</p>
-
-    <h2>3. Intellectual and Industrial Property Rights</h2>
-    <p>All intellectual property rights included within the Services — including software code, interface designs, texts, graphics, logos, images, audio and video clips, trademarks, the name "Huddle", and without limitation all other intellectual property — belong to Adem Tengiz or his licensors.</p>
-    <p>The personal and limited right of use granted to you under these Terms of Use to use Huddle in no way constitutes a transfer of ownership or copyright.</p>
-    <p>Without the prior written permission of Huddle, you may not copy, reproduce, distribute, reverse-engineer, or use for commercial purposes any content on the platform.</p>
-
-    <h2>4. License to Use and Its Limitations</h2>
-    <p>Provided that you comply with these Terms of Use, Huddle grants you a personal, non-transferable, non-exclusive and limited license to access the Services solely for managing your internal business operations and for the purposes permitted under these terms.</p>
-    <p>Huddle reserves the right, entirely at its own discretion and without prior notice, to modify, suspend, block access to, or fully revoke the license for the Services or any content. We reserve the right to charge a subscription or license fee for your future access.</p>
-
-    <h2>5. Usage Restrictions</h2>
-    <p>While using our Services, the following actions are strictly prohibited:</p>
-    <ul>
-      <li>Carrying out or encouraging unlawful or illegal activities,</li>
-      <li>Endangering the security of the Services, uploading or transmitting viruses, trojans, worms or other malicious software to the platform,</li>
-      <li>Subjecting the application's software to reverse engineering, or attempting to access its source code,</li>
-      <li>Using automated tools (bots, spiders, scrapers, etc.) or manual processes to collect system data,</li>
-      <li>Impersonating another user or attempting to access accounts you are not authorized to use,</li>
-      <li>Collecting or storing other users' personal data without their consent,</li>
-      <li>Obstructing, slowing down, or sabotaging the operation of the application and its associated servers.</li>
-    </ul>
-
-    <h2>6. User Content and Responsibility</h2>
-    <p>All shift plans, staff information, working hours, comments, photographs, images and all other data (“User Content”) that you upload, share, or create on the platform within the scope of the Services are entirely your responsibility.</p>
-    <p>You accept that:</p>
-    <ul>
-      <li>The content you upload does not infringe the rights of third parties (intellectual property, protection of personal data, trade secrets, etc.),</li>
-      <li>You have obtained all necessary legal permissions and explicit consents (particularly for your employees' personal data and location information) to share this content on the platform and to have it processed within Huddle's systems, even if not publicly visible,</li>
-      <li>The responsibility for backing up your content rests entirely with you. Huddle cannot be held liable in any way for data loss.</li>
-    </ul>
-
-    <h2>7. DISCLAIMER OF WARRANTIES AND LIMITATION OF LIABILITY (IMPORTANT NOTICE)</h2>
-    <div class="notice">
-      <p><strong>Statement Regarding Continuity of the Application and Services:</strong> Huddle provides the Services to you "as is" and "as available". We make no warranty whatsoever that the application or the service will be uninterrupted, error-free, without delay, flawless, or entirely free from cyberattacks at all times.</p>
-      <p>In the event of possible technical failures, system crashes, data losses, server errors, connection problems arising from internet service providers, GPS location verification deviations, or the temporary/permanent malfunction or unavailability of the application, neither Huddle, nor Adem Tengiz, nor his employees bear any legal or criminal liability. No liability is accepted for loss of labor, loss of profit, commercial damage, or data loss that may arise in such situations. As a user, you are deemed to have accepted these risks in advance when using the platform.</p>
-      <p>To the fullest extent permitted by applicable legislation, and in particular Article 115 of the Turkish Code of Obligations, Huddle's total liability based on breach of contract, tort, slight negligence, or other legal grounds is in all cases limited to the last 3 (three) months' membership/subscription fee paid by the user to Huddle for the Services (if any).</p>
-    </div>
-
-    <h2>8. Indemnification Obligation</h2>
-    <p>The user accepts and undertakes to hold Huddle, Adem Tengiz, and his employees harmless from, and to immediately indemnify them for, any and all administrative, criminal, and legal claims, damages, losses, and litigation costs including attorney's fees arising from any breach of these Terms of Use by the user, their employees, or persons they authorize, from unlawful use or misuse of the platform, or from the User Content they upload.</p>
-
-    <h2>9. Force Majeure</h2>
-    <p>In the event of any force majeure occurring beyond Huddle's reasonable control — such as natural disasters, fire, earthquake, epidemics, war, acts of terrorism, uprisings, government decisions, general strikes, or large-scale outages in telecommunications and internet infrastructure — Huddle may temporarily suspend or entirely terminate the Services. In such situations, Huddle shall bear no liability for failure to fulfil its commitments.</p>
-
-    <h2>10. Invalidity and Severability</h2>
-    <p>If any provision of these Terms of Use is found to be invalid, unlawful, or unenforceable by a competent court, that provision shall be revised to the minimum extent necessary to render it valid; if this is not possible, it shall be removed from the agreement. This shall not affect the validity and enforceability of the remaining provisions.</p>
-
-    <h2>11. Governing Law and Jurisdiction</h2>
-    <p>The laws of the Republic of Turkey shall apply to the interpretation and application of these Terms of Use and to the resolution of any dispute that may arise between the user and Huddle.</p>
-    <p>The Istanbul (Çağlayan) Courts and Enforcement Offices shall have exclusive jurisdiction over the resolution of disputes.</p>
-  </div>
-
-  <div id="content-tr" style="display:none">
-    <h2>1. Koşulların Kabulü</h2>
-    <p>Nispetiye Mahallesi Petrol Sitesi Sokak 24.Blok 1AI daire:6 Beşiktaş İstanbul adresinde mukim Adem Tengiz (“Huddle”, “biz”, “bize” veya “bizim”) tarafından işletilen Huddle web sitesine, mobil uygulamasına ve bu mecralar üzerinden sunulan vardiya planlama, GPS doğrulamalı giriş-çıkış takibi, izin talepleri, vardiya değişimleri ve ekip içi iletişim hizmetlerine (“Hizmetler”) hoş geldiniz.</p>
-    <p>Bu Kullanım Koşulları, Huddle'a ve Hizmetlerimize erişiminizi ve kullanımınızı düzenlemektedir. Hizmetlerimizi kullanarak veya web sitemizi/uygulamamızı ziyaret ederek, işbu Kullanım Koşulları'na ve bu koşulların ayrılmaz bir parçası olan Gizlilik Politikası'na bağlı kalacağınızı ve bunlara uyacağınızı kabul, beyan ve taahhüt edersiniz.</p>
-    <p>Eğer bu Kullanım Koşulları'nı kabul etmiyorsanız, lütfen uygulamayı ve web sitesini kullanmayı derhal bırakın ve erişiminizi sonlandırın.</p>
-
-    <h2>2. Çerezler ve Takip Teknolojileri</h2>
-    <p>Web sitemiz ve mobil uygulamamız üzerinde kullanıcı deneyiminizi geliştirmek, sistem güvenliğini sağlamak ve tercihlerinizi hatırlamak amacıyla çerezler (cookies) ve benzeri takip teknolojileri kullanılmaktadır. Platformumuzu kullanarak, bu teknolojilerin Gizlilik Politikamızda belirtilen sınırlar dahilinde kullanılmasına onay vermiş olursunuz. Çerezleri tarayıcı veya cihaz ayarlarınızdan dilediğiniz zaman devre dışı bırakabilirsiniz; ancak bu durumda Hizmetlerin bazı özelliklerinin tam olarak çalışmayabileceğini kabul edersiniz.</p>
-
-    <h2>3. Fikri ve Sınai Mülkiyet Hakları</h2>
-    <p>Hizmetler kapsamında yer alan; yazılım kodları, arayüz tasarımları, metinler, grafikler, logolar, görseller, ses ve video klipleri, ticari markalar, "Huddle" ismi ve bunlarla sınırlı olmaksızın tüm fikri mülkiyet hakları Adem Tengiz'e veya lisans verenlerine aittir.</p>
-    <p>İşbu Kullanım Koşulları kapsamında size Huddle'ı kullanmanız için sağlanan kişisel ve sınırlı kullanım hakkı, hiçbir şekilde mülkiyet veya telif hakkı devri anlamına gelmez.</p>
-    <p>Huddle'ın önceden yazılı izni olmaksızın platformda yer alan hiçbir içeriği kopyalayamaz, çoğaltamaz, dağıtamaz, tersine mühendislik işlemlerine tabi tutamaz veya ticari amaçlarla kullanamazsınız.</p>
-
-    <h2>4. Kullanım Lisansı ve Sınırlandırılması</h2>
-    <p>Huddle, bu Kullanım Koşulları'na uymanız kaydıyla, Hizmetlere yalnızca işletme içi operasyonlarınızı yönetmek ve işbu koşullarda izin verilen amaçlarla erişmeniz için size kişisel, devredilemez ve münhasır olmayan sınırlı bir kullanım lisansı vermektedir.</p>
-    <p>Huddle, tamamen kendi takdirinde olmak üzere ve önceden bildirimde bulunmaksızın, Hizmetleri veya herhangi bir içeriği değiştirme, askıya alma, erişimi engelleme veya lisansı tamamen iptal etme hakkını saklı tutar. Gelecekteki erişimleriniz için abonelik veya lisans ücreti talep etme hakkımız saklıdır.</p>
-
-    <h2>5. Kullanım Kısıtlamaları</h2>
-    <p>Hizmetlerimizi kullanırken aşağıdaki eylemleri gerçekleştirmeniz kesinlikle yasaktır:</p>
-    <ul>
-      <li>Hukuka aykırı veya yasa dışı faaliyetler yürütmek veya bunları teşvik etmek,</li>
-      <li>Hizmetlerin güvenliğini tehlikeye atmak, platforma virüs, truva atı, solucan veya diğer kötü amaçlı yazılımları yüklemek veya iletmek,</li>
-      <li>Uygulamanın yazılımını tersine mühendislik (reverse engineering) işlemlerine tabi tutmak, kaynak kodlarına erişmeye çalışmak,</li>
-      <li>Sistem verilerini toplamak amacıyla otomatik araçlar (bot, spider, scraper vb.) veya manuel süreçler kullanmak,</li>
-      <li>Başka bir kullanıcının kimliğine bürünmek veya yetkiniz olmayan hesaplara erişmeye çalışmak,</li>
-      <li>Diğer kullanıcıların kişisel verilerini, rızaları olmaksızın toplamak veya depolamak,</li>
-      <li>Uygulamanın ve bağlı sunucuların çalışmasını engellemek, yavaşlatmak veya sabote etmek.</li>
-    </ul>
-
-    <h2>6. Kullanıcı İçerikleri ve Sorumluluk</h2>
-    <p>Hizmetler kapsamında platforma yüklediğiniz, paylaştığınız veya oluşturduğunuz her türlü vardiya planı, personel bilgisi, çalışma saati, yorum, fotoğraf, görsel ve diğer tüm veriler (“Kullanıcı İçerikleri”) tamamen sizin sorumluluğunuzdadır.</p>
-    <p>Aşağıdakileri kabul edersiniz:</p>
-    <ul>
-      <li>Yüklediğiniz içeriklerin üçüncü kişilerin haklarını (fikri mülkiyet, kişisel verilerin korunması, ticari sır vb.) ihlal etmediğini,</li>
-      <li>Bu içerikleri platformda paylaşmak ve kamuya açık olmasa dahi Huddle sistemlerinde işlenmesini sağlamak için gerekli tüm yasal izinleri ve açık rızaları (özellikle çalışanlarınızın kişisel verileri ve konum bilgileri için) aldığınızı,</li>
-      <li>İçeriklerinizin yedeklerini alma sorumluluğunun tamamen size ait olduğunu. Huddle, veri kayıplarından dolayı hiçbir şekilde sorumlu tutulamaz.</li>
-    </ul>
-
-    <h2>7. GARANTİ MUAFİYETİ VE SORUMLULUĞUN SINIRLANDIRILMASI (ÖNEMLİ BEYAN)</h2>
-    <div class="notice">
-      <p><strong>Uygulama ve Hizmetlerin Kesintisizliğine İlişkin Beyan:</strong> Huddle, Hizmetleri size "olduğu gibi" (as is) ve "mevcut haliyle" (as available) sunmaktadır. Uygulamanın veya hizmetin her an kesintisiz, hatasız, gecikmesiz, kusursuz veya siber saldırılardan tamamen ari olacağına dair hiçbir garanti vermemekteyiz.</p>
-      <p>Uygulamada yaşanabilecek olası teknik aksaklıklar, sistem çökmeleri, veri kayıpları, sunucu hataları, internet servis sağlayıcılarından kaynaklanan bağlantı sorunları, GPS konum doğrulama sapmaları veya uygulamanın geçici/kalıcı olarak bozulması/çalışmaması durumlarında Huddle'ın, Adem Tengiz'in ve çalışanlarının hiçbir hukuki ve cezai sorumluluğu bulunmamaktadır. Bu tür durumlarda ortaya çıkabilecek iş gücü kaybı, kâr kaybı, ticari zarar veya veri kayıplarından dolayı hiçbir sorumluluk kabul edilmemektedir. Kullanıcı olarak, platformu kullanırken bu riskleri peşinen kabul etmiş sayılırsınız.</p>
-      <p>Türk Borçlar Kanunu'nun 115. maddesi başta olmak üzere yürürlükteki mevzuatın izin verdiği en geniş ölçüde; Huddle'ın sözleşme ihlali, haksız fiil, hafif ihmal veya diğer hukuki sebeplere dayanan toplam sorumluluğu, her halükarda kullanıcının Hizmetler için Huddle'a ödediği (varsa) son 3 (üç) aylık üyelik/abonelik bedeli ile sınırlıdır.</p>
-    </div>
-
-    <h2>8. Tazminat Yükümlülüğü</h2>
-    <p>Kullanıcı; kendisinin, çalışanlarının veya yetkilendirdiği kişilerin işbu Kullanım Koşulları'nı ihlal etmesinden, platformu hukuka aykırı veya kötüye kullanmasından ya da yüklediği Kullanıcı İçeriklerinden kaynaklanan her türlü idari, cezai, hukuki talep, zarar, ziyan ve avukatlık ücreti dahil yargılama giderlerinden Huddle'ı, Adem Tengiz'i ve çalışanlarını ari tutacağını ve tüm bu zararları derhal tazmin edeceğini kabul ve taahhüt eder.</p>
-
-    <h2>9. Mücbir Sebep</h2>
-    <p>Doğal afetler, yangın, deprem, salgın hastalıklar, savaş, terör eylemleri, ayaklanmalar, devlet kararları, genel grevler, telekomünikasyon ve internet altyapısında meydana gelen geniş çaplı kesintiler gibi Huddle'ın makul kontrolü dışında gelişen her türlü mücbir sebep durumunda; Huddle, Hizmetleri geçici olarak askıya alabilir veya tamamen sonlandırabilir. Bu durumlarda taahhütlerin yerine getirilmemesinden dolayı Huddle'ın hiçbir sorumluluğu doğmayacaktır.</p>
-
-    <h2>10. Geçersizlik ve Bölünebilirlik</h2>
-    <p>İşbu Kullanım Koşulları'nın herhangi bir hükmünün yetkili bir mahkeme tarafından geçersiz, hukuka aykırı veya uygulanamaz bulunması durumunda, söz konusu hüküm minimum düzeyde revize edilerek geçerli kılınmaya çalışılacak; bunun mümkün olmaması halinde ise anlaşmadan çıkarılacaktır. Bu durum, geri kalan diğer hükümlerin geçerliliğini ve uygulanabilirliğini etkilemeyecektir.</p>
-
-    <h2>11. Uygulanacak Hukuk ve Yetkili Mahkeme</h2>
-    <p>İşbu Kullanım Koşulları'nın yorumlanmasında, uygulanmasında ve kullanıcı ile Huddle arasında çıkabilecek her türlü uyuşmazlığın çözümünde Türkiye Cumhuriyeti kanunları uygulanacaktır.</p>
-    <p>Uyuşmazlıkların çözümünde münhasıran İstanbul (Çağlayan) Mahkemeleri ve İcra Daireleri yetkilidir.</p>
-  </div>
-
-</article>
-
+<main>
+<h1>Terms of Service</h1>
+<p><em>Effective date: October 21, 2026. Replaces the Terms of Use dated July 15, 2026.</em></p>
+<h2>1. Who we are and acceptance of these Terms</h2>
+<p>HuddleShift is operated by Mert Balcı, Nispetiye Mahallesi Petrol Sitesi Sokak 24. Blok 1AI Daire 6, Beşiktaş, İstanbul, Türkiye, trading as HuddleShift. When you use HuddleShift, your contract is with Mert Balcı.</p>
+<p>These Terms cover the HuddleShift website, mobile apps and web app, and the services they provide: shift scheduling, GPS-verified clock-in/out, leave requests, shift swaps, team communication and AI features (the Services). By creating an account, accessing or continuing to use the Services, you agree to these Terms and to our <a href="privacy.html">Privacy Policy</a>, which forms part of them. If you use the Services on behalf of a business, you confirm you are authorised to bind that business. If you do not agree, stop using the Services.</p>
+<h2>2. Accounts</h2>
+<p>Managers create a workspace and invite employees. You must be at least 18 to create a manager account. You are responsible for keeping login details secure and for all activity under your account.</p>
+<h2>3. Orders, payment, subscriptions and trial</h2>
+<p>Our order process is conducted by our online reseller Paddle.com. Paddle.com is the Merchant of Record for all our orders. Paddle provides all customer service inquiries related to payments and handles returns.</p>
+<p>Paid plans are billed in advance, monthly or annually, and renew automatically until cancelled. Prices, taxes, billing, renewals and cancellations for purchases made on our website are governed by <a href="https://www.paddle.com/legal/checkout-buyer-terms">Paddle's Buyer Terms</a>. Purchases made inside our iOS or Android app are processed by Apple or Google under their own terms. Refunds are described in our <a href="refund.html">Refund Policy</a>.</p>
+<p>New managers receive a 14-day trial of Pro features without a payment card. When the trial ends, the workspace moves to the Free plan unless a paid plan is purchased. Data beyond the Free plan limits is kept but frozen, not deleted.</p>
+<h2>4. License and its limits</h2>
+<p>We grant you a personal, non-transferable, non-exclusive and limited license to use the Services for your internal business operations, in line with your plan. This license transfers no ownership. We may modify, suspend or withdraw features or content of the Services; termination of access is governed by Section 13.</p>
+<h2>5. Acceptable use</h2>
+<p>You must not:</p>
+<ul>
+<li>use the Services for any unlawful purpose, including breaches of employment, data protection or privacy law;</li>
+<li>commit fraud, send spam, impersonate other users or access accounts you are not authorised to use;</li>
+<li>infringe anyone's intellectual property or other rights;</li>
+<li>introduce viruses or malware, probe or test the security of the Services, or disrupt the app or servers;</li>
+<li>reverse engineer the Services or attempt to access their source code;</li>
+<li>use bots, scrapers or other automated tools to access or collect data from the Services;</li>
+<li>collect, publish or process other people's personal data without their consent or another lawful basis, or harass or threaten anyone.</li>
+</ul>
+<h2>6. User content and responsibility</h2>
+<p>You are responsible for all content you upload or enter, including schedules, staff data and working hours (User Content). You warrant that your User Content does not infringe third-party rights and that you have obtained all legally required permissions and consents, in particular for your employees' personal data and location data. You keep all rights in your User Content and grant us the rights needed to host, process and display it to provide the Services. You are responsible for keeping your own backups.</p>
+<h2>7. AI features</h2>
+<p>The Services include AI features, including the HuddleShift AI Scheduler and the Hadger AI Assistant (AI Features), which generate schedules, suggestions and answers from the information you provide (Outputs).</p>
+<ul>
+<li><em>Your responsibility.</em> You are responsible for the prompts, schedule photos and other inputs you submit, for having the right to submit them, and for how you use Outputs.</li>
+<li><em>Accuracy.</em> Outputs may be incomplete or wrong. Review every AI-generated schedule before publishing it to your team. Outputs are not legal, payroll, tax or employment-law advice; you remain responsible for complying with labour law, working-time rules and employment contracts.</li>
+<li><em>Prohibited AI use.</em> You must not use AI Features to create illegal content, non-consensual sexual content or deepfakes, hateful or harassing content, malware, deceptive content or content that exposes people's personal data, and you must not try to bypass their safeguards.</li>
+<li><em>Ownership.</em> As between you and us, you own your inputs and the Outputs generated for your workspace, subject to these Terms.</li>
+<li><em>Moderation and takedown.</em> We may review, restrict or remove content we reasonably believe breaks these Terms. To report content that infringes your rights, contact <a href="mailto:support@huddleshift.com">support@huddleshift.com</a>.</li>
+</ul>
+<h2>8. Intellectual property</h2>
+<p>All content of the Services, including software, designs, text, logos and the HuddleShift name, belongs to Mert Balcı or his licensors. You may not copy, distribute, reverse engineer or commercially use it without our written permission.</p>
+<h2>9. Cookies and tracking</h2>
+<p>We use cookies and similar technologies to improve your experience, keep the Services secure and remember your preferences. You can disable cookies in your browser, but some features may not work fully. See our <a href="privacy.html">Privacy Policy</a>.</p>
+<h2>10. Service availability and disclaimer</h2>
+<p>The Services are provided as is and as available. We do not guarantee that they will be uninterrupted, error-free or free from attacks, or that GPS verification will always be exact.</p>
+<h2>11. Limitation of liability</h2>
+<p>To the extent permitted by law, including Article 115 of the Turkish Code of Obligations, HuddleShift, Mert Balcı and his employees are not liable for service interruptions, data loss, deviations in GPS verification, or loss of labour, profit or business. Our total liability is limited to the subscription fees you paid in the three months before the claim. Nothing in these Terms limits liability that cannot be limited by law, or your mandatory consumer rights.</p>
+<h2>12. Indemnification</h2>
+<p>You agree to indemnify and hold harmless HuddleShift, Mert Balcı and his employees against all claims, losses and legal costs, including reasonable attorney's fees, arising from your breach of these Terms, your misuse of the Services or your User Content.</p>
+<h2>13. Suspension and termination</h2>
+<p>We may suspend or terminate your access if you materially breach these Terms, fail to pay, create a security or fraud risk, or repeatedly or seriously violate these Terms. Where reasonable, we will give notice first. You may stop using the Services and delete your account at any time. Cancelling a paid plan takes effect at the end of the current billing period.</p>
+<h2>14. Force majeure</h2>
+<p>We are not liable for failure to perform caused by events beyond our reasonable control, such as natural disasters, war, government decisions or large-scale telecommunications outages, and we may suspend the Services during such events.</p>
+<h2>15. Changes to these Terms</h2>
+<p>We may update these Terms. We will post the new version on this page and notify managers of material changes by email or in the app. Continued use after the effective date means you accept the updated Terms.</p>
+<h2>16. Severability</h2>
+<p>If any provision is found invalid, it will be limited to the minimum extent necessary or removed, and the remaining provisions stay in force.</p>
+<h2>17. Governing law and jurisdiction</h2>
+<p>These Terms are governed by the laws of the Republic of Türkiye. The Istanbul (Çağlayan) Courts and Enforcement Offices have exclusive jurisdiction, without affecting any mandatory rights you have as a consumer under the laws of your country of residence.</p>
+<h2>18. Contact</h2>
+<p>Mert Balcı (HuddleShift), Nispetiye Mahallesi Petrol Sitesi Sokak 24. Blok 1AI Daire 6, Beşiktaş, İstanbul, Türkiye · <a href="mailto:support@huddleshift.com">support@huddleshift.com</a></p>
+</main>
 <footer>
-  <div class="container footer-inner">
-    <a href="index.html" class="logo" style="font-size:18px">Huddle</a>
-    <div class="footer-links">
-      <a href="support.html" data-i18n="footer_support">Support</a>
-      <a href="privacy.html" data-i18n="footer_privacy">Privacy</a>
-      <a href="terms.html" data-i18n="footer_terms">Terms</a>
-    </div>
-    <span data-i18n="footer">© 2026 Huddle. All rights reserved.</span>
+  <div class="bar">
+    <span>&copy; 2026 HuddleShift &middot; <a href="mailto:support@huddleshift.com">support@huddleshift.com</a></span>
+    <span>Payments processed by Paddle.com, our Merchant of Record.</span>
   </div>
 </footer>
-
-<script>
-const i18n = {
-  en: {
-    nav_features:"Features", nav_how:"How it works", nav_support:"Support", nav_cta:"Get early access",
-    title:"Terms of Use", updated:"Effective Date: July 15, 2026",
-    footer_support:"Support", footer_privacy:"Privacy", footer_terms:"Terms",
-    footer:"© 2026 Huddle. All rights reserved."
-  },
-  tr: {
-    nav_features:"Özellikler", nav_how:"Nasıl çalışır", nav_support:"Destek", nav_cta:"Erken erişim",
-    title:"Kullanım Koşulları", updated:"Yürürlük Tarihi: 15 Temmuz 2026",
-    footer_support:"Destek", footer_privacy:"Gizlilik", footer_terms:"Şartlar",
-    footer:"© 2026 Huddle. Tüm hakları saklıdır."
-  }
-};
-let currentLang = 'en';
-function setLang(lang){
-  currentLang = lang;
-  document.documentElement.lang = lang;
-  document.getElementById('lang-en').classList.toggle('active', lang==='en');
-  document.getElementById('lang-tr').classList.toggle('active', lang==='tr');
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k = el.getAttribute('data-i18n');
-    if(i18n[lang][k] !== undefined) el.textContent = i18n[lang][k];
-  });
-  document.getElementById('content-en').style.display = lang==='en' ? '' : 'none';
-  document.getElementById('content-tr').style.display = lang==='tr' ? '' : 'none';
-}
-</script>
 </body>
 </html>

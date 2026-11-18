@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0A0A0A">
+    <title>HuddleShift — Staff scheduling that saves you hours</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="landing-page-1.css">
+    <script>
+      // Replace the body of this function with the real request.
+      // deadline is the offer's end time in milliseconds since 1970.
+      // Throw (or return a rejected promise) to show the error state.
+      async function sendOffer(email, deadline) {
+        try {
+          let response = await fetch('https://api.huddleshift.com/subscription/promo-code/', {
+            method: "POST",
+            headers: {
+              'Content-Type': "application/json"
+            },
+            body: JSON.stringify({
+              email: email
+            })
+          });
+          let data = await response.json();
+          return data
+        } catch(e) {
+          console.log(e)
+        }
+      }
+
+      setTimeout(() => {
+        const initForm = () => {
+          let formContainer = window.document.getElementById('form-container');
+          const dialog = formContainer.querySelector('.offer');
+          const card = dialog.querySelector('.offer-card');
+          const stage = dialog.querySelector('.offer-stage');
+          const steps = [...dialog.querySelectorAll('.offer-step')];
+          const progress = dialog.querySelector('.offer-progress');
+          const form = dialog.querySelector('.offer-form');
+          const field = dialog.querySelector('.offer-field');
+          const input = dialog.querySelector('.offer-input');
+          const error = dialog.querySelector('.offer-error');
+          const submit = dialog.querySelector('.offer-btn[type="submit"]');
+          const sentEmail = dialog.querySelector('[data-offer-email]');
+          const sentTitle = dialog.querySelector('[data-offer-sent-title]');
+          const endedTitle = dialog.querySelector('[data-offer-ended-title]');
+          const timer = dialog.querySelector('[data-offer-timer]');
+          const timeLabels = dialog.querySelectorAll('[data-offer-time]');
+
+          const root = document.documentElement;
+          const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+          const viewport = window.visualViewport;
+          const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+          const CLOSE_MS = 260;
+          const OFFER_MS = 30 * 60 * 1000;
+          const SOON_SECONDS = 5 * 60;
+          const LAST_SECONDS = 60;
+          const STEP_ENDED = 4;
+          const OFFER_KEY = 'huddleshift-offer';
+          const DISMISSED_KEY = 'huddleshift-offer-dismissed';
+
+          let current = 1;
+          let sending = false;
+          let requestId = 0;
+          let deadline = 0;
+          let tickId = 0;
+          let shownSeconds = null;
+
+          // Storage can be blocked, so the form must still work without it
+          const readOffer = () => {
+            try {
+              return JSON.parse(localStorage.getItem(OFFER_KEY)) || {};
+            } catch {
+              return {};
+            }
+          };
+          const saveOffer = (offer) => {
+            try {
+              localStorage.setItem(OFFER_KEY, JSON.stringify(offer));
+            } catch {}
+          };
+          const wasDismissed = () => {
+            try {
+              return sessionStorage.getItem(DISMISSED_KEY) === '1';
+            } catch {
+              return false;
+            }
+          };
+          const markDismissed = () => {
+            try {
+              sessionStorage.setItem(DISMISSED_KEY, '1');
+            } catch {}
+          };
+
+          const syncHeight = () => {
+            stage.style.height = `${steps[current - 1].offsetHeight}px`;
+          };
+          const heightObserver = new ResizeObserver(syncHeight);
+
+          // Keeps the panel above the on-screen keyboard
+          const syncKeyboard = () => {
+            const covered = window.innerHeight - viewport.height - viewport.offsetTop;
+            dialog.style.setProperty('--offer-keyboard', `${Math.max(0, covered)}px`);
+          };
+
+          const goTo = (step) => {
+            current = step;
+            card.dataset.current = step;
+            progress.setAttribute('aria-label', `Step ${Math.min(step, 3)} of 3`);
+            steps.forEach((el, index) => {
+              const active = index === step - 1;
+              el.classList.toggle('is-active', active);
+              el.classList.toggle('is-past', index < step - 1);
+              el.inert = !active;
+            });
+            heightObserver.disconnect();
+            heightObserver.observe(steps[step - 1]);
+            syncHeight();
+          };
+
+          const tick = () => {
+            const remaining = Math.max(0, deadline - Date.now());
+            const seconds = Math.ceil(remaining / 1000);
+
+            if (seconds === 0 && current <= 2 && !sending) {
+              goTo(STEP_ENDED);
+              endedTitle.focus({ preventScroll: true });
+            }
+            if (seconds === shownSeconds) return;
+            shownSeconds = seconds;
+
+            const minutes = Math.floor(seconds / 60);
+            const rest = seconds % 60;
+            const time = `${String(minutes).padStart(2, '0')}:${String(rest).padStart(2, '0')}`;
+            timeLabels.forEach((label) => { label.textContent = time; });
+            timer.setAttribute('aria-label', minutes
+              ? `${minutes} minutes ${rest} seconds left before offer expires`
+              : `${rest} seconds left before offer expires`);
+            dialog.style.setProperty('--offer-spent', String(1 - remaining / OFFER_MS));
+
+            dialog.toggleAttribute('data-ended', seconds === 0);
+            if (seconds <= LAST_SECONDS) dialog.dataset.urgency = 'last';
+            else if (seconds <= SOON_SECONDS) dialog.dataset.urgency = 'soon';
+            else delete dialog.dataset.urgency;
+          };
+
+          const setError = (message) => {
+            error.textContent = message;
+            input.setAttribute('aria-invalid', String(Boolean(message)));
+            if (!message) return;
+            field.classList.remove('is-shaking');
+            void field.offsetWidth;
+            field.classList.add('is-shaking');
+            input.focus({ preventScroll: true });
+          };
+
+          const setSending = (value) => {
+            sending = value;
+            input.readOnly = value;
+            submit.classList.toggle('is-loading', value);
+            submit.setAttribute('aria-busy', String(value));
+          };
+
+          const open = () => {
+            const scrollbar = window.innerWidth - root.clientWidth;
+            root.style.setProperty('--offer-scrollbar', `${scrollbar}px`);
+            root.classList.add('offer-locked');
+            dialog.showModal();
+            goTo(1);
+            tick();
+            tickId = setInterval(tick, 250);
+            viewport?.addEventListener('resize', syncKeyboard);
+            viewport?.addEventListener('scroll', syncKeyboard);
+            void card.offsetWidth;
+            dialog.classList.add('is-open');
+          };
+
+          const close = () => {
+            if (!dialog.open || dialog.classList.contains('is-closing')) return;
+            if (current < 3) markDismissed();
+            requestId += 1;
+            dialog.classList.add('is-closing');
+            dialog.classList.remove('is-open');
+            setTimeout(() => dialog.close(), reducedMotion.matches ? 0 : CLOSE_MS);
+          };
+
+          const handleSubmit = async (event) => {
+            event.preventDefault();
+            if (sending) return;
+
+            const email = input.value.trim();
+            if (!email) return setError('Enter your email address.');
+            if (!EMAIL.test(email)) return setError('Enter a valid email, like name@company.com.');
+
+            setError('');
+            setSending(true);
+            const id = ++requestId;
+
+            try {
+              let r = await sendOffer(email, deadline);
+              if (!r.code) {
+                setSending(false);
+                setError('The offer was not sent. Check your connection and try again.');
+                return;
+              }
+              saveOffer({ deadline, sent: true });
+              if (id !== requestId) return;
+              sentEmail.textContent = email;
+              setSending(false);
+              goTo(3);
+              sentTitle.focus({ preventScroll: true });
+            } catch {
+              if (id !== requestId) return;
+              setSending(false);
+              setError('The offer was not sent. Check your connection and try again.');
+            }
+          };
+
+          dialog.querySelector('[data-offer-next]').addEventListener('click', () => {
+            goTo(2);
+            // Runs inside the tap so mobile browsers open the keyboard
+            input.focus({ preventScroll: true });
+          });
+          dialog.querySelectorAll('[data-offer-close]').forEach((button) => {
+            button.addEventListener('click', close);
+          });
+          form.addEventListener('submit', handleSubmit);
+          input.addEventListener('input', () => {
+            if (error.textContent) setError('');
+          });
+          field.addEventListener('animationend', () => field.classList.remove('is-shaking'));
+
+          // Tapping outside closes, unless that would discard a typed email
+          dialog.addEventListener('click', (event) => {
+            if (event.target !== dialog) return;
+            if (current === 2 && (input.value || sending)) return;
+            close();
+          });
+          dialog.addEventListener('cancel', (event) => {
+            event.preventDefault();
+            close();
+          });
+          dialog.addEventListener('close', () => {
+            clearInterval(tickId);
+            heightObserver.disconnect();
+            viewport?.removeEventListener('resize', syncKeyboard);
+            viewport?.removeEventListener('scroll', syncKeyboard);
+            root.classList.remove('offer-locked');
+            dialog.classList.remove('is-open', 'is-closing');
+            dialog.style.removeProperty('--offer-keyboard');
+            stage.style.height = '';
+            form.reset();
+            setSending(false);
+            setError('');
+          });
+
+          // One deadline per visitor: refreshing or returning never restarts it
+          const offer = readOffer();
+          deadline = Number(offer.deadline) || Date.now() + OFFER_MS;
+          if (offer.sent || Date.now() >= deadline || wasDismissed()) return;
+          saveOffer({ deadline });
+          open();
+        };
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initForm, { once: true });
+        } else {
+          initForm();
+        }
+      }, 1500)
+    </script>
+  </head>
+  <body>
+    <!--Header-->
+    <header id="header">
+      <img id="huddle-logo" src="logo.png" alt="HuddleShift">
+      <a id="sign-up-container" href="#cta-container">Sign up</a>
+    </header>
+
+    <main>
+      <!--Hero-->
+      <section class="section hero">
+        <p class="eyebrow">Staff scheduling, simplified</p>
+        <h1 class="hero-text">
+          Save up to <span class="accent">15 hours</span> a week with HuddleShift
+        </h1>
+
+        <div id="hero-container">
+          <img id="hero-img" src="hero.jpg" alt="Team using HuddleShift">
+          <figure id="testimonial">
+            <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+            <blockquote>
+              “We tried the app for staff scheduling and so far loved it. User friendly app at a great price.”
+            </blockquote>
+            <figcaption>
+              <img class="testimonial-logo" src="testimonial.png" alt="Allpro">
+              <span>Allpro Hospitality Staffing</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!--Checklist-->
+      <section class="section">
+        <h2 class="hero-text section-title">
+          You waste time with scheduling. <span class="accent">HuddleShift fixes that.</span>
+        </h2>
+        <ul id="checklist-container">
+          <li><span class="check" aria-hidden="true">✓</span>GPS clock-in</li>
+          <li><span class="check" aria-hidden="true">✓</span>AI assistant</li>
+          <li><span class="check" aria-hidden="true">✓</span>Time-offs and shift swaps</li>
+          <li><span class="check" aria-hidden="true">✓</span>Compliance reports</li>
+        </ul>
+      </section>
+
+      <!--CTA-->
+      <section id="cta-container" class="section">
+        <button type="button" class="cta-button">Join Huddle</button>
+        <p class="cta-note">
+          <span class="check" aria-hidden="true">✓</span>
+          Try it <u>risk free for 14 days</u>
+        </p>
+      </section>
+
+      <!--FORM-->
+      <div id="form-container">
+        <dialog class="offer" aria-label="Offer">
+          <div class="offer-card" data-current="1" tabindex="-1" autofocus>
+            <div class="offer-hero">
+              <div class="offer-hero__inner">
+                <div class="offer-media">
+                  <img src="form-image.png" width="1000" height="1477" alt="Smiling team member holding a tablet">
+                </div>
+                <div class="offer-timer" role="timer" data-offer-timer>
+                  <svg class="offer-ring" viewBox="0 0 100 100" aria-hidden="true">
+                    <circle class="offer-ring__track" cx="50" cy="50" r="47"/>
+                    <circle class="offer-ring__value" cx="50" cy="50" r="47" pathLength="1"/>
+                  </svg>
+                  <span class="offer-timer__time" data-offer-time aria-hidden="true">30:00</span>
+                  <span class="offer-timer__label" aria-hidden="true">left before offer expires</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="offer-body">
+              <div class="offer-top">
+                <div class="offer-progress" role="img" aria-label="Step 1 of 3">
+                  <span></span><span></span><span></span>
+                </div>
+                <span class="offer-chip" aria-hidden="true"><span data-offer-time>30:00</span> left</span>
+                <button type="button" class="offer-close" data-offer-close aria-label="Close">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M3 3l10 10M13 3L3 13"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="offer-stage">
+                <!--Step 1: offer-->
+                <section class="offer-step is-active">
+                  <h2 class="offer-headline">
+                    Yes we are CRAZY!
+                    <strong>Pay $20 once. Enjoy PRO for Life!</strong>
+                  </h2>
+                  <div class="offer-actions">
+                    <button type="button" class="offer-btn offer-btn--primary" data-offer-next>
+                      <span class="offer-btn__label">HECK YEAH</span>
+                    </button>
+                    <button type="button" class="offer-btn offer-btn--ghost offer-btn--decline" data-offer-close>
+                      <span class="offer-btn__label">Nah, I like paying the full price</span>
+                    </button>
+                  </div>
+                </section>
+
+                <!--Step 2: email-->
+                <section class="offer-step" inert>
+                  <div class="offer-copy">
+                    <h2 class="offer-title">Where should we send your code?</h2>
+                    <p class="offer-text">You'll get your code and checkout link by email.</p>
+                  </div>
+                  <form class="offer-form" novalidate>
+                    <div class="offer-field">
+                      <input class="offer-input" id="offer-email" type="email" name="email" placeholder=" "
+                        autocomplete="email" inputmode="email" enterkeyhint="send" autocapitalize="off"
+                        spellcheck="false" required aria-describedby="offer-email-error">
+                      <label class="offer-label" for="offer-email">Email</label>
+                    </div>
+                    <p class="offer-error" id="offer-email-error" role="alert"></p>
+                    <button type="submit" class="offer-btn offer-btn--primary">
+                      <span class="offer-btn__label">Send offer</span>
+                      <span class="offer-btn__spinner" aria-hidden="true"></span>
+                    </button>
+                  </form>
+                </section>
+
+                <!--Step 3: sent-->
+                <section class="offer-step" inert>
+                  <svg class="offer-success" viewBox="0 0 60 60" aria-hidden="true">
+                    <circle cx="30" cy="30" r="27" pathLength="1"/>
+                    <path d="M19 31l8 8 15-17" pathLength="1"/>
+                  </svg>
+                  <div class="offer-copy">
+                    <h2 class="offer-title" tabindex="-1" data-offer-sent-title>Email sent</h2>
+                    <p class="offer-text">Your code and checkout link are on their way to <strong data-offer-email></strong>. Use them before the timer ends.</p>
+                  </div>
+                  <button type="button" class="offer-btn offer-btn--primary" data-offer-close>
+                    <span class="offer-btn__label">Done</span>
+                  </button>
+                </section>
+
+                <!--Timer reached zero-->
+                <section class="offer-step" inert>
+                  <div class="offer-copy">
+                    <h2 class="offer-title" tabindex="-1" data-offer-ended-title>This offer has ended</h2>
+                    <p class="offer-text">The $20 price is no longer available.</p>
+                  </div>
+                  <button type="button" class="offer-btn offer-btn--ghost" data-offer-close>
+                    <span class="offer-btn__label">Close</span>
+                  </button>
+                </section>
+              </div>
+            </div>
+          </div>
+        </dialog>
+      </div>
+    </main>
+  </body>
+</html>

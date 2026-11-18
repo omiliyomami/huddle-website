@@ -1,0 +1,1224 @@
+/* ========== Base (mobile first) ========== */
+:root {
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --surface-2: #1c1c1c;
+    --ink: #f5f5f5;
+    --muted: #9a9a9a;
+    --line: rgba(255, 255, 255, 0.08);
+    --accent: #00ffff;
+    --accent-ink: #001a1a;
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.4);
+    color-scheme: dark;
+    --max: 1120px;
+    overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 12px 16px calc(110px + env(safe-area-inset-bottom));
+    background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0, 255, 255, 0.12), transparent 70%),
+        var(--bg);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+main {
+    max-width: var(--max);
+    margin: 0 auto;
+}
+
+/* ========== Header ========== */
+#header {
+    position: sticky;
+    top: 12px;
+    z-index: 10;
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    padding: 0 8px 0 18px;
+    background: rgba(20, 20, 20, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    box-shadow: var(--shadow);
+}
+
+#huddle-logo {
+    height: 22px;
+    width: auto;
+}
+
+#sign-up-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 20px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+#sign-up-container:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+}
+
+/* ========== Sections ========== */
+.section {
+    padding: 56px 0 0;
+    text-align: center;
+}
+
+.eyebrow {
+    display: inline-block;
+    margin: 0 0 16px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid transparent;
+    border-radius: 999px;
+    /* Inner fill + rotating light on the border */
+    background:
+        linear-gradient(var(--surface), var(--surface)) padding-box,
+        conic-gradient(
+            from var(--eyebrow-angle),
+            rgba(255, 255, 255, 0.08) 0deg,
+            rgba(255, 255, 255, 0.08) 60deg,
+            var(--accent) 90deg,
+            rgba(255, 255, 255, 0.08) 120deg,
+            rgba(255, 255, 255, 0.08) 240deg,
+            var(--accent) 270deg,
+            rgba(255, 255, 255, 0.08) 300deg
+        ) border-box;
+    animation: eyebrow-light 4s linear infinite;
+}
+
+@property --eyebrow-angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@keyframes eyebrow-light {
+    to {
+        --eyebrow-angle: 360deg;
+    }
+}
+
+.hero-text {
+    margin: 0 auto;
+    max-width: 16ch;
+    font-size: clamp(2.1rem, 8vw, 4.75rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+}
+
+.section-title {
+    max-width: 20ch;
+    font-size: clamp(1.75rem, 6vw, 3.5rem);
+}
+
+.accent {
+    background: linear-gradient(90deg, #00ffff, #7df9ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* ========== Hero ========== */
+#hero-container {
+    position: relative;
+    margin-top: 36px;
+}
+
+#hero-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+}
+
+#testimonial {
+    position: relative;
+    margin: -48px 12px 0;
+    padding: 20px 22px;
+    text-align: left;
+    background: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow);
+}
+
+#testimonial .stars {
+    margin: 0 0 8px;
+    color: #f5b300;
+    letter-spacing: 2px;
+}
+
+#testimonial blockquote {
+    margin: 0 0 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.45;
+}
+
+#testimonial figcaption {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    font-size: 0.875rem;
+    color: var(--muted);
+}
+
+.testimonial-logo {
+    height: 22px;
+    width: auto;
+    flex: 0 0 auto;
+}
+
+/* ========== Checklist ========== */
+#checklist-container {
+    list-style: none;
+    margin: 32px auto 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+    max-width: 720px;
+    text-align: left;
+}
+
+#checklist-container li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+#checklist-container li:hover {
+    background: var(--surface-2);
+    border-color: rgba(0, 255, 255, 0.25);
+}
+
+.check {
+    flex: 0 0 auto;
+    display: inline-grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-ink);
+    background: var(--accent);
+    border-radius: 50%;
+}
+
+/* ========== CTA ========== */
+#cta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-top: 48px;
+}
+
+.cta-button {
+    /* Mobile: pinned to the bottom of the screen */
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    z-index: 20;
+    height: 58px;
+    font: inherit;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-ink);
+    background: var(--accent);
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 0 0 1px rgba(0, 255, 255, 0.3), 0 10px 40px rgba(0, 255, 255, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px rgba(0, 255, 255, 0.5), 0 14px 50px rgba(0, 255, 255, 0.4);
+}
+
+.cta-button:focus-visible,
+#sign-up-container:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.cta-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+
+.cta-note .check {
+    width: 22px;
+    height: 22px;
+    font-size: 0.75rem;
+}
+
+.cta-note u {
+    color: var(--ink);
+    text-underline-offset: 3px;
+}
+
+/* ========== Offer form ========== */
+#form-container {
+    --offer-spring: cubic-bezier(0.22, 1.18, 0.36, 1);
+    --offer-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --offer-in: cubic-bezier(0.5, 0, 0.9, 0.4);
+    --offer-error: #ff8f85;
+    --offer-timer: var(--accent);
+}
+
+html.offer-locked {
+    overflow: hidden;
+    padding-right: var(--offer-scrollbar, 0px);
+}
+
+/* The dialog is the full-screen layer; .offer-card is the visible panel */
+.offer {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 12px 12px calc(12px + max(var(--offer-keyboard, 0px), env(safe-area-inset-bottom)));
+    color: var(--ink);
+    background: transparent;
+    border: 0;
+    overflow: hidden;
+    overscroll-behavior: contain;
+}
+
+.offer[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.offer::backdrop {
+    background: transparent;
+}
+
+.offer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.62);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.24s ease;
+}
+
+.offer.is-open::before {
+    opacity: 1;
+}
+
+/* Panel: uses the same travelling border light as .eyebrow */
+.offer-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 440px;
+    max-height: 100%;
+    padding: 12px 20px 20px;
+    overflow-y: auto;
+    text-align: left;
+    border: 1px solid transparent;
+    border-radius: var(--radius-lg);
+    outline: none;
+    background:
+        linear-gradient(var(--surface), var(--surface)) padding-box,
+        conic-gradient(
+            from var(--eyebrow-angle),
+            rgba(255, 255, 255, 0.1) 0deg,
+            rgba(255, 255, 255, 0.1) 60deg,
+            var(--accent) 90deg,
+            rgba(255, 255, 255, 0.1) 120deg,
+            rgba(255, 255, 255, 0.1) 240deg,
+            var(--accent) 270deg,
+            rgba(255, 255, 255, 0.1) 300deg
+        ) border-box;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+    transition: transform 0.2s var(--offer-in), opacity 0.2s ease;
+    animation: eyebrow-light 6s linear infinite;
+}
+
+.offer.is-open .offer-card {
+    opacity: 1;
+    transform: none;
+    transition: transform 0.5s var(--offer-spring), opacity 0.2s ease;
+}
+
+/* On success, a line of light closes around the panel */
+@property --offer-sweep {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+.offer-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    background: conic-gradient(var(--accent) var(--offer-sweep), transparent 0) border-box;
+    -webkit-mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0) border-box;
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) padding-box exclude, linear-gradient(#000 0 0) border-box;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.offer-card[data-current="3"]::after {
+    animation: offer-sweep 1.3s ease-out 0.1s;
+}
+
+@keyframes offer-sweep {
+    0% {
+        --offer-sweep: 0deg;
+        opacity: 1;
+    }
+    65% {
+        --offer-sweep: 360deg;
+        opacity: 1;
+    }
+    100% {
+        --offer-sweep: 360deg;
+        opacity: 0;
+    }
+}
+
+/* Progress + close */
+.offer-top {
+    order: 1;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    margin-bottom: 8px;
+}
+
+.offer-progress {
+    display: grid;
+    grid-template-columns: repeat(3, 28px);
+    gap: 6px;
+}
+
+.offer-progress span {
+    position: relative;
+    height: 4px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 2px;
+}
+
+.offer-progress span::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    border-radius: inherit;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--offer-out);
+}
+
+.offer-card[data-current="1"] .offer-progress span:nth-child(-n + 1)::after,
+.offer-card[data-current="2"] .offer-progress span:nth-child(-n + 2)::after,
+.offer-card[data-current="3"] .offer-progress span::after {
+    transform: none;
+}
+
+.offer-close {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    margin-right: -10px;
+    padding: 0;
+    color: var(--muted);
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: color 0.15s ease, background 0.15s ease;
+}
+
+/* The other steps have their own exit buttons */
+.offer-card:not([data-current="2"]) .offer-close {
+    display: none;
+}
+
+.offer-close:hover {
+    color: var(--ink);
+    background: var(--surface-2);
+}
+
+/* Steps share one grid cell; JS animates the stage to the active step's height */
+.offer-stage {
+    order: 3;
+    flex: none;
+    display: grid;
+    margin: 0 -6px -6px;
+    overflow: hidden;
+    transition: height 0.42s var(--offer-out);
+}
+
+.offer-step {
+    grid-area: 1 / 1;
+    align-self: start;
+    display: grid;
+    gap: 16px;
+    min-width: 0;
+    padding: 6px;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(32px);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+}
+
+.offer-step.is-past {
+    transform: translateX(-32px);
+}
+
+.offer-step.is-active {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.3s ease 0.12s, transform 0.42s var(--offer-out) 0.12s, visibility 0s;
+}
+
+.offer-actions {
+    display: grid;
+    gap: 10px;
+}
+
+/* Buttons */
+.offer-btn {
+    position: relative;
+    width: 100%;
+    height: 52px;
+    padding: 0 24px;
+    overflow: hidden;
+    font: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, filter 0.15s ease;
+}
+
+.offer-btn:active {
+    transform: scale(0.98);
+}
+
+.offer-btn--primary {
+    color: var(--accent-ink);
+    background: var(--accent);
+}
+
+.offer-btn--primary:hover {
+    filter: brightness(1.08);
+}
+
+.offer-btn--ghost {
+    color: var(--ink);
+    background: transparent;
+    border-color: var(--line);
+}
+
+.offer-btn--ghost:hover {
+    background: var(--surface-2);
+}
+
+.offer-btn:focus-visible,
+.offer-close:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.offer-btn__label {
+    display: block;
+    transition: transform 0.25s var(--offer-out), opacity 0.2s ease;
+}
+
+.offer-btn__spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 22px;
+    height: 22px;
+    margin: -11px 0 0 -11px;
+    border: 2.5px solid rgba(0, 26, 26, 0.25);
+    border-top-color: var(--accent-ink);
+    border-radius: 50%;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: transform 0.25s var(--offer-out), opacity 0.2s ease;
+}
+
+.offer-btn.is-loading {
+    cursor: progress;
+}
+
+.offer-btn.is-loading .offer-btn__label {
+    opacity: 0;
+    transform: translateY(-14px);
+}
+
+.offer-btn.is-loading .offer-btn__spinner {
+    opacity: 1;
+    transform: none;
+    animation: offer-spin 0.7s linear infinite;
+}
+
+@keyframes offer-spin {
+    to {
+        rotate: 360deg;
+    }
+}
+
+/* Email field */
+.offer-form {
+    display: grid;
+    gap: 8px;
+}
+
+.offer-field {
+    position: relative;
+}
+
+.offer-field.is-shaking {
+    animation: offer-shake 0.36s ease;
+}
+
+@keyframes offer-shake {
+    20% { transform: translateX(-6px); }
+    45% { transform: translateX(5px); }
+    70% { transform: translateX(-3px); }
+    90% { transform: translateX(1px); }
+}
+
+.offer-input {
+    display: block;
+    width: 100%;
+    height: 60px;
+    padding: 24px 18px 8px;
+    font: inherit;
+    /* 16px stops iOS zooming the page on focus */
+    font-size: 16px;
+    color: var(--ink);
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.2s ease;
+}
+
+.offer-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.16);
+}
+
+.offer-input[aria-invalid="true"] {
+    border-color: var(--offer-error);
+    box-shadow: 0 0 0 3px rgba(255, 143, 133, 0.14);
+}
+
+.offer-input:-webkit-autofill {
+    -webkit-text-fill-color: var(--ink);
+    -webkit-box-shadow: 0 0 0 100px var(--surface-2) inset;
+    caret-color: var(--ink);
+}
+
+.offer-label {
+    position: absolute;
+    top: 19px;
+    left: 19px;
+    color: var(--muted);
+    pointer-events: none;
+    transform-origin: left top;
+    transition: transform 0.2s var(--offer-out), color 0.15s ease;
+}
+
+.offer-input:focus + .offer-label,
+.offer-input:not(:placeholder-shown) + .offer-label {
+    transform: translateY(-9px) scale(0.76);
+}
+
+.offer-input:-webkit-autofill + .offer-label {
+    transform: translateY(-9px) scale(0.76);
+}
+
+.offer-input:focus + .offer-label {
+    color: var(--accent);
+}
+
+.offer-error {
+    min-height: 1.35rem;
+    margin: 0 0 4px 4px;
+    font-size: 0.85rem;
+    line-height: 1.35rem;
+    color: var(--offer-error);
+}
+
+/* Sent */
+.offer-success {
+    display: block;
+    width: 60px;
+    height: 60px;
+    overflow: visible;
+    fill: none;
+    stroke: var(--accent);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.offer-success circle {
+    stroke-width: 2.5;
+    stroke-dasharray: 1;
+    transform: rotate(-90deg);
+    transform-origin: center;
+}
+
+.offer-success path {
+    stroke-width: 4;
+    stroke-dasharray: 1;
+}
+
+.offer-step.is-active .offer-success circle {
+    animation: offer-draw 0.6s var(--offer-out) 0.15s both;
+}
+
+.offer-step.is-active .offer-success path {
+    animation: offer-draw 0.32s var(--offer-out) 0.6s both;
+}
+
+@keyframes offer-draw {
+    from {
+        stroke-dashoffset: 1;
+        opacity: 0;
+    }
+    1% {
+        opacity: 1;
+    }
+    to {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+.offer-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    outline: none;
+}
+
+.offer-text {
+    margin: 0;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+}
+
+.offer-text strong {
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.offer-body {
+    display: contents;
+}
+
+/* Offer content: photo + timer */
+.offer-hero {
+    order: 2;
+    flex: none;
+    display: grid;
+    grid-template-rows: 1fr;
+    margin-bottom: 16px;
+    transition: grid-template-rows 0.42s var(--offer-out), margin-bottom 0.42s var(--offer-out), opacity 0.2s ease;
+}
+
+/* Phones: the photo folds away after step 1 to leave room for the keyboard */
+.offer-card:not([data-current="1"]) .offer-hero {
+    grid-template-rows: 0fr;
+    margin-bottom: 0;
+    opacity: 0;
+}
+
+.offer-hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 14px;
+    align-items: center;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.offer-media {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--surface-2);
+    border-radius: var(--radius-md);
+}
+
+.offer-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 12%;
+    transform: scale(1.07);
+    transition: transform 1s var(--offer-out);
+}
+
+.offer.is-open .offer-media img {
+    transform: none;
+}
+
+/* Timer */
+.offer-timer {
+    position: relative;
+    justify-self: center;
+    display: grid;
+    place-content: center;
+    width: min(100%, 148px);
+    aspect-ratio: 1;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.offer-ring {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke-width: 4;
+    transform: rotate(-90deg);
+}
+
+.offer-ring__track {
+    stroke: rgba(255, 255, 255, 0.1);
+}
+
+.offer-ring__value {
+    stroke: var(--offer-timer);
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1s linear, stroke 0.3s ease;
+}
+
+.offer.is-open .offer-ring__value {
+    stroke-dashoffset: var(--offer-spent, 0);
+}
+
+.offer-timer__time {
+    font-size: 1.85rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    color: var(--offer-timer);
+    transition: color 0.3s ease;
+}
+
+.offer-timer__label {
+    max-width: 92px;
+    margin-top: 2px;
+    font-size: 0.72rem;
+    line-height: 1.2;
+    color: var(--muted);
+}
+
+.offer[data-ended] .offer-timer__label {
+    display: none;
+}
+
+.offer[data-urgency="soon"] {
+    --offer-timer: #f5b300;
+}
+
+.offer[data-urgency="last"] {
+    --offer-timer: var(--offer-error);
+}
+
+.offer[data-urgency="last"] .offer-timer__time {
+    animation: offer-pulse 1s ease-in-out infinite;
+}
+
+@keyframes offer-pulse {
+    50% {
+        opacity: 0.55;
+    }
+}
+
+/* Compact timer shown on phones once the photo has folded away */
+.offer-chip {
+    display: none;
+    margin-left: auto;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--offer-timer);
+    transition: color 0.3s ease;
+}
+
+.offer-card[data-current="2"] .offer-chip,
+.offer-card[data-current="3"] .offer-chip {
+    display: block;
+}
+
+.offer-card[data-current="4"] .offer-progress {
+    visibility: hidden;
+}
+
+/* Offer copy */
+.offer-headline {
+    display: grid;
+    gap: 4px;
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--muted);
+}
+
+.offer-headline strong {
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    text-wrap: balance;
+}
+
+.offer-btn--decline {
+    padding: 0 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--muted);
+}
+
+.offer-btn--decline:hover {
+    color: var(--ink);
+}
+
+.offer-copy {
+    display: grid;
+    gap: 4px;
+}
+
+/* Short phones */
+@media (max-width: 639px) and (max-height: 640px) {
+    .offer-media {
+        height: 116px;
+        aspect-ratio: auto;
+    }
+
+    .offer-timer {
+        width: 112px;
+    }
+
+    .offer-timer__time {
+        font-size: 1.4rem;
+    }
+
+    .offer-timer__label {
+        max-width: 76px;
+        font-size: 0.625rem;
+    }
+
+    .offer-headline strong {
+        font-size: 1.4rem;
+    }
+}
+
+/* ========== Tablet ========== */
+@media (min-width: 640px) {
+    body {
+        padding: 16px 24px 72px;
+    }
+
+    .section {
+        padding-top: 80px;
+    }
+
+    #hero-img {
+        aspect-ratio: 16 / 9;
+    }
+
+    #testimonial {
+        position: absolute;
+        right: 24px;
+        bottom: -40px;
+        width: min(380px, 60%);
+        margin: 0;
+    }
+
+    .hero {
+        padding-bottom: 40px;
+    }
+
+    #checklist-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .cta-button {
+        position: static;
+        width: 100%;
+        max-width: 360px;
+    }
+
+    .offer {
+        padding: 24px 24px calc(24px + var(--offer-keyboard, 0px));
+    }
+
+    .offer-card {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        max-width: 700px;
+        min-height: min(440px, 100%);
+        padding: 0;
+    }
+
+    /* The photo becomes a full-height column and stays through every step */
+    .offer-hero,
+    .offer-card:not([data-current="1"]) .offer-hero {
+        order: 0;
+        position: relative;
+        display: block;
+        margin: 0;
+        opacity: 1;
+    }
+
+    .offer-hero__inner {
+        position: absolute;
+        inset: 0;
+        display: block;
+        border-radius: 23px 0 0 23px;
+    }
+
+    .offer-media {
+        position: absolute;
+        inset: 0;
+        aspect-ratio: auto;
+        border-radius: 0;
+    }
+
+    .offer-media img {
+        object-position: 74% 20%;
+    }
+
+    .offer-timer {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 100px;
+        background: rgba(10, 10, 10, 0.86);
+    }
+
+    .offer-timer__time {
+        font-size: 1.3rem;
+    }
+
+    .offer-timer__label {
+        max-width: 68px;
+        font-size: 0.625rem;
+    }
+
+    .offer-body {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        padding: 16px 28px 28px;
+    }
+
+    .offer-stage {
+        margin: auto -6px;
+    }
+
+    .offer-card[data-current="2"] .offer-chip,
+    .offer-card[data-current="3"] .offer-chip {
+        display: none;
+    }
+
+    .offer-headline strong {
+        font-size: 2rem;
+    }
+}
+
+/* ========== Desktop ========== */
+@media (min-width: 1024px) {
+    .section {
+        padding-top: 112px;
+    }
+
+    #hero-container {
+        margin-top: 56px;
+    }
+
+    #testimonial {
+        right: -24px;
+        bottom: -56px;
+        padding: 28px 30px;
+    }
+
+    #testimonial blockquote {
+        font-size: 1.125rem;
+    }
+
+    .hero {
+        padding-bottom: 56px;
+    }
+
+    .cta-button {
+        width: auto;
+        padding: 0 48px;
+    }
+
+    .offer-card {
+        grid-template-columns: 380px minmax(0, 1fr);
+        max-width: 880px;
+        min-height: min(540px, 100%);
+    }
+
+    .offer-media img {
+        object-position: 50% 15%;
+    }
+
+    .offer-timer {
+        top: 16px;
+        right: 16px;
+        width: 124px;
+    }
+
+    .offer-timer__time {
+        font-size: 1.55rem;
+    }
+
+    .offer-timer__label {
+        max-width: 84px;
+        font-size: 0.68rem;
+    }
+
+    .offer-body {
+        padding: 20px 44px 44px;
+    }
+
+    .offer-headline {
+        font-size: 1.3rem;
+    }
+
+    .offer-headline strong {
+        font-size: 2.4rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+
+    .eyebrow {
+        animation: none;
+    }
+
+    .offer::before,
+    .offer-ring__value,
+    .offer-progress span::after {
+        transition: none;
+    }
+
+    .offer-card,
+    .offer[data-urgency="last"] .offer-timer__time,
+    .offer-card[data-current="3"]::after,
+    .offer-field.is-shaking,
+    .offer-step.is-active .offer-success circle,
+    .offer-step.is-active .offer-success path {
+        animation: none;
+    }
+
+    .offer-card,
+    .offer-media img,
+    .offer-step,
+    .offer-step.is-past {
+        transform: none;
+    }
+}

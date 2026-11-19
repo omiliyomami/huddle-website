@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HuddleShift – One message. Shifts covered.</title>
+<meta name="description" content="When someone calls out, just tell Hadger. HuddleShift's AI shift assistant fills the gaps and notifies your team in seconds. Try it risk-free for 14 days.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="HuddleShift – One message. Shifts covered.">
+<meta property="og:description" content="AI shift scheduling for cafés, bars, restaurants and hotels. Try it risk-free for 14 days.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--accent:#00FFFF;--bg:#000;--card:#0B0F12;--muted:#B4BEC4;--dim:#9AA5AB;--line:rgba(255,255,255,.08);--amber:#FFC24D}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:#fff;font-family:Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%}
+.wrap{max-width:1160px;margin:0 auto}
+.display{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.02em}
+.accent{color:var(--accent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:#000;text-decoration:none;font-weight:600;border-radius:999px;transition:transform .15s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(0,255,255,.25)}
+.btn:focus-visible,a:focus-visible{outline:2px solid #fff;outline-offset:3px}
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.07)}
+.nav .wrap{padding:14px 24px;display:flex;align-items:center;gap:24px}
+.logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:24px;letter-spacing:-.5px;text-decoration:none}
+.nav-links{flex:1;display:flex;justify-content:center;gap:28px}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:15px;padding:12px 0}
+.nav-cta{display:flex;align-items:center;gap:12px}
+.nav-cta .login{text-decoration:none;font-size:15px;font-weight:500;padding:12px 8px}
+.nav-cta .btn{font-size:15px;padding:12px 20px;min-height:44px}
+/* hero */
+.hero{position:relative;overflow:hidden;padding:72px 24px 96px}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;pointer-events:none}
+.hero-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.78) 45%,rgba(0,0,0,.55) 100%),linear-gradient(180deg,rgba(0,0,0,0) 70%,#000 100%)}
+.hero .wrap{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;gap:56px}
+.hero-copy{flex:1 1 460px;min-width:0;display:flex;flex-direction:column;gap:24px}
+.hero h1{margin:0;font-size:clamp(42px,5.8vw,80px);line-height:1.02;letter-spacing:-.03em;max-width:611px}
+.lead{margin:0;font-size:clamp(17px,1.5vw,20px);line-height:1.55;color:var(--muted);max-width:520px}
+.hero .btn{font-size:17px;padding:16px 28px;min-height:52px;align-self:flex-start;margin-top:8px}
+.checks{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:var(--dim)}
+.checks span{display:inline-flex;align-items:center;gap:6px}
+.stats{display:flex;align-items:stretch;gap:16px 20px;margin-top:8px;padding:20px 22px;align-self:flex-start;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
+.stat-num{font-size:clamp(30px,2.8vw,38px);line-height:1;color:#fff}
+.stat-label{font-size:14px;color:var(--muted);margin-top:8px;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.stat-sep{width:1px;background:rgba(255,255,255,.12)}
+.stars{display:inline-flex;gap:2px}
+.rating{display:flex;align-items:center;gap:8px;white-space:nowrap}
+/* demo */
+.demo-col{flex:1 1 380px;min-width:0;display:flex;justify-content:center}
+.demo{width:100%;max-width:460px;display:flex;flex-direction:column;gap:12px}
+.notifs{display:flex;flex-direction:column;gap:8px;transition:opacity .5s ease}
+.demo.done .notifs{opacity:.35}
+.notif{display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(255,255,255,.96);color:#0B0F12;border-radius:16px;box-shadow:0 12px 30px rgba(0,0,0,.5);width:86%;position:relative}
+.notif:nth-child(1){align-self:flex-start;transform:rotate(-4deg) translateX(-10px);z-index:1}
+.notif:nth-child(2){align-self:flex-end;transform:rotate(3.5deg) translateX(14px);margin-top:-6px;z-index:2}
+.notif:nth-child(3){align-self:center;transform:rotate(-1.5deg) translateX(-18px);margin-top:-4px;z-index:3}
+.notif-icon{width:32px;height:32px;border-radius:9px;background:#34C759;flex:0 0 32px;display:inline-flex;align-items:center;justify-content:center}
+.notif-body{min-width:0;flex:1}
+.notif-top{display:flex;justify-content:space-between;font-size:14px;font-weight:600}
+.notif-top span{font-weight:400;color:#5F6B72;font-size:12px}
+.notif-msg{font-size:14px;color:#2B3338;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.panel{background:#0A1013;border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:14px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.panel-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px}
+.panel-sub{font-size:13px;color:#8C979D}
+.badge{font-size:12px;font-weight:600;padding:6px 10px;border-radius:999px;background:rgba(255,194,77,.14);color:var(--amber);transition:all .3s}
+.demo.done .badge{background:rgba(0,255,255,.14);color:var(--accent)}
+.row{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+.row-bar{flex:0 0 4px;align-self:stretch;border-radius:4px;background:var(--amber);transition:background .3s}
+.demo.done .row-bar{background:var(--accent)}
+.row-main{flex:1;min-width:0}
+.row-role{font-size:15px;font-weight:600}
+.row-time{font-size:13px;color:#8C979D}
+.open-pill{font-size:12px;font-weight:600;color:var(--amber);border:1px dashed rgba(255,194,77,.6);padding:5px 10px;border-radius:999px}
+.who{display:none;align-items:center;gap:8px;font-size:14px;font-weight:500}
+.who b{width:28px;height:28px;border-radius:999px;background:rgba(0,255,255,.14);color:var(--accent);font-size:12px;font-weight:600;display:inline-flex;align-items:center;justify-content:center}
+.demo.done .who{display:flex}
+.demo.done .open-pill{display:none}
+.chat{display:flex;flex-direction:column;justify-content:flex-end;gap:8px;min-height:96px}
+.bubble{font-size:14px;line-height:1.4;padding:10px 14px;display:none;animation:pop .25s ease}
+.bubble-me{align-self:flex-end;max-width:85%;background:#E9EEF0;color:#0B0F12;font-weight:500;border-radius:16px 16px 4px 16px}
+.bot{align-self:flex-start;max-width:85%;display:none;align-items:flex-end;gap:8px;animation:pop .25s ease}
+.bot img{width:28px;height:28px;border-radius:999px;flex:0 0 28px;border:1px solid rgba(255,255,255,.15)}
+.bot div{background:#121C21;border:1px solid rgba(255,255,255,.08);color:var(--dim);font-size:14px;line-height:1.4;padding:10px 14px;border-radius:16px 16px 16px 4px}
+.bot.reply img{border-color:rgba(0,255,255,.3)}
+.bot.reply div{border-color:rgba(0,255,255,.35);color:#fff;font-weight:500}
+.demo.sent .bubble-me{display:block}
+.demo.thinking .bot.typing{display:flex}
+.demo.done .bot.reply{display:flex}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.input{border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:12px 12px 12px 14px;background:#060A0C;transition:border-color .3s}
+.demo.typing-now .input{border-color:rgba(0,255,255,.6)}
+.input-label{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--dim);letter-spacing:.02em}
+.input-label img{width:18px;height:18px;border-radius:999px}
+.input-row{display:flex;align-items:center;gap:10px;margin-top:6px}
+.typed{flex:1;font-size:15px;min-height:22px;color:#6E7A80}
+.demo.typing-now .typed{color:#fff}
+.send{width:32px;height:32px;border-radius:999px;flex:0 0 32px;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);color:#8C979D;transition:all .2s}
+.demo.send-on .send{background:var(--accent);color:#000}
+/* sections */
+.section{padding:96px 24px;border-top:1px solid rgba(255,255,255,.06)}
+.section.alt{background:#05080A}
+.eyebrow{margin:0;font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8C979D}
+.h2{margin:0;font-size:clamp(32px,3.6vw,48px);line-height:1.08}
+.split{display:flex;flex-wrap:wrap;gap:48px;align-items:center}
+.split>div{flex:1 1 420px;min-width:0}
+.stack{display:flex;flex-direction:column;gap:20px}
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;padding-top:8px}
+.mini{padding:20px;border-radius:16px;border:1px solid var(--line);background:var(--card)}
+.mini b{display:block;font-size:16px;margin-bottom:6px}
+.mini span{font-size:15px;line-height:1.5;color:var(--dim)}
+.photo{display:block;width:100%;height:auto;border-radius:24px;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.cafe{aspect-ratio:4/3;object-fit:cover}
+.team{height:clamp(260px,34vw,460px);object-fit:cover;object-position:50% 40%;box-shadow:none}
+.features .wrap{display:flex;flex-direction:column;gap:48px}
+.f-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.f-card{padding:28px;border-radius:20px;background:var(--card);border:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;gap:12px}
+.f-card img{width:64px;height:64px;object-fit:contain;margin:-4px 0 4px -4px}
+.f-card h3{margin:0;font-size:20px}
+.f-card p{margin:0;font-size:16px;line-height:1.55;color:var(--muted)}
+.final{padding:120px 24px;text-align:center;border-top:1px solid rgba(255,255,255,.06);background:radial-gradient(45% 60% at 50% 50%,rgba(0,255,255,.08),rgba(0,0,0,0) 70%)}
+.final .wrap{max-width:720px;display:flex;flex-direction:column;align-items:center;gap:20px}
+.final .logo-big{font-size:clamp(44px,5vw,64px)}
+.final .rule{width:40px;height:3px;border-radius:3px;background:rgba(255,255,255,.2)}
+.final h2{margin:0;font-size:clamp(22px,2.2vw,28px);font-weight:500;line-height:1.4}
+.final .btn{margin-top:12px;font-size:18px;padding:18px 36px;min-height:56px}
+.final small{font-size:14px;color:var(--dim)}
+.final small b{color:#fff}
+footer{padding:32px 24px;border-top:1px solid rgba(255,255,255,.07)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:center;font-size:14px;color:var(--dim)}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 24px}
+footer a{color:var(--dim);text-decoration:none;padding:12px 0}
+/* sticky mobile CTA */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(0,0,0,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.08);transform:translateY(110%);transition:transform .3s ease;display:none}
+.sticky-cta .btn{width:100%;font-size:16px;padding:14px;min-height:50px}
+.sticky-cta.show{transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* ---- Mobile first: phone layout is the default ---- */
+.nav .wrap{padding:12px 16px;gap:12px}
+.nav-links{display:none}
+.nav-cta{margin-left:auto}
+.nav-cta .login{display:none}
+.nav-cta .btn{font-size:14px;padding:10px 16px}
+.logo{font-size:21px}
+.hero{padding:40px 20px 64px}
+.hero .wrap{gap:44px}
+.hero-copy{flex-basis:100%;gap:20px}
+.hero h1{font-size:44px}
+.lead{font-size:17px}
+.hero .btn{align-self:stretch;margin-top:4px}
+.hero-shade{background:linear-gradient(180deg,rgba(0,0,0,.86) 0%,rgba(0,0,0,.8) 55%,rgba(0,0,0,.6) 80%,#000 100%)}
+.stats{align-self:stretch;justify-content:space-between;padding:16px;gap:12px}
+.stat-num{font-size:28px}
+.stars svg{width:13px;height:13px}
+.stat-label{font-size:12px}
+.demo-col{flex-basis:100%}
+.notif{width:90%}
+.section{padding:64px 20px}
+.split{gap:32px}
+.split>div{flex-basis:100%}
+.h2{font-size:32px}
+.f-grid{grid-template-columns:1fr;gap:14px}
+.f-card{padding:22px;flex-direction:row;flex-wrap:wrap;column-gap:16px;align-items:center}
+.f-card img{width:52px;height:52px;margin:0}
+.f-card h3{flex:1 1 0;font-size:18px}
+.f-card p{flex-basis:100%;font-size:15px}
+.team{height:240px}
+.final{padding:80px 20px 120px}
+footer{padding:24px 20px 100px}
+footer .wrap{flex-direction:column;align-items:flex-start}
+.sticky-cta{display:block}
+
+/* ---- Tablet & desktop ---- */
+@media (min-width:768px){
+.nav .wrap{padding:14px 24px;gap:24px}
+.nav-links{display:flex}
+.nav-cta{margin-left:0}
+.nav-cta .login{display:inline}
+.nav-cta .btn{font-size:15px;padding:12px 20px}
+.logo{font-size:24px}
+.hero{padding:72px 24px 96px}
+.hero .wrap{gap:56px}
+.hero-copy{flex-basis:460px;gap:24px}
+.hero h1{font-size:clamp(42px,5.8vw,80px)}
+.lead{font-size:clamp(17px,1.5vw,20px)}
+.hero .btn{align-self:flex-start;margin-top:8px}
+.hero-shade{background:linear-gradient(90deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.78) 45%,rgba(0,0,0,.55) 100%),linear-gradient(180deg,rgba(0,0,0,0) 70%,#000 100%)}
+.stats{align-self:flex-start;justify-content:flex-start;padding:20px 22px;gap:16px 20px}
+.stat-num{font-size:clamp(30px,2.8vw,38px)}
+.stars svg{width:18px;height:18px}
+.stat-label{font-size:14px}
+.demo-col{flex-basis:380px}
+.notif{width:86%}
+.section{padding:96px 24px}
+.split{gap:48px}
+.split>div{flex-basis:420px}
+.h2{font-size:clamp(32px,3.6vw,48px)}
+.f-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.f-card{padding:28px;flex-direction:column;flex-wrap:nowrap;align-items:stretch}
+.f-card img{width:64px;height:64px;margin:-4px 0 4px -4px}
+.f-card h3{flex:none;font-size:20px}
+.f-card p{flex-basis:auto;font-size:16px}
+.team{height:clamp(260px,34vw,460px)}
+.final{padding:120px 24px}
+footer{padding:32px 24px}
+footer .wrap{flex-direction:row;align-items:center}
+.sticky-cta{display:none}
+}
+</style>
+</head>
+<body>
+<!-- Replace SIGNUP_URL in the script at the bottom with your real sign-up link. -->
+<header class="nav">
+<div class="wrap">
+<a href="#top" class="logo"><span class="accent">Huddle</span>Shift</a>
+<nav class="nav-links" aria-label="Main"><a href="#features">Features</a></nav>
+<div class="nav-cta"><a href="#" data-login class="login">Log in</a><a href="#" data-cta class="btn">Try for Free</a></div>
+</div>
+</header>
+
+<main>
+<section id="top" class="hero">
+<img class="hero-bg" src="assets/hero-bg.webp" alt="" aria-hidden="true">
+<div class="hero-shade" aria-hidden="true"></div>
+<div class="wrap">
+<div class="hero-copy">
+<h1 class="display">One message.<br><span class="accent">Shifts covered.</span></h1>
+<p class="lead">When someone calls out, just tell Hadger. Your AI shift assistant fills the gaps and notifies your team in seconds.</p>
+<a href="#" data-cta class="btn">Try It Risk-Free For 14 Days</a>
+<div class="checks"><span><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8C979D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>No credit card</span><span><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8C979D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Web, iOS &amp; Android</span></div>
+<div class="stats">
+<div><div class="stat-num display">100+</div><div class="stat-label">businesses</div></div>
+<div class="stat-sep" aria-hidden="true"></div>
+<div><div class="stat-num display">20+</div><div class="stat-label">countries</div></div>
+<div class="stat-sep" aria-hidden="true"></div>
+<div><div class="rating"><span class="stat-num display">5.0</span><span class="stars" role="img" aria-label="5 out of 5 stars"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#FFC24D"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5L2.5 9.4l6.6-.8z"/></svg><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#FFC24D"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5L2.5 9.4l6.6-.8z"/></svg><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#FFC24D"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5L2.5 9.4l6.6-.8z"/></svg><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#FFC24D"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5L2.5 9.4l6.6-.8z"/></svg><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#FFC24D"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5L2.5 9.4l6.6-.8z"/></svg></span></div><div class="stat-label"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="#B4BEC4"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.7-1-2.7-4.1zM13.9 4.9c.7-.9 1.2-2 1.1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.2.1 2.3-.6 3-1.5z"/></svg>App Store rating</div></div>
+</div>
+</div>
+
+<div class="demo-col">
+<div class="demo" id="demo" role="img" aria-label="Animated demo: three employees call out, the manager asks Hadger to fill the open shifts, and all three shifts get covered.">
+<div class="notifs"><div class="notif"><span class="notif-icon"><svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.6 1.4 4.9 3.6 6.5L5 21l3.6-1.8c1.1.3 2.2.5 3.4.5 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/></svg></span><div class="notif-body"><div class="notif-top">Mike<span>now</span></div><div class="notif-msg">Hey boss, can’t come in today 😕</div></div></div><div class="notif"><span class="notif-icon"><svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.6 1.4 4.9 3.6 6.5L5 21l3.6-1.8c1.1.3 2.2.5 3.4.5 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/></svg></span><div class="notif-body"><div class="notif-top">Emma<span>now</span></div><div class="notif-msg">Not feeling great… so sorry!!</div></div></div><div class="notif"><span class="notif-icon"><svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.6 1.4 4.9 3.6 6.5L5 21l3.6-1.8c1.1.3 2.2.5 3.4.5 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/></svg></span><div class="notif-body"><div class="notif-top">Lauren<span>now</span></div><div class="notif-msg">Can’t make it in today, really sick 🤢</div></div></div></div>
+<div class="panel">
+<div class="panel-head"><div><div class="panel-title">Today’s shifts</div><div class="panel-sub">Doors open at 10:00</div></div><span class="badge" id="badge">3 open shifts</span></div>
+<div class="row"><div class="row-bar"></div><div class="row-main"><div class="row-role">Bar · Opening</div><div class="row-time">10:00 – 18:00</div></div><span class="open-pill">Open shift</span><div class="who"><b>JR</b>Jordan R.</div></div><div class="row"><div class="row-bar"></div><div class="row-main"><div class="row-role">Floor · Server</div><div class="row-time">11:00 – 19:00</div></div><span class="open-pill">Open shift</span><div class="who"><b>PS</b>Priya S.</div></div><div class="row"><div class="row-bar"></div><div class="row-main"><div class="row-role">Kitchen · Line cook</div><div class="row-time">12:00 – 20:00</div></div><span class="open-pill">Open shift</span><div class="who"><b>ST</b>Sam T.</div></div>
+<div class="chat">
+<div class="bubble bubble-me">Fill in the open shifts for today</div>
+<div class="bot typing"><img src="assets/hadger-avatar.webp" alt=""><div>Hadger is typing…</div></div>
+<div class="bot reply"><img src="assets/hadger-avatar.webp" alt=""><div>Done, all shifts are covered.</div></div>
+</div>
+<div class="input">
+<div class="input-label"><img src="assets/hadger-avatar.webp" alt="">Hadger AI Assistant</div>
+<div class="input-row"><div class="typed" id="typed">Ask Hadger anything…</div><span class="send"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M6 11l6-6 6 6"/></svg></span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section alt">
+<div class="wrap split">
+<div class="stack">
+<p class="eyebrow">More than call-outs</p>
+<h2 class="h2 display">Ask Hadger anything about your team.</h2>
+<p class="lead" style="font-size:18px;max-width:none">Hadger answers questions about your schedule and team, and carries out the changes you ask for. No menus to dig through.</p>
+<div class="mini-grid">
+<div class="mini"><b>Get answers</b><span>Who’s on tonight, who’s clocked in, who’s off this weekend.</span></div>
+<div class="mini"><b>Make changes</b><span>Fill, move and swap shifts or send announcements in one message.</span></div>
+</div>
+</div>
+<div><img class="photo cafe" src="assets/hadger-cafe.webp" alt="A smiling café manager holding a tablet while Hadger, the HuddleShift robot, cheers beside her"></div>
+</div>
+</section>
+
+<section id="features" class="section features">
+<div class="wrap">
+<h2 class="h2 display">Everything in one app.</h2>
+<img class="photo team" src="assets/kitchen-team.webp" alt="A smiling kitchen team of five standing together behind the pass">
+<div class="f-grid"><article class="f-card"><img src="assets/icon-ai-scheduler.webp" alt="" aria-hidden="true" width="64" height="64"><h3 class="display">AI Scheduler</h3><p>Build next week’s schedule in minutes, not hours.</p></article><article class="f-card"><img src="assets/icon-shift-swaps.webp" alt="" aria-hidden="true" width="64" height="64"><h3 class="display">Shift swaps &amp; time off</h3><p>Your team requests, you approve in a tap.</p></article><article class="f-card"><img src="assets/icon-clock-in.webp" alt="" aria-hidden="true" width="64" height="64"><h3 class="display">Clock in &amp; attendance</h3><p>See who’s in, who’s late and who didn’t show.</p></article><article class="f-card"><img src="assets/icon-messaging.webp" alt="" aria-hidden="true" width="64" height="64"><h3 class="display">Announcements &amp; messaging</h3><p>Reach the whole team or one person, right in the app.</p></article><article class="f-card"><img src="assets/icon-reports.webp" alt="" aria-hidden="true" width="64" height="64"><h3 class="display">Weekly &amp; monthly reports</h3><p>Hours and attendance, ready when you need them.</p></article><article class="f-card"><img src="assets/icon-import.webp" alt="" aria-hidden="true" width="64" height="64"><h3 class="display">Import your current schedule</h3><p>Snap a photo of your schedule. AI brings in names and shifts.</p></article></div>
+</div>
+</section>
+
+<section id="signup" class="final">
+<div class="wrap">
+<div class="logo-big display"><span class="accent">Huddle</span>Shift</div>
+<div class="rule"></div>
+<h2>Run your team.<br><span style="color:#9AA5AB">Skip the chaos.</span></h2>
+<a href="#" data-cta class="btn">Try It Risk-Free For 14 Days</a>
+<small>14 days of Pro free · No credit card · Available on <b>Web, iOS &amp; Android</b></small>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="wrap">
+<span>© 2026 HuddleShift</span>
+<nav aria-label="Legal"><a href="#privacy">Privacy</a><a href="#terms">Terms</a><a href="mailto:support@huddleshift.com">support@huddleshift.com</a></nav>
+</div>
+</footer>
+
+<div class="sticky-cta" id="stickyCta"><a href="#" data-cta class="btn">Try It Risk-Free For 14 Days</a></div>
+
+<script>
+(function () {
+  // ---- Links: set these to your real URLs ----
+  var SIGNUP_URL = 'https://app.huddleshift.com/login';
+  var LOGIN_URL = 'https://app.huddleshift.com/login';
+  // Keep the ad's UTM parameters on the sign-up link for attribution.
+  var qs = location.search || '';
+  document.querySelectorAll('[data-cta]').forEach(function (a) { a.href = SIGNUP_URL + qs; });
+  document.querySelectorAll('[data-login]').forEach(function (a) { a.href = LOGIN_URL; });
+
+  // ---- Hero demo loop (9 s) ----
+  var demo = document.getElementById('demo');
+  var typedEl = document.getElementById('typed');
+  var badge = document.getElementById('badge');
+  var prompt = 'Fill in the open shifts for today';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function render(t) {
+    var typing = t >= 22 && t < 40, sent = t >= 40, working = t >= 40 && t < 54, done = t >= 54;
+    demo.classList.toggle('typing-now', typing);
+    demo.classList.toggle('send-on', t >= 36 && t < 41);
+    demo.classList.toggle('sent', sent);
+    demo.classList.toggle('thinking', working);
+    demo.classList.toggle('done', done);
+    typedEl.textContent = typing ? prompt.slice(0, Math.ceil((t - 22) / 17 * prompt.length)) : 'Ask Hadger anything…';
+    badge.textContent = done ? 'All shifts covered' : '3 open shifts';
+  }
+  if (reduce) { render(60); }
+  else {
+    var t = 0, timer = null;
+    function start() { if (!timer) timer = setInterval(function () { t = (t + 1) % 90; render(t); }, 100); }
+    function stop() { clearInterval(timer); timer = null; }
+    render(0);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) { e[0].isIntersecting ? start() : stop(); }).observe(demo);
+    } else start();
+    document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
+  }
+
+  // ---- Sticky CTA (phones): shows after the hero button scrolls away ----
+  var sticky = document.getElementById('stickyCta');
+  var heroBtn = document.querySelector('.hero .btn');
+  var finalSec = document.getElementById('signup');
+  if ('IntersectionObserver' in window) {
+    var heroGone = false, finalIn = false;
+    function upd() { sticky.classList.toggle('show', heroGone && !finalIn); }
+    new IntersectionObserver(function (e) { heroGone = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; upd(); }).observe(heroBtn);
+    new IntersectionObserver(function (e) { finalIn = e[0].isIntersecting; upd(); }).observe(finalSec);
+  }
+})();
+</script>
+</body>
+</html>

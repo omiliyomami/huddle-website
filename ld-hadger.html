@@ -139,6 +139,11 @@ footer a{color:var(--dim);text-decoration:none;padding:12px 0}
 .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(0,0,0,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.08);transform:translateY(110%);transition:transform .3s ease;display:none}
 .sticky-cta .btn{width:100%;font-size:16px;padding:14px;min-height:50px}
 .sticky-cta.show{transform:none}
+/* store badges (mobile CTA) */
+.stores{display:none;gap:12px}
+.stores a{flex:1 1 0;min-width:0;display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:10px;transition:transform .15s ease}
+.stores a:hover{transform:translateY(-1px)}
+.stores img{display:block;width:100%;max-width:180px;height:48px;object-fit:contain}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 
 /* ---- Mobile first: phone layout is the default ---- */
@@ -175,6 +180,10 @@ footer a{color:var(--dim);text-decoration:none;padding:12px 0}
 footer{padding:24px 20px 100px}
 footer .wrap{flex-direction:column;align-items:flex-start}
 .sticky-cta{display:block}
+.hero .btn[data-cta],.final .btn[data-cta],.sticky-cta .btn{display:none}
+.stores{display:flex}
+.hero .stores{margin-top:4px}
+.final .stores{margin-top:12px;width:100%;max-width:400px}
 
 /* ---- Tablet & desktop ---- */
 @media (min-width:768px){
@@ -211,6 +220,8 @@ footer .wrap{flex-direction:column;align-items:flex-start}
 footer{padding:32px 24px}
 footer .wrap{flex-direction:row;align-items:center}
 .sticky-cta{display:none}
+.hero .btn[data-cta],.final .btn[data-cta]{display:inline-flex}
+.stores{display:none}
 }
 </style>
 </head>
@@ -233,6 +244,7 @@ footer .wrap{flex-direction:row;align-items:center}
 <h1 class="display">One message.<br><span class="accent">Shifts covered.</span></h1>
 <p class="lead">When someone calls out, just tell Hadger. Your AI shift assistant fills the gaps and notifies your team in seconds.</p>
 <a href="#" data-cta class="btn">Try It Risk-Free For 14 Days</a>
+<div class="stores"><a href="#" data-appstore aria-label="Download on the App Store"><img src="assets/appstore-logo.svg" alt="Download on the App Store"></a><a href="#" data-playstore aria-label="Get it on Google Play"><img src="assets/googleplay-logo.svg" alt="Get it on Google Play"></a></div>
 <div class="checks"><span><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8C979D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>No credit card</span><span><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8C979D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Web, iOS &amp; Android</span></div>
 <div class="stats">
 <div><div class="stat-num display">100+</div><div class="stat-label">businesses</div></div>
@@ -293,6 +305,7 @@ footer .wrap{flex-direction:row;align-items:center}
 <div class="rule"></div>
 <h2>Run your team.<br><span style="color:#9AA5AB">Skip the chaos.</span></h2>
 <a href="#" data-cta class="btn">Try It Risk-Free For 14 Days</a>
+<div class="stores"><a href="#" data-appstore aria-label="Download on the App Store"><img src="assets/appstore-logo.svg" alt="Download on the App Store"></a><a href="#" data-playstore aria-label="Get it on Google Play"><img src="assets/googleplay-logo.svg" alt="Get it on Google Play"></a></div>
 <small>14 days of Pro free · No credit card · Available on <b>Web, iOS &amp; Android</b></small>
 </div>
 </section>
@@ -305,7 +318,7 @@ footer .wrap{flex-direction:row;align-items:center}
 </div>
 </footer>
 
-<div class="sticky-cta" id="stickyCta"><a href="#" data-cta class="btn">Try It Risk-Free For 14 Days</a></div>
+<div class="sticky-cta" id="stickyCta"><a href="#" data-cta class="btn">Try It Risk-Free For 14 Days</a><div class="stores"><a href="#" data-appstore aria-label="Download on the App Store"><img src="assets/appstore-logo.svg" alt="Download on the App Store"></a><a href="#" data-playstore aria-label="Get it on Google Play"><img src="assets/googleplay-logo.svg" alt="Get it on Google Play"></a></div></div>
 
 <script>
 (function () {
@@ -316,6 +329,11 @@ footer .wrap{flex-direction:row;align-items:center}
   var qs = location.search || '';
   document.querySelectorAll('[data-cta]').forEach(function (a) { a.href = SIGNUP_URL + qs; });
   document.querySelectorAll('[data-login]').forEach(function (a) { a.href = LOGIN_URL; });
+  // Store links (mobile CTAs): set to your real store listing URLs.
+  var APPSTORE_URL = 'https://apps.apple.com/us/app/huddleshift-staff-scheduling/id6785232071';
+  var PLAYSTORE_URL = 'https://play.google.com/store/apps/details?id=com.omiliyomami.huddlefrontend';
+  document.querySelectorAll('[data-appstore]').forEach(function (a) { a.href = APPSTORE_URL; });
+  document.querySelectorAll('[data-playstore]').forEach(function (a) { a.href = PLAYSTORE_URL; });
 
   // ---- Hero demo loop (9 s) ----
   var demo = document.getElementById('demo');
@@ -347,7 +365,8 @@ footer .wrap{flex-direction:row;align-items:center}
 
   // ---- Sticky CTA (phones): shows after the hero button scrolls away ----
   var sticky = document.getElementById('stickyCta');
-  var heroBtn = document.querySelector('.hero .btn');
+  // On phones the hero button is hidden, so track the store badges instead.
+  var heroBtn = window.matchMedia('(min-width:768px)').matches ? document.querySelector('.hero .btn') : document.querySelector('.hero .stores');
   var finalSec = document.getElementById('signup');
   if ('IntersectionObserver' in window) {
     var heroGone = false, finalIn = false;

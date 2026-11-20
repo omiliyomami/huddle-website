@@ -132,6 +132,7 @@
             const seconds = Math.ceil(remaining / 1000);
 
             if (seconds === 0 && current <= 2 && !sending) {
+              posthog.capture('offer_expired', { step: current });
               goTo(STEP_ENDED);
               endedTitle.focus({ preventScroll: true });
             }
@@ -175,6 +176,7 @@
             root.style.setProperty('--offer-scrollbar', `${scrollbar}px`);
             root.classList.add('offer-locked');
             dialog.showModal();
+            posthog.capture('offer_shown');
             goTo(1);
             tick();
             tickId = setInterval(tick, 250);
@@ -186,6 +188,7 @@
 
           const close = () => {
             if (!dialog.open || dialog.classList.contains('is-closing')) return;
+            if (current < 3) posthog.capture('offer_dismissed', { step: current });
             if (current < 3) markDismissed();
             requestId += 1;
             dialog.classList.add('is-closing');
@@ -198,27 +201,33 @@
             if (sending) return;
 
             const email = input.value.trim();
+            if (!email) posthog.capture('offer_email_invalid', { reason: 'empty' });
             if (!email) return setError('Enter your email address.');
+            if (!EMAIL.test(email)) posthog.capture('offer_email_invalid', { reason: 'format' });
             if (!EMAIL.test(email)) return setError('Enter a valid email, like name@company.com.');
 
             setError('');
             setSending(true);
+            posthog.capture('offer_email_submitted');
             const id = ++requestId;
 
             try {
               let r = await sendOffer(email, deadline);
               if (!r.code) {
+                posthog.capture('offer_email_failed', { reason: 'no_code' });
                 setSending(false);
                 setError('The offer was not sent. Check your connection and try again.');
                 return;
               }
               saveOffer({ deadline, sent: true });
+              posthog.capture('offer_email_sent');
               if (id !== requestId) return;
               sentEmail.textContent = email;
               setSending(false);
               goTo(3);
               sentTitle.focus({ preventScroll: true });
             } catch {
+              posthog.capture('offer_email_failed', { reason: 'exception' });
               if (id !== requestId) return;
               setSending(false);
               setError('The offer was not sent. Check your connection and try again.');
@@ -226,6 +235,7 @@
           };
 
           dialog.querySelector('[data-offer-next]').addEventListener('click', () => {
+            posthog.capture('offer_accepted');
             goTo(2);
             // Runs inside the tap so mobile browsers open the keyboard
             input.focus({ preventScroll: true });
@@ -283,7 +293,7 @@
     <!--Header-->
     <header id="header">
       <img id="huddle-logo" src="logo.png" alt="HuddleShift">
-      <a id="sign-up-container" href="#cta-container">Sign up</a>
+      <a id="sign-up-container" href="https://app.huddleshift.com/login">Sign up</a>
     </header>
 
     <main>
@@ -324,7 +334,7 @@
 
       <!--CTA-->
       <section id="cta-container" class="section">
-        <button type="button" class="cta-button">Join Huddle</button>
+        <button type="button" class="cta-button" onclick="posthog.capture('cta_clicked'); location.href='https://app.huddleshift.com/login'">Join Huddle</button>
         <p class="cta-note">
           <span class="check" aria-hidden="true">✓</span>
           Try it <u>risk free for 14 days</u>

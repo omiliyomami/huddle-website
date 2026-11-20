@@ -508,7 +508,7 @@ document.documentElement.classList.add('js');
         <!-- <a href="/pricing.html" style="color:rgba(255,255,255,0.6); font-size:14.5px; font-weight:500">About us</a> -->
       </nav>
       <div class="nav-spacer"></div>
-      <a href="https://app.huddleshift.com/login/" class="btn btn-primary btn-sm">Sign in</a>
+      <a href="https://app.huddleshift.com/login/" class="btn btn-primary btn-sm" onclick="posthog.capture('signin_clicked', { location: 'nav' })">Sign in</a>
     </div>
   </header>
 
@@ -527,8 +527,8 @@ document.documentElement.classList.add('js');
       </h1>
       <p class="hero-sub">Schedules, attendance, requests and daily operations. <br>One place for all of it.</p>
       <div class="hero-ctas">
-        <a href="https://app.huddleshift.com/" class="btn btn-primary">Start for free</a>
-        <a href="https://cal.com/huddleshift/30min" class="btn btn-ghost">Book a demo</a>
+        <a href="https://app.huddleshift.com/" class="btn btn-primary" onclick="posthog.capture('cta_clicked', { location: 'hero' })">Start for free</a>
+        <a href="https://cal.com/huddleshift/30min" class="btn btn-ghost" onclick="posthog.capture('demo_clicked', { location: 'hero' })">Book a demo</a>
       </div>
       <p class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>No credit card required</p>
       <!-- <div style="margin-top:50px; font-size:17.5px; color:rgba(255,255,255,0.7); text-shadow:0 2px 16px rgba(0,0,0,0.8)">OR</div>
@@ -719,7 +719,7 @@ document.documentElement.classList.add('js');
         </div>
         <p class="pr-price"><span class="pr-amount">$24.99</span><span class="pr-period">/ month</span></p>
         <p class="pr-billing">Billed monthly. Cancel anytime.</p>
-        <a class="btn btn-ghost pr-btn" href="https://app.huddleshift.com/checkout?plan=monthly">Choose monthly</a>
+        <a class="btn btn-ghost pr-btn" href="https://app.huddleshift.com/checkout?plan=monthly" onclick="posthog.capture('plan_clicked', { plan: 'monthly' })">Choose monthly</a>
         <ul class="pr-features">
           <li><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg></span>Unlimited employees</li>
           <li><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg></span>HuddleShift Web</li>
@@ -735,7 +735,7 @@ document.documentElement.classList.add('js');
         </div>
         <p class="pr-price"><span class="pr-amount">$16.67</span><span class="pr-period">/ month</span></p>
         <p class="pr-billing">$199.99 billed yearly.</p>
-        <a class="btn btn-primary pr-btn" href="https://app.huddleshift.com/checkout?plan=annual">Choose annual <span class="arr">→</span></a>
+        <a class="btn btn-primary pr-btn" href="https://app.huddleshift.com/checkout?plan=annual" onclick="posthog.capture('plan_clicked', { plan: 'annual' })">Choose annual <span class="arr">→</span></a>
         <ul class="pr-features">
           <li><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg></span>Unlimited employees</li>
           <li><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg></span>HuddleShift Web</li>
@@ -775,10 +775,10 @@ document.documentElement.classList.add('js');
       </div>
     </div>
     <div style="margin-top:22px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center; align-items:center">
-        <a href="https://apps.apple.com/us/app/huddle-shift-staff-planner/id6785232071" aria-label="Download on the App Store" style="display:block; line-height:0; filter:drop-shadow(0 4px 18px rgba(0,0,0,0.55))">
+        <a href="https://apps.apple.com/us/app/huddle-shift-staff-planner/id6785232071" aria-label="Download on the App Store" style="display:block; line-height:0; filter:drop-shadow(0 4px 18px rgba(0,0,0,0.55))" onclick="posthog.capture('appstore_clicked', { location: 'footer' })">
           <img src="assets/appstore-logo.svg" alt="Download on the App Store" style="height:52px; width:auto; display:block">
         </a>
-        <a href="https://play.google.com/store/apps/details?id=com.omiliyomami.huddlefrontend" aria-label="Get it on Google Play" style="display:block; line-height:0; filter:drop-shadow(0 4px 18px rgba(0,0,0,0.55))">
+        <a href="https://play.google.com/store/apps/details?id=com.omiliyomami.huddlefrontend" aria-label="Get it on Google Play" style="display:block; line-height:0; filter:drop-shadow(0 4px 18px rgba(0,0,0,0.55))" onclick="posthog.capture('playstore_clicked', { location: 'footer' })">
           <img src="assets/googleplay-logo.svg" alt="Get it on Google Play" style="height:52px; width:auto; display:block">
         </a>
       </div>
@@ -789,7 +789,7 @@ document.documentElement.classList.add('js');
   </footer>
 
   <div class="sticky-cta" data-sticky-cta="" data-ref="stickyRef">
-    <a data-ref="stickyLinkRef" href="https://app.huddleshift.com/" class="btn btn-primary">Get the app</a>
+    <a data-ref="stickyLinkRef" href="https://app.huddleshift.com/" class="btn btn-primary" onclick="posthog.capture('cta_clicked', { location: 'sticky' })">Get the app</a>
   </div>
 </div>
 

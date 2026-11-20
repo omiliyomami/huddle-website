@@ -239,7 +239,7 @@ footer .wrap{flex-direction:row;align-items:center}
 <div class="wrap">
 <a href="#top" class="logo"><span class="accent">Huddle</span>Shift</a>
 <nav class="nav-links" aria-label="Main"><a href="#features">Features</a></nav>
-<div class="nav-cta"><a href="#" data-login class="login">Log in</a><a href="#" data-cta class="btn">Try for Free</a></div>
+<div class="nav-cta"><a href="#" data-login class="login" onclick="posthog.capture('login_clicked', { location: 'nav' })">Log in</a><a href="#" data-cta class="btn" onclick="posthog.capture('cta_clicked', { location: 'nav' })">Try for Free</a></div>
 </div>
 </header>
 
@@ -251,8 +251,8 @@ footer .wrap{flex-direction:row;align-items:center}
 <div class="hero-copy">
 <h1 class="display">One message.<br><span class="accent">Shifts covered.</span></h1>
 <p class="lead">When someone calls out, just tell Hadger. Your AI shift assistant fills the gaps and notifies your team in seconds.</p>
-<a href="#" data-cta class="btn">Try It Risk-Free For 14 Days</a>
-<div class="stores"><a href="#" data-appstore aria-label="Download on the App Store"><img src="assets/appstore-logo.svg" alt="Download on the App Store"></a><a href="#" data-playstore aria-label="Get it on Google Play"><img src="assets/googleplay-logo.svg" alt="Get it on Google Play"></a></div>
+<a href="#" data-cta class="btn" onclick="posthog.capture('cta_clicked', { location: 'hero' })">Try It Risk-Free For 14 Days</a>
+<div class="stores"><a href="#" data-appstore aria-label="Download on the App Store" onclick="posthog.capture('appstore_clicked', { location: 'hero' })"><img src="assets/appstore-logo.svg" alt="Download on the App Store"></a><a href="#" data-playstore aria-label="Get it on Google Play" onclick="posthog.capture('playstore_clicked', { location: 'hero' })"><img src="assets/googleplay-logo.svg" alt="Get it on Google Play"></a></div>
 <div class="checks"><span><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8C979D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>No credit card</span><span><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8C979D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Web, iOS &amp; Android</span></div>
 <div class="stats">
 <div><div class="stat-num display">100+</div><div class="stat-label">businesses</div></div>
@@ -312,8 +312,8 @@ footer .wrap{flex-direction:row;align-items:center}
 <div class="logo-big display"><span class="accent">Huddle</span>Shift</div>
 <div class="rule"></div>
 <h2>Run your team.<br><span style="color:#9AA5AB">Skip the chaos.</span></h2>
-<a href="#" data-cta class="btn">Try It Risk-Free For 14 Days</a>
-<div class="stores"><a href="#" data-appstore aria-label="Download on the App Store"><img src="assets/appstore-logo.svg" alt="Download on the App Store"></a><a href="#" data-playstore aria-label="Get it on Google Play"><img src="assets/googleplay-logo.svg" alt="Get it on Google Play"></a></div>
+<a href="#" data-cta class="btn" onclick="posthog.capture('cta_clicked', { location: 'final' })">Try It Risk-Free For 14 Days</a>
+<div class="stores"><a href="#" data-appstore aria-label="Download on the App Store" onclick="posthog.capture('appstore_clicked', { location: 'final' })"><img src="assets/appstore-logo.svg" alt="Download on the App Store"></a><a href="#" data-playstore aria-label="Get it on Google Play" onclick="posthog.capture('playstore_clicked', { location: 'final' })"><img src="assets/googleplay-logo.svg" alt="Get it on Google Play"></a></div>
 <small>14 days of Pro free · No credit card · Available on <b>Web, iOS &amp; Android</b></small>
 </div>
 </section>
@@ -326,7 +326,7 @@ footer .wrap{flex-direction:row;align-items:center}
 </div>
 </footer>
 
-<div class="sticky-cta" id="stickyCta"><a href="#" data-cta class="btn">Try It Risk-Free For 14 Days</a><div class="stores"><a href="#" data-appstore aria-label="Download on the App Store"><img src="assets/appstore-logo.svg" alt="Download on the App Store"></a><a href="#" data-playstore aria-label="Get it on Google Play"><img src="assets/googleplay-logo.svg" alt="Get it on Google Play"></a></div></div>
+<div class="sticky-cta" id="stickyCta"><a href="#" data-cta class="btn" onclick="posthog.capture('cta_clicked', { location: 'sticky' })">Try It Risk-Free For 14 Days</a><div class="stores"><a href="#" data-appstore aria-label="Download on the App Store" onclick="posthog.capture('appstore_clicked', { location: 'sticky' })"><img src="assets/appstore-logo.svg" alt="Download on the App Store"></a><a href="#" data-playstore aria-label="Get it on Google Play" onclick="posthog.capture('playstore_clicked', { location: 'sticky' })"><img src="assets/googleplay-logo.svg" alt="Get it on Google Play"></a></div></div>
 
 <script>
 (function () {

@@ -1358,5 +1358,18 @@ document.documentElement.classList.add('js');
 })();
 </script>
 
+<script>
+(() => {
+  const ua = navigator.userAgent;
+  let os = null;
+  if (navigator.userAgentData?.platform === 'Android' || /Android/i.test(ua)) os = 'android';
+  else if (/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) os = 'ios';
+
+  const link = document.querySelector('[data-ref="stickyLinkRef"]');
+  if (os === 'ios') link.href = 'https://apps.apple.com/us/app/huddle-shift-staff-planner/id6785232071';
+  else if (os === 'android') link.href = 'https://play.google.com/store/apps/details?id=com.omiliyomami.huddlefrontend';
+})();
+</script>
+
 </body>
 </html>

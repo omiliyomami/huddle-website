@@ -508,7 +508,7 @@ document.documentElement.classList.add('js');
         <!-- <a href="/pricing.html" style="color:rgba(255,255,255,0.6); font-size:14.5px; font-weight:500">About us</a> -->
       </nav>
       <div class="nav-spacer"></div>
-      <a href="https://app.huddleshift.com/login/" class="btn btn-primary btn-sm" onclick="posthog.capture('signin_clicked', { location: 'nav' })">Sign in</a>
+      <a data-hide-sm href="https://app.huddleshift.com/login/" class="btn btn-primary btn-sm" onclick="posthog.capture('signin_clicked', { location: 'nav' })">Sign in</a>
     </div>
   </header>
 
@@ -527,7 +527,7 @@ document.documentElement.classList.add('js');
       </h1>
       <p class="hero-sub">Schedules, attendance, requests and daily operations. <br>One place for all of it.</p>
       <div class="hero-ctas">
-        <a href="https://app.huddleshift.com/" class="btn btn-primary" onclick="posthog.capture('cta_clicked', { location: 'hero' })">Start for free</a>
+        <a data-ref="heroCtaRef" href="https://app.huddleshift.com/" class="btn btn-primary" onclick="posthog.capture('cta_clicked', { location: 'hero' })">Start for free</a>
         <a href="https://cal.com/huddleshift/30min" class="btn btn-ghost" onclick="posthog.capture('demo_clicked', { location: 'hero' })">Book a demo</a>
       </div>
       <p class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17 19 7"/></svg>No credit card required</p>
@@ -1364,10 +1364,20 @@ document.documentElement.classList.add('js');
   let os = null;
   if (navigator.userAgentData?.platform === 'Android' || /Android/i.test(ua)) os = 'android';
   else if (/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) os = 'ios';
-
+// sign in kaldir
+// start for free get the app olsun yazi mobil
   const link = document.querySelector('[data-ref="stickyLinkRef"]');
-  if (os === 'ios') link.href = 'https://apps.apple.com/us/app/huddle-shift-staff-planner/id6785232071';
-  else if (os === 'android') link.href = 'https://play.google.com/store/apps/details?id=com.omiliyomami.huddlefrontend';
+  const signUpLink = document.querySelector('[data-ref="heroCtaRef"]');
+  
+  if (os === 'ios') {
+    link.href = 'https://apps.apple.com/us/app/huddle-shift-staff-planner/id6785232071';
+    signUpLink.href = 'https://apps.apple.com/us/app/huddle-shift-staff-planner/id6785232071';
+    signUpLink.textContent = 'Get the App'
+  } else if (os === 'android') {
+    link.href = 'https://play.google.com/store/apps/details?id=com.omiliyomami.huddlefrontend'
+    signUpLink.href = 'https://play.google.com/store/apps/details?id=com.omiliyomami.huddlefrontend'
+    signUpLink.textContent = 'Get the App'
+  };
 })();
 </script>
 

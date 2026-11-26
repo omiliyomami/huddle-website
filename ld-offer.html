@@ -1,447 +1,594 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0A0A0A">
-    <title>HuddleShift — Staff scheduling that saves you hours</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="landing-page-1.css">
-    <script>
-      // Replace the body of this function with the real request.
-      // deadline is the offer's end time in milliseconds since 1970.
-      // Throw (or return a rejected promise) to show the error state.
-      !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-      posthog.init('phc_xLUNUcjoLyrxMKDSwJ7dLFkrswUoVVZGe7RFxjXJ8g8u', {
-          api_host: 'https://p.huddleshift.com',
-          ui_host: 'https://eu.posthog.com',
-          defaults: '2026-08-30',
-      })
-      async function sendOffer(email, deadline) {
-        try {
-          let response = await fetch('https://api.huddleshift.com/subscription/promo-code/', {
-            method: "POST",
-            headers: {
-              'Content-Type': "application/json"
-            },
-            body: JSON.stringify({
-              email: email
-            })
-          });
-          let data = await response.json();
-          return data
-        } catch(e) {
-          console.log(e)
-        }
-      }
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HuddleShift Lifetime Pro – Pay once, Pro for life</title>
+<meta name="description" content="Get every HuddleShift Pro feature, Hadger AI included, for a single $19.99 payment. No subscription, ever.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="HuddleShift Lifetime Pro – $19.99 once">
+<meta property="og:description" content="AI staff scheduling for cafés, bars, restaurants and hotels. Pay once, Pro for life.">
+<meta property="og:image" content="assets/schedule-poster.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* =========================================================
+   Mobile first: everything below is the phone layout.
+   Tablet/desktop overrides live in the @media block at the end.
+   ========================================================= */
+:root{--accent:#00FFFF;--bg:#000;--card:#0B0F12;--card2:#05080A;--text:#fff;--muted:#B4BEC4;--dim:#9AA5AB;--faint:#8C979D;--line:rgba(255,255,255,.08);--amber:#FFC24D}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit}
+.wrap{max-width:1160px;margin:0 auto}
+.display{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.02em}
+.accent{color:var(--accent)}
+.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;background:var(--accent);color:#000;text-decoration:none;font-weight:700;border-radius:999px;min-height:52px;padding:15px 24px;font-size:17px;transition:transform .15s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(0,255,255,.25)}
+.btn-ghost{background:transparent;color:var(--dim);border:1px solid rgba(255,255,255,.12);font-weight:500;font-size:14px;min-height:48px}
+.btn-ghost:hover{box-shadow:none;color:#fff}
+a:focus-visible,button:focus-visible,input:focus-visible,video:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.eyebrow{margin:0;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.h2{margin:0;font-size:30px;line-height:1.08}
+.lead{margin:0;font-size:16px;line-height:1.55;color:var(--muted)}
+.stars{display:inline-flex;gap:2px}
+.stars svg{width:16px;height:16px}
 
-      setTimeout(() => {
-        const initForm = () => {
-          let formContainer = window.document.getElementById('form-container');
-          const dialog = formContainer.querySelector('.offer');
-          const card = dialog.querySelector('.offer-card');
-          const stage = dialog.querySelector('.offer-stage');
-          const steps = [...dialog.querySelectorAll('.offer-step')];
-          const progress = dialog.querySelector('.offer-progress');
-          const form = dialog.querySelector('.offer-form');
-          const field = dialog.querySelector('.offer-field');
-          const input = dialog.querySelector('.offer-input');
-          const error = dialog.querySelector('.offer-error');
-          const submit = dialog.querySelector('.offer-btn[type="submit"]');
-          const sentEmail = dialog.querySelector('[data-offer-email]');
-          const sentTitle = dialog.querySelector('[data-offer-sent-title]');
-          const endedTitle = dialog.querySelector('[data-offer-ended-title]');
-          const timer = dialog.querySelector('[data-offer-timer]');
-          const timeLabels = dialog.querySelectorAll('[data-offer-time]');
+/* nav */
+.nav{position:sticky;top:0;z-index:30;background:rgba(0,0,0,.84);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.07)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px}
+.logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:-.5px;text-decoration:none}
+.nav-right{display:flex;align-items:center;gap:8px}
+.nav-timer{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;padding:7px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.14)}
+.nav .btn{font-size:14px;min-height:42px;padding:9px 16px;white-space:nowrap}
 
-          const root = document.documentElement;
-          const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-          const viewport = window.visualViewport;
-          const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-          const CLOSE_MS = 260;
-          const OFFER_MS = 30 * 60 * 1000;
-          const SOON_SECONDS = 5 * 60;
-          const LAST_SECONDS = 60;
-          const STEP_ENDED = 4;
-          const OFFER_KEY = 'huddleshift-offer';
-          const DISMISSED_KEY = 'huddleshift-offer-dismissed';
+/* hero */
+.hero{position:relative;overflow:hidden;padding:28px 16px 56px}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;pointer-events:none}
+.hero-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.86) 0%,rgba(0,0,0,.8) 55%,rgba(0,0,0,.66) 80%,#000 100%)}
+.hero .wrap{position:relative;z-index:1;display:flex;flex-direction:column;gap:36px}
+.offer-copy{display:flex;flex-direction:column;gap:16px}
+.offer-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.tag{font-size:12px;font-weight:700;letter-spacing:.1em;color:#000;background:var(--accent);padding:5px 9px;border-radius:6px}
+.offer-timer{font-size:14px;color:#D5DCE0;font-variant-numeric:tabular-nums}
+.offer-timer b{color:#fff}
+.hero h1{margin:0;font-size:46px;line-height:1;letter-spacing:-.03em}
+.price{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px}
+.price .now{font-size:40px}
+.price .unit{font-size:16px;color:#D5DCE0}
+.price .was{font-size:16px;color:var(--faint);text-decoration:line-through}
+.hero .btn{width:100%;font-size:18px;min-height:56px}
+.checks{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;color:var(--dim)}
+.checks span{display:inline-flex;align-items:center;gap:6px}
+.trust{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:14px;color:var(--muted)}
+.trust b{color:#fff}
+.dot{width:4px;height:4px;border-radius:999px;background:#5F6B72}
+.browser{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#0A0D0F;box-shadow:0 30px 80px rgba(0,0,0,.65)}
+.browser-bar{display:flex;align-items:center;gap:6px;padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.07)}
+.browser-bar i{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.18)}
+.browser-bar span{margin-left:8px;font-size:11px;color:var(--faint);background:rgba(255,255,255,.05);padding:3px 10px;border-radius:999px}
+.browser video{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#000}
+.video-note{margin:10px 2px 0;font-size:13px;color:var(--faint)}
 
-          let current = 1;
-          let sending = false;
-          let requestId = 0;
-          let deadline = 0;
-          let tickId = 0;
-          let shownSeconds = null;
+/* sections */
+.section{padding:64px 16px;border-top:1px solid rgba(255,255,255,.06)}
+.section.alt{background:var(--card2)}
+.sec-head{display:flex;flex-direction:column;gap:12px}
+.steps{display:grid;grid-template-columns:1fr;gap:12px}
+.step{padding:18px;border-radius:16px;border:1px solid var(--line);background:var(--card)}
+.step em{display:block;font-style:normal;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--accent);margin-bottom:6px}
+.step b{display:block;font-size:16px;margin-bottom:4px}
+.step span{font-size:15px;line-height:1.5;color:var(--dim)}
+.stack{display:flex;flex-direction:column;gap:28px}
 
-          // Storage can be blocked, so the form must still work without it
-          const readOffer = () => {
-            try {
-              return JSON.parse(localStorage.getItem(OFFER_KEY)) || {};
-            } catch {
-              return {};
-            }
-          };
-          const saveOffer = (offer) => {
-            try {
-              localStorage.setItem(OFFER_KEY, JSON.stringify(offer));
-            } catch {}
-          };
-          const wasDismissed = () => {
-            try {
-              return sessionStorage.getItem(DISMISSED_KEY) === '1';
-            } catch {
-              return false;
-            }
-          };
-          const markDismissed = () => {
-            try {
-              sessionStorage.setItem(DISMISSED_KEY, '1');
-            } catch {}
-          };
+/* testimonial */
+.quote{max-width:820px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+.quote .stars svg{width:20px;height:20px}
+.quote blockquote{margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:22px;line-height:1.35}
+.quote figcaption{font-size:15px;color:var(--dim)}
 
-          const syncHeight = () => {
-            stage.style.height = `${steps[current - 1].offsetHeight}px`;
-          };
-          const heightObserver = new ResizeObserver(syncHeight);
+/* hadger spotlight + demo */
+.spot{display:flex;flex-direction:column;gap:28px;padding:22px;border-radius:22px;background:#070B0D;border:1px solid var(--line)}
+.spot-copy{display:flex;flex-direction:column;gap:12px}
+.spot-label{display:flex;align-items:center;gap:10px}
+.spot-label img{width:36px;height:36px;border-radius:999px;border:1px solid rgba(0,255,255,.35)}
+.spot h3{margin:0;font-size:24px;line-height:1.12}
+.demo{width:100%;max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.notifs{display:flex;flex-direction:column;gap:8px;transition:opacity .5s ease}
+.demo.done .notifs{opacity:.35}
+.notif{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(255,255,255,.96);color:#0B0F12;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.5);width:90%;position:relative}
+.notif:nth-child(1){align-self:flex-start;transform:rotate(-4deg) translateX(-6px);z-index:1}
+.notif:nth-child(2){align-self:flex-end;transform:rotate(3.5deg) translateX(8px);margin-top:-6px;z-index:2}
+.notif:nth-child(3){align-self:center;transform:rotate(-1.5deg) translateX(-10px);margin-top:-4px;z-index:3}
+.notif-icon{width:30px;height:30px;border-radius:8px;background:#34C759;flex:0 0 30px;display:inline-flex;align-items:center;justify-content:center}
+.notif-body{min-width:0;flex:1}
+.notif-top{display:flex;justify-content:space-between;font-size:13px;font-weight:600}
+.notif-top span{font-weight:400;color:#5F6B72;font-size:11px}
+.notif-msg{font-size:13px;color:#2B3338;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.panel{background:#0A1013;border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:12px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.panel-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px}
+.panel-sub{font-size:12px;color:var(--faint)}
+.badge{font-size:11px;font-weight:600;padding:5px 9px;border-radius:999px;background:rgba(255,194,77,.14);color:var(--amber);white-space:nowrap}
+.demo.done .badge{background:rgba(0,255,255,.14);color:var(--accent)}
+.row{display:flex;align-items:center;gap:10px;padding:10px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+.row-bar{flex:0 0 4px;align-self:stretch;border-radius:4px;background:var(--amber);transition:background .3s}
+.demo.done .row-bar{background:var(--accent)}
+.row-main{flex:1;min-width:0}
+.row-role{font-size:14px;font-weight:600}
+.row-time{font-size:12px;color:var(--faint)}
+.open-pill{font-size:11px;font-weight:600;color:var(--amber);border:1px dashed rgba(255,194,77,.6);padding:4px 9px;border-radius:999px;white-space:nowrap}
+.who{display:none;align-items:center;gap:6px;font-size:13px;font-weight:500;white-space:nowrap}
+.who b{width:26px;height:26px;border-radius:999px;background:rgba(0,255,255,.14);color:var(--accent);font-size:11px;font-weight:600;display:inline-flex;align-items:center;justify-content:center}
+.demo.done .who{display:flex}
+.demo.done .open-pill{display:none}
+.chat{display:flex;flex-direction:column;justify-content:flex-end;gap:8px;min-height:92px}
+.bubble-me,.bot{display:none;animation:pop .25s ease}
+.bubble-me{align-self:flex-end;max-width:85%;background:#E9EEF0;color:#0B0F12;font-size:13px;font-weight:500;line-height:1.4;padding:9px 13px;border-radius:16px 16px 4px 16px}
+.bot{align-self:flex-start;max-width:88%;align-items:flex-end;gap:8px}
+.bot img{width:26px;height:26px;border-radius:999px;flex:0 0 26px;border:1px solid rgba(255,255,255,.15)}
+.bot div{background:#121C21;border:1px solid rgba(255,255,255,.08);color:var(--dim);font-size:13px;line-height:1.4;padding:9px 13px;border-radius:16px 16px 16px 4px}
+.bot.reply img{border-color:rgba(0,255,255,.3)}
+.bot.reply div{border-color:rgba(0,255,255,.35);color:#fff;font-weight:500}
+.demo.sent .bubble-me{display:block}
+.demo.thinking .bot.typing,.demo.done .bot.reply{display:flex}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.input{border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 10px 10px 12px;background:#060A0C;transition:border-color .3s}
+.demo.typing-now .input{border-color:rgba(0,255,255,.6)}
+.input-label{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--dim)}
+.input-label img{width:16px;height:16px;border-radius:999px}
+.input-row{display:flex;align-items:center;gap:8px;margin-top:6px}
+.typed{flex:1;font-size:14px;min-height:20px;color:#6E7A80}
+.demo.typing-now .typed{color:#fff}
+.send{width:30px;height:30px;border-radius:999px;flex:0 0 30px;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);color:var(--faint);transition:all .2s}
+.demo.send-on .send{background:var(--accent);color:#000}
 
-          // Keeps the panel above the on-screen keyboard
-          const syncKeyboard = () => {
-            const covered = window.innerHeight - viewport.height - viewport.offsetTop;
-            dialog.style.setProperty('--offer-keyboard', `${Math.max(0, covered)}px`);
-          };
+/* features */
+.team{width:100%;height:220px;object-fit:cover;object-position:50% 40%;border-radius:20px;border:1px solid var(--line)}
+.f-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.f-card{padding:18px;border-radius:18px;background:var(--card);border:1px solid rgba(255,255,255,.07);display:grid;grid-template-columns:52px 1fr;column-gap:14px;row-gap:6px;align-items:center}
+.f-card img{width:52px;height:52px;object-fit:contain;grid-row:span 2}
+.f-card h3{margin:0;font-size:17px}
+.f-card p{margin:0;font-size:14px;line-height:1.5;color:var(--muted)}
 
-          const goTo = (step) => {
-            current = step;
-            card.dataset.current = step;
-            progress.setAttribute('aria-label', `Step ${Math.min(step, 3)} of 3`);
-            steps.forEach((el, index) => {
-              const active = index === step - 1;
-              el.classList.toggle('is-active', active);
-              el.classList.toggle('is-past', index < step - 1);
-              el.inert = !active;
-            });
-            heightObserver.disconnect();
-            heightObserver.observe(steps[step - 1]);
-            syncHeight();
-          };
+/* compare */
+.compare{display:grid;grid-template-columns:1fr;gap:14px}
+.plan{padding:22px;border-radius:18px;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.plan .label{font-size:15px;color:var(--dim)}
+.plan .amount{font-size:36px}
+.plan .old{color:#C9D1D6}
+.plan.best{background:#0B1418;border:1px solid var(--accent);box-shadow:0 0 0 4px rgba(0,255,255,.08)}
+.plan.best .label{color:#fff;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.pill{font-size:12px;font-weight:700;color:#000;background:var(--accent);padding:5px 10px;border-radius:999px}
 
-          const tick = () => {
-            const remaining = Math.max(0, deadline - Date.now());
-            const seconds = Math.ceil(remaining / 1000);
+/* offer card */
+.offer-sec{padding:64px 16px 120px;border-top:1px solid rgba(255,255,255,.06);background:radial-gradient(45% 60% at 50% 50%,rgba(0,255,255,.07),rgba(0,0,0,0) 70%)}
+.offer-card{max-width:980px;margin:0 auto;display:flex;flex-direction:column;border-radius:22px;overflow:hidden;background:#0E1215;border:1px solid rgba(255,255,255,.09);box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.offer-media{position:relative;min-height:240px}
+.offer-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 50%}
+.ring{position:absolute;top:14px;right:14px;width:96px;height:96px;border-radius:999px;background:rgba(0,0,0,.84);border:3px solid var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.ring b{font-family:'Space Grotesk',sans-serif;font-size:23px;font-variant-numeric:tabular-nums}
+.ring span{font-size:9px;line-height:1.25;color:var(--muted);padding:0 10px}
+.offer-body{padding:28px 22px;display:flex;flex-direction:column;gap:16px}
+.progress{display:flex;gap:6px}
+.progress i{width:18px;height:4px;border-radius:4px;background:rgba(255,255,255,.18)}
+.progress i:first-child{width:28px;background:var(--accent)}
+.offer-card[data-step="email"] .progress i:nth-child(2),.offer-card[data-step="sent"] .progress i{background:var(--accent)}
+.step-pane{display:none;flex-direction:column;gap:16px}
+.offer-card[data-step="offer"] .pane-offer,.offer-card[data-step="email"] .pane-email,.offer-card[data-step="sent"] .pane-sent,.offer-card[data-step="expired"] .pane-expired{display:flex}
+.pane-offer h2,.step-pane h2{margin:0;font-size:28px;line-height:1.12}
+.crazy{font-size:16px;color:var(--muted)}
+.pane-offer .btn{letter-spacing:.04em}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:13px;font-weight:600;color:#D5DCE0}
+.field input{font:inherit;font-size:16px;color:#fff;background:#060A0C;border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:14px 16px;min-height:52px}
+.field input[aria-invalid="true"]{border-color:#FF8A7A}
+.error{font-size:13px;color:#FF8A7A;min-height:18px}
+.fine{font-size:13px;color:var(--faint)}
 
-            if (seconds === 0 && current <= 2 && !sending) {
-              posthog.capture('offer_expired', { step: current });
-              goTo(STEP_ENDED);
-              endedTitle.focus({ preventScroll: true });
-            }
-            if (seconds === shownSeconds) return;
-            shownSeconds = seconds;
+footer{padding:24px 16px 100px;border-top:1px solid rgba(255,255,255,.07)}
+footer .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:10px;font-size:14px;color:var(--dim)}
+footer nav{display:flex;flex-wrap:wrap;gap:4px 20px}
+footer a{color:var(--dim);text-decoration:none;padding:10px 0}
 
-            const minutes = Math.floor(seconds / 60);
-            const rest = seconds % 60;
-            const time = `${String(minutes).padStart(2, '0')}:${String(rest).padStart(2, '0')}`;
-            timeLabels.forEach((label) => { label.textContent = time; });
-            timer.setAttribute('aria-label', minutes
-              ? `${minutes} minutes ${rest} seconds left before offer expires`
-              : `${rest} seconds left before offer expires`);
-            dialog.style.setProperty('--offer-spent', String(1 - remaining / OFFER_MS));
+/* sticky phone CTA */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:center;gap:12px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(0,0,0,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.08);transform:translateY(110%);transition:transform .3s ease}
+.sticky-cta.show{transform:none}
+.sticky-cta .s-price{display:flex;flex-direction:column;line-height:1.15}
+.sticky-cta .s-price b{font-family:'Space Grotesk',sans-serif;font-size:18px}
+.sticky-cta .s-price span{font-size:12px;color:var(--faint);font-variant-numeric:tabular-nums}
+.sticky-cta .btn{flex:1;font-size:16px;min-height:48px;padding:12px 16px}
 
-            dialog.toggleAttribute('data-ended', seconds === 0);
-            if (seconds <= LAST_SECONDS) dialog.dataset.urgency = 'last';
-            else if (seconds <= SOON_SECONDS) dialog.dataset.urgency = 'soon';
-            else delete dialog.dataset.urgency;
-          };
+body.expired .offer-only{display:none!important}
 
-          const setError = (message) => {
-            error.textContent = message;
-            input.setAttribute('aria-invalid', String(Boolean(message)));
-            if (!message) return;
-            field.classList.remove('is-shaking');
-            void field.offsetWidth;
-            field.classList.add('is-shaking');
-            input.focus({ preventScroll: true });
-          };
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 
-          const setSending = (value) => {
-            sending = value;
-            input.readOnly = value;
-            submit.classList.toggle('is-loading', value);
-            submit.setAttribute('aria-busy', String(value));
-          };
+/* =========================================================
+   Tablet & desktop
+   ========================================================= */
+@media (min-width:768px){
+  .nav .wrap{padding:12px 24px}
+  .logo{font-size:23px}
+  .nav-timer{font-size:14px;padding:8px 12px}
+  .nav .btn{font-size:15px;padding:10px 20px}
+  .hero{padding:64px 24px 96px}
+  .hero-shade{background:linear-gradient(90deg,rgba(0,0,0,.93) 0%,rgba(0,0,0,.82) 45%,rgba(0,0,0,.62) 100%),linear-gradient(180deg,rgba(0,0,0,0) 70%,#000 100%)}
+  .hero .wrap{flex-direction:row;align-items:center;gap:56px}
+  .offer-copy{flex:1 1 420px;min-width:0;gap:18px}
+  .hero-media{flex:1 1 520px;min-width:0}
+  .hero h1{font-size:clamp(56px,6vw,84px)}
+  .price .now{font-size:clamp(42px,3.8vw,52px)}
+  .price .unit,.price .was{font-size:17px}
+  .lead{font-size:18px}
+  .hero .btn{width:auto;max-width:420px;padding:17px 32px}
+  .section{padding:96px 24px}
+  .h2{font-size:clamp(34px,3.6vw,48px)}
+  .sec-head{flex-direction:row;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 48px}
+  .sec-head>div{flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:12px}
+  .sec-head>.lead{flex:1 1 360px;min-width:0}
+  .steps{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+  .step{padding:20px}
+  .quote blockquote{font-size:clamp(24px,2.4vw,32px)}
+  .spot{flex-direction:row;align-items:center;gap:56px;padding:36px}
+  .spot-copy{flex:1 1 340px;min-width:0;gap:14px}
+  .spot .demo{flex:1 1 400px}
+  .spot h3{font-size:clamp(28px,2.6vw,34px)}
+  .team{height:clamp(280px,32vw,440px);border-radius:24px}
+  .f-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+  .f-card{padding:26px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+  .f-card img{width:60px;height:60px;margin:-4px 0 4px -4px}
+  .f-card h3{font-size:19px}
+  .f-card p{font-size:15px}
+  .compare{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+  .plan{padding:28px}
+  .plan .amount{font-size:40px}
+  .offer-sec{padding:96px 24px 120px}
+  .offer-card{flex-direction:row;border-radius:24px}
+  .offer-media{flex:1 1 44%;min-height:420px}
+  .ring{top:18px;right:18px;width:108px;height:108px}
+  .ring b{font-size:26px}
+  .ring span{font-size:10px}
+  .offer-body{flex:1 1 56%;padding:44px 40px;justify-content:center}
+  .pane-offer h2,.step-pane h2{font-size:clamp(30px,3vw,38px)}
+  footer{padding:32px 24px}
+  footer .wrap{flex-direction:row;justify-content:space-between;align-items:center}
+  .sticky-cta{display:none}
+}
+</style>
+</head>
+<body>
 
-          const open = () => {
-            const scrollbar = window.innerWidth - root.clientWidth;
-            root.style.setProperty('--offer-scrollbar', `${scrollbar}px`);
-            root.classList.add('offer-locked');
-            dialog.showModal();
-            posthog.capture('offer_shown');
-            goTo(1);
-            tick();
-            tickId = setInterval(tick, 250);
-            viewport?.addEventListener('resize', syncKeyboard);
-            viewport?.addEventListener('scroll', syncKeyboard);
-            void card.offsetWidth;
-            dialog.classList.add('is-open');
-          };
+<header class="nav">
+<div class="wrap">
+<a href="https://www.huddleshift.com" class="logo"><span class="accent">Huddle</span>Shift</a>
+<div class="nav-right">
+<span class="nav-timer offer-only" aria-label="Time left on this offer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00FFFF" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg><span data-timer>30:00</span></span>
+<a href="#offer" class="btn" data-claim>Claim deal</a>
+</div>
+</div>
+</header>
 
-          const close = () => {
-            if (!dialog.open || dialog.classList.contains('is-closing')) return;
-            if (current < 3) posthog.capture('offer_dismissed', { step: current });
-            if (current < 3) markDismissed();
-            requestId += 1;
-            dialog.classList.add('is-closing');
-            dialog.classList.remove('is-open');
-            setTimeout(() => dialog.close(), reducedMotion.matches ? 0 : CLOSE_MS);
-          };
+<main>
+<!-- HERO: offer + real product video -->
+<section id="top" class="hero">
+<img class="hero-bg" src="assets/hero-bg.webp" alt="" aria-hidden="true">
+<div class="hero-shade" aria-hidden="true"></div>
+<div class="wrap">
+<div class="offer-copy">
+<div class="offer-meta offer-only">
+<span class="tag">LIFETIME DEAL</span>
+<span class="offer-timer"><b data-timer>30:00</b> left before offer expires</span>
+</div>
+<h1 class="display">Pay once.<br><span class="accent">Pro for life.</span></h1>
+<div class="price">
+<span class="now display">$19.99</span>
+<span class="unit">one-time</span>
+<span class="was">$24.99/mo</span>
+</div>
+<p class="lead">Every HuddleShift Pro feature, Hadger AI included, for a single payment. No subscription, ever.</p>
+<a href="#offer" class="btn" data-claim>Claim Lifetime Pro</a>
+<div class="checks">
+<span><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8C979D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Risk-free for 14 days</span>
+<span><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8C979D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Web, iOS &amp; Android</span>
+</div>
+<div class="trust">
+<span class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="#FFC24D" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="#FFC24D" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="#FFC24D" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="#FFC24D" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="#FFC24D" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5L2.5 9.4l6.6-.8z"/></svg></span>
+<span><b>5.0</b> App Store</span><i class="dot" aria-hidden="true"></i><span><b>100+</b> businesses</span><i class="dot" aria-hidden="true"></i><span><b>20+</b> countries</span>
+</div>
+</div>
+<div class="hero-media">
+<div class="browser">
+<div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>app.huddleshift.com</span></div>
+<video src="assets/schedule-demo.mp4" poster="assets/schedule-poster.webp" autoplay muted loop playsinline preload="metadata" aria-label="Screen recording: a manager selects several days, picks employees, sets hours and a role, and adds all the shifts at once in the HuddleShift web app."></video>
+</div>
+<p class="video-note">Real HuddleShift web app: a full week of shifts added in seconds.</p>
+</div>
+</div>
+</section>
 
-          const handleSubmit = async (event) => {
-            event.preventDefault();
-            if (sending) return;
+<!-- EASY SCHEDULING -->
+<section id="scheduling" class="section alt">
+<div class="wrap stack">
+<div class="sec-head">
+<div>
+<p class="eyebrow">Scheduling, simplified</p>
+<h2 class="h2 display">Build the whole week in a few clicks.</h2>
+</div>
+<p class="lead">Select the days, pick your people, set the hours and role. HuddleShift adds every shift at once. No spreadsheets, no copy-paste.</p>
+</div>
+<div class="steps">
+<div class="step"><em>01</em><b>Select the days</b><span>Click as many days as you need on the calendar.</span></div>
+<div class="step"><em>02</em><b>Pick your team</b><span>Choose several employees in one go.</span></div>
+<div class="step"><em>03</em><b>Set hours and role</b><span>Chef, bartender, server: pick it once, apply to all.</span></div>
+<div class="step"><em>04</em><b>Done</b><span>Every shift lands on the schedule and your team gets notified.</span></div>
+</div>
+</div>
+</section>
 
-            const email = input.value.trim();
-            if (!email) posthog.capture('offer_email_invalid', { reason: 'empty' });
-            if (!email) return setError('Enter your email address.');
-            if (!EMAIL.test(email)) posthog.capture('offer_email_invalid', { reason: 'format' });
-            if (!EMAIL.test(email)) return setError('Enter a valid email, like name@company.com.');
+<!-- TESTIMONIAL -->
+<section class="section">
+<figure class="quote">
+<span class="stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="#FFC24D" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="#FFC24D" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="#FFC24D" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="#FFC24D" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5L2.5 9.4l6.6-.8z"/></svg><svg viewBox="0 0 24 24" fill="#FFC24D" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5L2.5 9.4l6.6-.8z"/></svg></span>
+<blockquote>“We tried the app for staff scheduling and so far loved it. User friendly app at a great price.”</blockquote>
+<figcaption>Allpro Hospitality Staffing</figcaption>
+</figure>
+</section>
 
-            setError('');
-            setSending(true);
-            posthog.capture('offer_email_submitted');
-            const id = ++requestId;
+<!-- FEATURES -->
+<section id="features" class="section alt">
+<div class="wrap stack">
+<div class="sec-head" style="flex-direction:column;align-items:flex-start">
+<h2 class="h2 display">Everything in Pro. Forever.</h2>
+<p class="lead" style="max-width:640px">You waste time with scheduling. HuddleShift fixes that, and with Lifetime Pro you never pay for it again.</p>
+</div>
 
-            try {
-              let r = await sendOffer(email, deadline);
-              if (!r.code) {
-                posthog.capture('offer_email_failed', { reason: 'no_code' });
-                setSending(false);
-                setError('The offer was not sent. Check your connection and try again.');
-                return;
-              }
-              saveOffer({ deadline, sent: true });
-              posthog.capture('offer_email_sent');
-              if (id !== requestId) return;
-              sentEmail.textContent = email;
-              setSending(false);
-              goTo(3);
-              sentTitle.focus({ preventScroll: true });
-            } catch {
-              posthog.capture('offer_email_failed', { reason: 'exception' });
-              if (id !== requestId) return;
-              setSending(false);
-              setError('The offer was not sent. Check your connection and try again.');
-            }
-          };
+<div class="spot">
+<div class="spot-copy">
+<div class="spot-label"><img src="assets/hadger-avatar.webp" alt=""><span class="eyebrow">Hadger AI assistant</span></div>
+<h3 class="display">Someone called out? Tell Hadger.</h3>
+<p class="lead">Hadger answers questions about your team and makes the changes you ask for. Open shifts get covered and your team is notified, in one message.</p>
+</div>
+<div class="demo" id="demo" role="img" aria-label="Animated demo: three employees call out, the manager asks Hadger to fill the open shifts, and all three shifts get covered.">
+<div class="notifs">
+<div class="notif"><span class="notif-icon"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.6 1.4 4.9 3.6 6.5L5 21l3.6-1.8c1.1.3 2.2.5 3.4.5 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/></svg></span><div class="notif-body"><div class="notif-top">Mike<span>now</span></div><div class="notif-msg">Hey boss, can’t come in today 😕</div></div></div>
+<div class="notif"><span class="notif-icon"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.6 1.4 4.9 3.6 6.5L5 21l3.6-1.8c1.1.3 2.2.5 3.4.5 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/></svg></span><div class="notif-body"><div class="notif-top">Emma<span>now</span></div><div class="notif-msg">Not feeling great… so sorry!!</div></div></div>
+<div class="notif"><span class="notif-icon"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.6 1.4 4.9 3.6 6.5L5 21l3.6-1.8c1.1.3 2.2.5 3.4.5 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/></svg></span><div class="notif-body"><div class="notif-top">Lauren<span>now</span></div><div class="notif-msg">Can’t make it in today, really sick 🤢</div></div></div>
+</div>
+<div class="panel">
+<div class="panel-head"><div><div class="panel-title">Today’s shifts</div><div class="panel-sub">Doors open at 10:00</div></div><span class="badge" id="badge">3 open shifts</span></div>
+<div class="row"><div class="row-bar"></div><div class="row-main"><div class="row-role">Bar · Opening</div><div class="row-time">10:00 – 18:00</div></div><span class="open-pill">Open shift</span><div class="who"><b>JR</b>Jordan R.</div></div>
+<div class="row"><div class="row-bar"></div><div class="row-main"><div class="row-role">Floor · Server</div><div class="row-time">11:00 – 19:00</div></div><span class="open-pill">Open shift</span><div class="who"><b>PS</b>Priya S.</div></div>
+<div class="row"><div class="row-bar"></div><div class="row-main"><div class="row-role">Kitchen · Line cook</div><div class="row-time">12:00 – 20:00</div></div><span class="open-pill">Open shift</span><div class="who"><b>ST</b>Sam T.</div></div>
+<div class="chat" aria-live="polite">
+<div class="bubble-me">Fill in the open shifts for today</div>
+<div class="bot typing"><img src="assets/hadger-avatar.webp" alt=""><div>Hadger is typing…</div></div>
+<div class="bot reply"><img src="assets/hadger-avatar.webp" alt=""><div>Done, all shifts are covered.</div></div>
+</div>
+<div class="input">
+<div class="input-label"><img src="assets/hadger-avatar.webp" alt="">Hadger AI Assistant</div>
+<div class="input-row"><div class="typed" id="typed">Ask Hadger anything…</div><span class="send"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M6 11l6-6 6 6"/></svg></span></div>
+</div>
+</div>
+</div>
+</div>
 
-          dialog.querySelector('[data-offer-next]').addEventListener('click', () => {
-            posthog.capture('offer_accepted');
-            goTo(2);
-            // Runs inside the tap so mobile browsers open the keyboard
-            input.focus({ preventScroll: true });
-          });
-          dialog.querySelectorAll('[data-offer-close]').forEach((button) => {
-            button.addEventListener('click', close);
-          });
-          form.addEventListener('submit', handleSubmit);
-          input.addEventListener('input', () => {
-            if (error.textContent) setError('');
-          });
-          field.addEventListener('animationend', () => field.classList.remove('is-shaking'));
+<img class="team" src="assets/kitchen-team.webp" alt="A smiling kitchen team of five standing together behind the pass" loading="lazy">
 
-          // Tapping outside closes, unless that would discard a typed email
-          dialog.addEventListener('click', (event) => {
-            if (event.target !== dialog) return;
-            if (current === 2 && (input.value || sending)) return;
-            close();
-          });
-          dialog.addEventListener('cancel', (event) => {
-            event.preventDefault();
-            close();
-          });
-          dialog.addEventListener('close', () => {
-            clearInterval(tickId);
-            heightObserver.disconnect();
-            viewport?.removeEventListener('resize', syncKeyboard);
-            viewport?.removeEventListener('scroll', syncKeyboard);
-            root.classList.remove('offer-locked');
-            dialog.classList.remove('is-open', 'is-closing');
-            dialog.style.removeProperty('--offer-keyboard');
-            stage.style.height = '';
-            form.reset();
-            setSending(false);
-            setError('');
-          });
+<div class="f-grid">
+<article class="f-card"><img src="assets/icon-clock-in.webp" alt="" aria-hidden="true" width="60" height="60"><h3 class="display">GPS clock-in</h3><p>Your team clocks in from their phone, right where the shift happens.</p></article>
+<article class="f-card"><img src="assets/icon-messaging.webp" alt="" aria-hidden="true" width="60" height="60"><h3 class="display">Announcements &amp; messaging</h3><p>Reach the whole team or one person, right in the app.</p></article>
+<article class="f-card"><img src="assets/icon-shift-swaps.webp" alt="" aria-hidden="true" width="60" height="60"><h3 class="display">Time-offs &amp; shift swaps</h3><p>Your team requests, you approve in a tap.</p></article>
+<article class="f-card"><img src="assets/icon-reports.webp" alt="" aria-hidden="true" width="60" height="60"><h3 class="display">Compliance reports</h3><p>Hours and attendance, ready when you need them.</p></article>
+<article class="f-card"><img src="assets/icon-ai-scheduler.webp" alt="" aria-hidden="true" width="60" height="60"><h3 class="display">AI Scheduler</h3><p>Build next week’s schedule in minutes, not hours.</p></article>
+<article class="f-card"><img src="assets/icon-import.webp" alt="" aria-hidden="true" width="60" height="60"><h3 class="display">Import your current schedule</h3><p>Snap a photo of your schedule. AI brings in names and shifts.</p></article>
+</div>
+</div>
+</section>
 
-          // One deadline per visitor: refreshing or returning never restarts it
-          const offer = readOffer();
-          deadline = Number(offer.deadline) || Date.now() + OFFER_MS;
-          if (offer.sent || Date.now() >= deadline || wasDismissed()) return;
-          saveOffer({ deadline });
-          open();
-        };
+<!-- COMPARE -->
+<section class="section">
+<div class="wrap stack" style="max-width:900px">
+<h2 class="h2 display" style="text-align:center">Do the math.</h2>
+<div class="compare">
+<div class="plan"><div class="label">Pro, monthly</div><div class="amount display old">$299.88</div><div class="label">every year ($24.99 × 12), and it keeps going</div></div>
+<div class="plan best"><div class="label">Lifetime Pro <span class="pill offer-only">This offer</span></div><div class="amount display">$19.99</div><div class="label" style="color:#B4BEC4;font-weight:400">once. Every Pro feature, for life.</div></div>
+</div>
+</div>
+</section>
 
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initForm, { once: true });
-        } else {
-          initForm();
-        }
-      }, 1500)
-    </script>
-  </head>
-  <body>
-    <!--Header-->
-    <header id="header">
-      <img id="huddle-logo" src="logo.png" alt="HuddleShift">
-      <a id="sign-up-container" href="https://app.huddleshift.com/login">Sign up</a>
-    </header>
+<!-- OFFER -->
+<section id="offer" class="offer-sec">
+<div class="offer-card" id="offerCard" data-step="offer">
+<div class="offer-media">
+<img src="assets/hadger-cafe.webp" alt="A smiling café manager holding a tablet while Hadger, the HuddleShift robot, cheers beside her" loading="lazy">
+<div class="ring" aria-hidden="true"><b data-timer>30:00</b><span data-timer-label>left before offer expires</span></div>
+</div>
+<div class="offer-body">
+<div class="progress" aria-hidden="true"><i></i><i></i><i></i></div>
 
-    <main>
-      <!--Hero-->
-      <section class="section hero">
-        <p class="eyebrow">Staff scheduling, simplified</p>
-        <h1 class="hero-text">
-          Save up to <span class="accent">15 hours</span> a week with HuddleShift
-        </h1>
+<div class="step-pane pane-offer">
+<div class="crazy">Yes we are CRAZY!</div>
+<h2 class="display">Pay $19.99 once.<br>Enjoy PRO for Life!</h2>
+<button type="button" class="btn" data-accept>HECK YEAH</button>
+<button type="button" class="btn btn-ghost" data-decline>Nah, I like paying the full price</button>
+</div>
 
-        <div id="hero-container">
-          <img id="hero-img" src="hero.jpg" alt="Team using HuddleShift">
-          <figure id="testimonial">
-            <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
-            <blockquote>
-              “We tried the app for staff scheduling and so far loved it. User friendly app at a great price.”
-            </blockquote>
-            <figcaption>
-              <img class="testimonial-logo" src="testimonial.png" alt="Allpro">
-              <span>Allpro Hospitality Staffing</span>
-            </figcaption>
-          </figure>
-        </div>
-      </section>
+<form class="step-pane pane-email" id="offerForm" novalidate>
+<h2 class="display">Where should we send your code?</h2>
+<p class="lead">You’ll get your code and checkout link by email.</p>
+<div class="field">
+<label for="ld-email">Email</label>
+<input id="ld-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@restaurant.com" required>
+<div class="error" id="emailError" role="alert"></div>
+</div>
+<button type="submit" class="btn" id="sendBtn">Send offer</button>
+</form>
 
-      <!--Checklist-->
-      <section class="section">
-        <h2 class="hero-text section-title">
-          You waste time with scheduling. <span class="accent">HuddleShift fixes that.</span>
-        </h2>
-        <ul id="checklist-container">
-          <li><span class="check" aria-hidden="true">✓</span>GPS clock-in</li>
-          <li><span class="check" aria-hidden="true">✓</span>AI assistant</li>
-          <li><span class="check" aria-hidden="true">✓</span>Time-offs and shift swaps</li>
-          <li><span class="check" aria-hidden="true">✓</span>Compliance reports</li>
-        </ul>
-      </section>
+<div class="step-pane pane-sent" role="status">
+<h2 class="display">Email sent</h2>
+<p class="lead">Your code and checkout link are on their way to <b id="sentTo" style="color:#fff"></b>. Use them before the timer ends.</p>
+<button type="button" class="btn btn-ghost" data-done style="align-self:flex-start;color:#fff">Done</button>
+</div>
 
-      <!--CTA-->
-      <section id="cta-container" class="section">
-        <button type="button" class="cta-button" onclick="posthog.capture('cta_clicked'); location.href='https://app.huddleshift.com/login'">Join Huddle</button>
-        <p class="cta-note">
-          <span class="check" aria-hidden="true">✓</span>
-          Try it <u>risk free for 14 days</u>
-        </p>
-      </section>
+<div class="step-pane pane-expired" role="status">
+<h2 class="display">This offer has ended</h2>
+<p class="lead">The $19.99 price is no longer available. You can still try HuddleShift Pro risk-free for 14 days.</p>
+<a href="#" class="btn" data-trial style="align-self:flex-start">Start free trial</a>
+</div>
 
-      <!--FORM-->
-      <div id="form-container">
-        <dialog class="offer" aria-label="Offer">
-          <div class="offer-card" data-current="1" tabindex="-1" autofocus>
-            <div class="offer-hero">
-              <div class="offer-hero__inner">
-                <div class="offer-media">
-                  <img src="form-image.png" width="1000" height="1477" alt="Smiling team member holding a tablet">
-                </div>
-                <div class="offer-timer" role="timer" data-offer-timer>
-                  <svg class="offer-ring" viewBox="0 0 100 100" aria-hidden="true">
-                    <circle class="offer-ring__track" cx="50" cy="50" r="47"/>
-                    <circle class="offer-ring__value" cx="50" cy="50" r="47" pathLength="1"/>
-                  </svg>
-                  <span class="offer-timer__time" data-offer-time aria-hidden="true">30:00</span>
-                  <span class="offer-timer__label" aria-hidden="true">left before offer expires</span>
-                </div>
-              </div>
-            </div>
+<div class="fine">Try it risk-free for 14 days · Web, iOS &amp; Android</div>
+</div>
+</div>
+</section>
+</main>
 
-            <div class="offer-body">
-              <div class="offer-top">
-                <div class="offer-progress" role="img" aria-label="Step 1 of 3">
-                  <span></span><span></span><span></span>
-                </div>
-                <span class="offer-chip" aria-hidden="true"><span data-offer-time>30:00</span> left</span>
-                <button type="button" class="offer-close" data-offer-close aria-label="Close">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-                    <path d="M3 3l10 10M13 3L3 13"/>
-                  </svg>
-                </button>
-              </div>
+<footer>
+<div class="wrap">
+<span>© 2026 HuddleShift</span>
+<nav aria-label="Legal"><a href="#" data-link="privacy">Privacy</a><a href="#" data-link="terms">Terms</a><a href="mailto:support@huddleshift.com">support@huddleshift.com</a></nav>
+</div>
+</footer>
 
-              <div class="offer-stage">
-                <!--Step 1: offer-->
-                <section class="offer-step is-active">
-                  <h2 class="offer-headline">
-                    Yes we are CRAZY!
-                    <strong>Pay $19.99 once. Enjoy PRO for Life!</strong>
-                  </h2>
-                  <div class="offer-actions">
-                    <button type="button" class="offer-btn offer-btn--primary" data-offer-next>
-                      <span class="offer-btn__label">HECK YEAH</span>
-                    </button>
-                    <button type="button" class="offer-btn offer-btn--ghost offer-btn--decline" data-offer-close>
-                      <span class="offer-btn__label">Nah, I like paying the full price</span>
-                    </button>
-                  </div>
-                </section>
+<div class="sticky-cta offer-only" id="stickyCta">
+<div class="s-price"><b>$19.99 once</b><span>ends in <span data-timer>30:00</span></span></div>
+<a href="#offer" class="btn" data-claim>Claim Lifetime Pro</a>
+</div>
 
-                <!--Step 2: email-->
-                <section class="offer-step" inert>
-                  <div class="offer-copy">
-                    <h2 class="offer-title">Where should we send your code?</h2>
-                    <p class="offer-text">You'll get your code and checkout link by email.</p>
-                  </div>
-                  <form class="offer-form" novalidate>
-                    <div class="offer-field">
-                      <input class="offer-input" id="offer-email" type="email" name="email" placeholder=" "
-                        autocomplete="email" inputmode="email" enterkeyhint="send" autocapitalize="off"
-                        spellcheck="false" required aria-describedby="offer-email-error">
-                      <label class="offer-label" for="offer-email">Email</label>
-                    </div>
-                    <p class="offer-error" id="offer-email-error" role="alert"></p>
-                    <button type="submit" class="offer-btn offer-btn--primary">
-                      <span class="offer-btn__label">Send offer</span>
-                      <span class="offer-btn__spinner" aria-hidden="true"></span>
-                    </button>
-                  </form>
-                </section>
+<script>
+(function () {
+  /* ---------- Settings: change these ---------- */
+  var CONFIG = {
+    OFFER_MINUTES: 30,                                   // per-visitor countdown, starts on first visit
+    STORAGE_KEY: 'hs_ld_offer_start',
+    TRIAL_URL: 'https://app.huddleshift.com/login',      // "Start free trial" after the offer ends
+    PRIVACY_URL: 'https://huddleshift.com/privacy',
+    TERMS_URL: 'https://huddleshift.com/terms',
+    // Connect this to the backend that emails the code + checkout link (same as the current /ld-offer form).
+    // It receives the email and must return a Promise; reject it to show an error.
+    submitOffer: function (email) {
+      return Promise.reject(new Error('Offer form is not connected yet.'));
+    }
+  };
 
-                <!--Step 3: sent-->
-                <section class="offer-step" inert>
-                  <svg class="offer-success" viewBox="0 0 60 60" aria-hidden="true">
-                    <circle cx="30" cy="30" r="27" pathLength="1"/>
-                    <path d="M19 31l8 8 15-17" pathLength="1"/>
-                  </svg>
-                  <div class="offer-copy">
-                    <h2 class="offer-title" tabindex="-1" data-offer-sent-title>Email sent</h2>
-                    <p class="offer-text">Your code and checkout link are on their way to <strong data-offer-email></strong>. Use them before the timer ends.</p>
-                  </div>
-                  <button type="button" class="offer-btn offer-btn--primary" data-offer-close>
-                    <span class="offer-btn__label">Done</span>
-                  </button>
-                </section>
+  var qs = location.search || '';
+  document.querySelectorAll('[data-trial]').forEach(function (a) { a.href = CONFIG.TRIAL_URL + qs; });
+  document.querySelectorAll('[data-link="privacy"]').forEach(function (a) { a.href = CONFIG.PRIVACY_URL; });
+  document.querySelectorAll('[data-link="terms"]').forEach(function (a) { a.href = CONFIG.TERMS_URL; });
 
-                <!--Timer reached zero-->
-                <section class="offer-step" inert>
-                  <div class="offer-copy">
-                    <h2 class="offer-title" tabindex="-1" data-offer-ended-title>This offer has ended</h2>
-                    <p class="offer-text">The $19.99 price is no longer available.</p>
-                  </div>
-                  <button type="button" class="offer-btn offer-btn--ghost" data-offer-close>
-                    <span class="offer-btn__label">Close</span>
-                  </button>
-                </section>
-              </div>
-            </div>
-          </div>
-        </dialog>
-      </div>
-    </main>
-  </body>
+  /* ---------- Countdown (persists per visitor, never resets on reload) ---------- */
+  var duration = CONFIG.OFFER_MINUTES * 60 * 1000;
+  var start = Date.now();
+  try {
+    var saved = parseInt(localStorage.getItem(CONFIG.STORAGE_KEY), 10);
+    if (saved && saved <= start) start = saved; else localStorage.setItem(CONFIG.STORAGE_KEY, String(start));
+  } catch (e) {}
+  var timerEls = document.querySelectorAll('[data-timer]');
+  var labelEls = document.querySelectorAll('[data-timer-label]');
+  var card = document.getElementById('offerCard');
+  var expired = false;
+  function tick() {
+    var left = Math.max(0, Math.round((start + duration - Date.now()) / 1000));
+    var txt = String(Math.floor(left / 60)).padStart(2, '0') + ':' + String(left % 60).padStart(2, '0');
+    timerEls.forEach(function (el) { el.textContent = txt; });
+    if (left === 0 && !expired) {
+      expired = true;
+      document.body.classList.add('expired');
+      labelEls.forEach(function (el) { el.textContent = 'offer expired'; });
+      setStep('expired');
+      clearInterval(timerId);
+    }
+  }
+  var timerId = setInterval(tick, 1000);
+
+  /* ---------- Offer card steps ---------- */
+  var emailInput = document.getElementById('ld-email');
+  function setStep(step) {
+    if (expired && step !== 'expired') step = 'expired';
+    card.setAttribute('data-step', step);
+    if (step === 'email') setTimeout(function () { emailInput.focus({ preventScroll: true }); }, 350);
+  }
+  tick();
+
+  document.querySelectorAll('[data-claim]').forEach(function (a) {
+    a.addEventListener('click', function () { setStep('email'); });
+  });
+  document.querySelector('[data-accept]').addEventListener('click', function () { setStep('email'); });
+  document.querySelector('[data-decline]').addEventListener('click', function () {
+    document.getElementById('top').scrollIntoView({ behavior: 'smooth' });
+  });
+  document.querySelector('[data-done]').addEventListener('click', function () { setStep('offer'); });
+
+  var form = document.getElementById('offerForm');
+  var err = document.getElementById('emailError');
+  var sendBtn = document.getElementById('sendBtn');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = emailInput.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      emailInput.setAttribute('aria-invalid', 'true');
+      err.textContent = 'Please enter a valid email address.';
+      return;
+    }
+    emailInput.removeAttribute('aria-invalid');
+    err.textContent = '';
+    sendBtn.disabled = true; sendBtn.textContent = 'Sending…';
+    Promise.resolve(CONFIG.submitOffer(email)).then(function () {
+      document.getElementById('sentTo').textContent = email;
+      setStep('sent');
+    }).catch(function () {
+      err.textContent = 'Something went wrong. Please try again.';
+    }).then(function () {
+      sendBtn.disabled = false; sendBtn.textContent = 'Send offer';
+    });
+  });
+
+  /* ---------- Hero video: make sure it autoplays muted ---------- */
+  var video = document.querySelector('.hero video');
+  if (video) {
+    video.muted = true;
+    var p = video.play && video.play(); if (p && p.catch) p.catch(function () { video.controls = true; });
+  }
+
+  /* ---------- Hadger demo loop (runs only while visible) ---------- */
+  var demo = document.getElementById('demo');
+  var typedEl = document.getElementById('typed');
+  var badge = document.getElementById('badge');
+  var prompt = 'Fill in the open shifts for today';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function render(t) {
+    var typing = t >= 22 && t < 40, done = t >= 54;
+    demo.classList.toggle('typing-now', typing);
+    demo.classList.toggle('send-on', t >= 36 && t < 41);
+    demo.classList.toggle('sent', t >= 40);
+    demo.classList.toggle('thinking', t >= 40 && t < 54);
+    demo.classList.toggle('done', done);
+    typedEl.textContent = typing ? prompt.slice(0, Math.ceil((t - 22) / 17 * prompt.length)) : 'Ask Hadger anything…';
+    badge.textContent = done ? 'All shifts covered' : '3 open shifts';
+  }
+  if (reduce) render(60);
+  else {
+    var t = 0, loop = null;
+    var startLoop = function () { if (!loop) loop = setInterval(function () { t = (t + 1) % 90; render(t); }, 100); };
+    var stopLoop = function () { clearInterval(loop); loop = null; };
+    render(0);
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { e[0].isIntersecting ? startLoop() : stopLoop(); }).observe(demo);
+    else startLoop();
+  }
+
+  /* ---------- Sticky CTA on phones: after hero button, hidden at the offer card ---------- */
+  var sticky = document.getElementById('stickyCta');
+  if ('IntersectionObserver' in window) {
+    var heroGone = false, offerIn = false;
+    var upd = function () { sticky.classList.toggle('show', heroGone && !offerIn); };
+    new IntersectionObserver(function (e) { heroGone = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; upd(); }).observe(document.querySelector('.hero .btn'));
+    new IntersectionObserver(function (e) { offerIn = e[0].isIntersecting; upd(); }).observe(document.getElementById('offer'));
+  }
+})();
+</script>
+</body>
 </html>
